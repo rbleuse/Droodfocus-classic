@@ -122,7 +122,7 @@ function DF:init_gps_frame()
 		overlayTexture[i]:SetBlendMode(DF_config.gps.mode)
 		overlayTexture[i]:ClearAllPoints()
 		overlayTexture[i]:SetAllPoints(overlay[i])
-		overlayTexture[i]:SetTexture("Interface\\Addons\\DroodFocus\\datas\\Arrow")
+		overlayTexture[i]:SetTexture("Interface\\Addons\\DroodFocus-TBC\\datas\\Arrow")
 		
 		-- place la texture dans le cadre
 		overlay[i].texture = overlayTexture[i]

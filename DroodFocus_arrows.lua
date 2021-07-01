@@ -44,7 +44,7 @@ function DF:init_arrows_frame()
 		end
 		
 		frames[i].texture:SetAllPoints(frames[i].frame)
-		frames[i].texture:SetTexture("Interface\\AddOns\\DroodFocus\\datas\\miniArrows.tga")
+		frames[i].texture:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\miniArrows.tga")
 		frames[i].texture:SetBlendMode("BLEND")
 	
 	end

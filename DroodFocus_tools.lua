@@ -58,7 +58,7 @@ function DF:MySetFont(obj,path,size,mode)
 	obj:SetFont(path,size,mode)
 	local police = obj:GetFont();
 	if not police then
-		obj:SetFont("Interface\\AddOns\\DroodFocus\\datas\\font.ttf",size,mode)
+		obj:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",size,mode)
 	end	
 end
 

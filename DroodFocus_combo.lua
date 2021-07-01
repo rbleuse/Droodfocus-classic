@@ -43,7 +43,7 @@ function DF:init_combo_frame()
 	-- workaround to change for runes for DK
 	if DF.playerClass=="DEATHKNIGHT" then
 		if not string.find(DF_config.combo.texturePath, "runes")  then
-			DF_config.combo.texturePath="Interface\\AddOns\\DroodFocus\\datas\\runes.tga"
+			DF_config.combo.texturePath="Interface\\AddOns\\DroodFocus-TBC\\datas\\runes.tga"
 		end
 	end
 	

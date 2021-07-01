@@ -133,7 +133,7 @@ function DF:portrait_update()
 	end
 
 	local form = DF:currentForm()	
-	if form>6 or DF_config.portrait.textures[form+1]=="Interface\\AddOns\\DroodFocus\\datas\\empty.tga" then
+	if form>6 or DF_config.portrait.textures[form+1]=="Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga" then
 		
 		overlayTexture:SetTexture(defaultTexture)
 

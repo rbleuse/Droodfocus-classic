@@ -137,7 +137,7 @@ function DF:OnEvent(eventArg, ...)
 				
 			elseif arg6==DF.playerId and UnitHealth("player")<(UnitHealthMax("player")/2.5) then
 			
-			 	DF:alert_activate("Interface\\AddOns\\DroodFocus\\datas\\alertWarning.tga")
+			 	DF:alert_activate("Interface\\AddOns\\DroodFocus-TBC\\datas\\alertWarning.tga")
 			 	
 			end
 					

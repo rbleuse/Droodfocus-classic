@@ -1,0 +1,48 @@
+﻿## Interface: 30300
+## Title: DroodFocus
+## Version: 4.0.21
+## Author: Meranannon - Discordia - Vol'jin (EU)
+## Email: 
+## Notes: DroodFocus - Now works for all classes. 
+## SavedVariablesPerCharacter: DF_config
+## SavedVariables: DF_saved_configs, DF_sharemedia, DF_talents
+
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\LibDataBroker-1.1.lua
+libs\LibSharedMedia-3.0.lua
+
+DroodFocus_version.lua
+DroodFocus_localization.lua
+DroodFocus_spellsList.lua
+DroodFocus_config.lua
+DroodFocus_libs.lua
+DroodFocus_tools.lua
+DroodFocus_talent.lua
+DroodFocus_minimap.lua
+DroodFocus_grid.lua
+DroodFocus_form.lua
+DroodFocus_anchor.lua
+DroodFocus_ooc.lua
+DroodFocus_powerbar.lua
+DroodFocus_castbar.lua
+DroodFocus_healthbar.lua
+DroodFocus_manabar.lua
+DroodFocus_targetbar.lua
+DroodFocus_threatbar.lua
+DroodFocus_combo.lua
+DroodFocus_arrows.lua
+DroodFocus_alert.lua
+DroodFocus_cooldown.lua
+DroodFocus_spells.lua
+DroodFocus_icons.lua
+DroodFocus_timerbars.lua
+DroodFocus_blood.lua
+DroodFocus_portrait.lua
+DroodFocus_combat.lua
+DroodFocus_toggle.lua
+DroodFocus_infos.lua
+DroodFocus_gps.lua
+DroodFocus_sound.lua
+DroodFocus_options.lua
+DroodFocus_core.lua

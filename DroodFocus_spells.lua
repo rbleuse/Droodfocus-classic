@@ -141,7 +141,7 @@ function DF:spell_exist(idcheck,namecheck,cible,filtre,strong)
 	
 	while true do 
 		
-		name, _, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura(cible, index, filtre) 
+		name, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura(cible, index, filtre) 
 
 		-- plus de nom la liste est finie
 		if not name then
@@ -167,15 +167,7 @@ end
 function DF:spell_getPowerAttack()
 	
 	local base, posBuff, negBuff = UnitAttackPower("player")
-	local puissance = base + posBuff + negBuff
-	local savage = DF:spell_exist(52610,nil,"player","HELPFUL|PLAYER",true)
-	
-	if savage then 
-		return puissance*3.3
-	else
-		return puissance
-	end	
-	
+	return base + posBuff + negBuff
 end
 
 function DF:spell_check(num)
@@ -246,7 +238,7 @@ function DF:spell_check(num)
 						thatOk = true
 				
 						-- sauve les infos		
-						name, _, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter) 
+						name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter)
 						lid=DF_config.spells[num].ids[ide]									
 				end
 				
@@ -256,7 +248,6 @@ function DF:spell_check(num)
 
 		-- si c'est ok
 		if thatOk then
-			
 			-- indique si le debuff appartient au joueur
 			if (caster=="player") then
 				isPerso=true
@@ -372,7 +363,7 @@ function DF:spell_check(num)
 						thatOk = true
 				
 						-- sauve les infos		
-						name, _, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter) 
+						name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter) 
 						lid=DF_config.spells[num].ids[ide]									
 				end
 				
@@ -398,7 +389,7 @@ function DF:spell_check(num)
 
 				-- si on dispose d'une fin de debuff, on retranche l'heure courante pour obtenir le temps restant
 				if (expirationTime ~= nil) then
-										
+					
 					timeLeft = expirationTime - DF.currentTime
 					
 					if (timeLeft<0) then
@@ -485,16 +476,13 @@ function DF:spell_check(num)
 				-- si présent
 				if (index) then
 				
-						thatOk = true
-				
-						-- sauve les infos		
-						name, _, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("player", index, "HELPFUL|PLAYER")
-						lid=DF_config.spells[num].ids[ide]									
- 
-				end
-				
-			end
+					thatOk = true
 			
+					-- sauve les infos
+					name, _, count, _, duration, expirationTime, caster = UnitAura("player", index, "HELPFUL|PLAYER")
+					lid=DF_config.spells[num].ids[ide]
+				end
+			end
 		end	
 
 		-- concordance avec le buff a scanner?
@@ -504,8 +492,7 @@ function DF:spell_check(num)
 			
 			-- si on dispose d'une fin de buff, on retranche l'heure courante pour obtenir le temps restant
 			if (expirationTime ~= nil) then
-				
-				timeLeft =  expirationTime - DF.currentTime
+				timeLeft = expirationTime - DF.currentTime
 				
 				if (timeLeft<0) then
 					timeLeft=0;

@@ -400,11 +400,11 @@ function DF:options_createpanels()
 	DF:options_createButton(pt,"sharemediabutton1",DF.locale["test"],9,6,DF.options_testMedia,"")
 	DF:options_createButton(pt,"sharemediabutton2",DF.locale["add"],17,6,DF.options_testMedia,"add")
 	
-	shareMediaBox = CreateFrame("FRAME", "DFshareMediaBox", pt)
+	shareMediaBox = CreateFrame("FRAME", "DFshareMediaBox", pt, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	shareMediaBox:SetWidth(380)
  	shareMediaBox:SetHeight(128)
 	shareMediaBox:SetPoint("TOPLEFT", pt, "TOPLEFT", 10, -140)
-	shareMediaBox:SetBackdrop({bgFile = nil, edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+	shareMediaBox:SetBackdrop({bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }})
 	shareMediaBox:SetBackdropColor(0,0,0,1);	
@@ -1635,7 +1635,7 @@ end
 function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,fonction,help)
 	
 	local obj = CreateFrame("FRAME", name, parent)
-	local overlay = CreateFrame("FRAME",name.."border",parent)
+	local overlay = CreateFrame("FRAME", name.."border", parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 
 	obj.base=base
 	obj:EnableMouse(true)
@@ -1653,60 +1653,59 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 	obj:EnableMouse(true)
 
 	obj:SetScript("OnShow", function(self)
-	  if self.base then
+		if self.base then
 			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
-		  obj:EnableMouse(true) 
-		  overlay:SetAlpha(1)
-		  obj:SetAlpha(1)
+			obj:EnableMouse(true)
+			overlay:SetAlpha(1)
+			obj:SetAlpha(1)
 		else
 			obj.texture:SetTexture(0,0,0,1)
-			obj:EnableMouse(false) 
+			obj:EnableMouse(false)
 			overlay:SetAlpha(0.5)
-		  obj:SetAlpha(0.5)			
+			obj:SetAlpha(0.5)
 		end
-	end)	
+	end)
 	obj:SetScript("OnMouseUp",function(self)
-			falseEditBox:SetFocus()
-			ColorPickerFrame.func=nil
-			ColorPickerFrame.opacityFunc=nil
-			ColorPickerFrame.cancelFunc=nil
-			
-			ColorPickerFrame.hasOpacity=true
+		falseEditBox:SetFocus()
+		ColorPickerFrame.func=nil
+		ColorPickerFrame.opacityFunc=nil
+		ColorPickerFrame.cancelFunc=nil
+		ColorPickerFrame.hasOpacity=true
 			ColorPickerFrame.opacity = 1-self.base[index].a
-			ColorPickerFrame.previousValues = {self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a};
-			ColorPickerFrame:SetColorRGB(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
-			ColorPickerFrame.func = function()
-				local R,G,B = ColorPickerFrame:GetColorRGB()
-				local A = 1-OpacitySliderFrame:GetValue()
-				self.base[index].r=R
-				self.base[index].v=G
-				self.base[index].b=B
-				self.base[index].a=A
-				obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
-				if fonction then fonction() end
-			end	
-			
-			ColorPickerFrame.opacityFunc = function()
-				local R,G,B = ColorPickerFrame:GetColorRGB()
-				local A = 1-OpacitySliderFrame:GetValue()
-				self.base[index].r=R
-				self.base[index].v=G
-				self.base[index].b=B
-				self.base[index].a=A
-				obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
-				if fonction then fonction() end
-			end	
-			
-			ColorPickerFrame.cancelFunc = function()
-				self.base[index].r=ColorPickerFrame.previousValues[1]
-				self.base[index].v=ColorPickerFrame.previousValues[2]
-				self.base[index].b=ColorPickerFrame.previousValues[3]
-				self.base[index].a=ColorPickerFrame.previousValues[4]
-				obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
-				if fonction then fonction() end
-			end	
+		ColorPickerFrame.previousValues = {self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a};
+		ColorPickerFrame:SetColorRGB(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+		ColorPickerFrame.func = function()
+			local R,G,B = ColorPickerFrame:GetColorRGB()
+			local A = 1-OpacitySliderFrame:GetValue()
+			self.base[index].r=R
+			self.base[index].v=G
+			self.base[index].b=B
+			self.base[index].a=A
+			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			if fonction then fonction() end
+		end	
+		
+		ColorPickerFrame.opacityFunc = function()
+			local R,G,B = ColorPickerFrame:GetColorRGB()
+			local A = 1-OpacitySliderFrame:GetValue()
+			self.base[index].r=R
+			self.base[index].v=G
+			self.base[index].b=B
+			self.base[index].a=A
+			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			if fonction then fonction() end
+		end	
+		
+		ColorPickerFrame.cancelFunc = function()
+			self.base[index].r=ColorPickerFrame.previousValues[1]
+			self.base[index].v=ColorPickerFrame.previousValues[2]
+			self.base[index].b=ColorPickerFrame.previousValues[3]
+			self.base[index].a=ColorPickerFrame.previousValues[4]
+			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			if fonction then fonction() end
+		end	
 
-			ColorPickerFrame:Show()
+		ColorPickerFrame:Show()
 
 	end)		
 		
@@ -1720,11 +1719,11 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 end
 
 function DF:options_createBox(parent,name,posx,posy,bwidth,bheight)
-	local obj = CreateFrame('Frame', name, parent)
+	local obj = CreateFrame('Frame', name, parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	obj:SetWidth(bwidth)
  	obj:SetHeight(bheight)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", posx, posy)
-	obj:SetBackdrop({bgFile = "Interface/Tooltips/UI-Tooltip-Background", edgeFile = "Interface/Tooltips/UI-Tooltip-Border",
+	obj:SetBackdrop({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }})
 	obj:SetBackdropColor(0,0,0,1);
@@ -1921,8 +1920,8 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	local maxNbLines=nbLines
 	if maxNbLines>20 then maxNbLines=20 end
 	local smaxi = getn(optionsList)-19
-	
-	local obj = CreateFrame("EditBox", name, parent,"InputBoxTemplate")
+
+	local obj = CreateFrame("EditBox", name, parent, "InputBoxTemplate")
 	obj.base=base
 	obj.laliste=optionsList
 	obj:SetWidth(largeur)
@@ -1962,7 +1961,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	police = obj.fontString:GetFont();obj.fontString:SetFont(police,10)
 
 	-- création du menu
-	local menu = CreateFrame("FRAME",name.."menudropdown",parent)
+	local menu = CreateFrame("FRAME", name.."menudropdown", parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
 	menu.obj=obj
 	menu.slide=nil
 	menu.optionsList=optionsList

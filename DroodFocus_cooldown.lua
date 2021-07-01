@@ -215,29 +215,25 @@ function DF:cooldown_initTable()
 	end
 
 	for i = 1, GetNumSpellTabs() do
-		
-	   local name, _, offset, numSpells = GetSpellTabInfo(i)
-	   
-	   if not name then
-	      break;
-	   end
-   
-	   for s = offset + 1, offset + numSpells do
-	   	
-	   	local	spell, rank = GetSpellName(s, BOOKTYPE_SPELL)
-	   	local cdstart, cdduration, cdenable = GetSpellCooldown(spell)
-			
+		local name, _, offset, numSpells = GetSpellTabInfo(i)
+
+		if not name then
+			break;
+		end
+
+		for s = offset + 1, offset + numSpells do
+
+			local spell, rank = GetSpellBookItemName(s, BOOKTYPE_SPELL)
+			local cdstart, cdduration, cdenable = GetSpellCooldown(spell)
+
 			if (not IsPassiveSpell(s, BOOKTYPE_SPELL) and not cooldown_table[spell]) then
 				cooldown_table[spell]={}
 				cooldown_table[spell].active=false
 				cooldown_table[spell].debut=-1
 				cooldown_table[spell].duree=0
 			end
-
-	   end
-	   
+		end
 	end	
-	
 end
 
 function DF:cooldown_check()

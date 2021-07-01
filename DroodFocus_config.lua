@@ -803,6 +803,7 @@ DF_pred_configs = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
 			["color"] = {
+				["a"] = 1,
 				["r"] = 0,
 				["v"] = 0,
 				["b"] = 1,
@@ -847,7 +848,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 52610,
+				["abiSpellId"] = 9846,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -862,12 +863,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Rugissement sauvage", -- [1]
+					"Fureur du tigre", -- [1]
 				},
-				["abiSpelltext"] = "Rugissement sauvage",
+				["abiSpelltext"] = "Fureur du tigre",
 				["timerbar"] = 0,
 				["ids"] = {
-					52610, -- [1]
+					9846, -- [1]
 				},
 				["form"] = {
 					false, -- [1]
@@ -884,7 +885,7 @@ DF_pred_configs = {
 				["getUptime"] = true,
 				["sType"] = "Buff",
 				["abiSound"] = "",
-				["spellIDs"] = "52610",
+				["spellIDs"] = "9846",
 				["abiEnd"] = 0,
 			}, -- [1]
 			{
@@ -1261,370 +1262,6 @@ DF_pred_configs = {
 				["spellIDs"] = "5211",
 				["abiEnd"] = 0,
 			}, -- [8]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 1,
-					["v"] = 0,
-					["b"] = 0,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 69369,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Rapidité du prédateur", -- [1]
-				},
-				["abiSpelltext"] = "Rapidité du prédateur",
-				["timerbar"] = 2,
-				["ids"] = {
-					69369, -- [1]
-				},
-				["form"] = {
-					true, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "69369",
-				["abiEnd"] = 0,
-			}, -- [9]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 1,
-					["v"] = 0.8862745098039215,
-					["b"] = 0,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 65019,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 45,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 10.02000000000044,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Pierre runique de Mjolnir", -- [1]
-				},
-				["abiSpelltext"] = "Pierre runique de Mjolnir",
-				["timerbar"] = 2,
-				["ids"] = {
-					65019, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "Sound\\Spells\\DirectDamage\\HolyImpactDDHigh.wav",
-				["spellIDs"] = "65019",
-				["abiEnd"] = 0,
-			}, -- [10]
-			{
-				["spellIDs"] = "49016",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 1,
-					["v"] = 0,
-					["b"] = 0,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 49016,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 180,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Hystérie", -- [1]
-				},
-				["abiSpelltext"] = "Hystérie",
-				["timerbar"] = 2,
-				["ids"] = {
-					49016, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "Sound\\Spells\\DirectDamage\\HolyImpactDDHigh.wav",
-				["abiEnd"] = 0,
-			}, -- [11]
-			{
-				["spellIDs"] = "50334",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["b"] = 0,
-					["v"] = 0.5411764705882353,
-					["r"] = 1,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50334,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["sType"] = "Buff",
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					50334, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["height"] = 32,
-				["abiSound"] = "",
-				["abiEnd"] = 0,
-			}, -- [12]
-			{
-				["spellIDs"] = "50213",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["b"] = 0.5764705882352941,
-					["v"] = 1,
-					["r"] = 0,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50213,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["sType"] = "Buff",
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Fureur du tigre", -- [1]
-				},
-				["abiSpelltext"] = "Fureur du tigre",
-				["timerbar"] = 2,
-				["ids"] = {
-					50213, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["height"] = 32,
-				["abiSound"] = "",
-				["abiEnd"] = 0,
-			}, -- [13]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["b"] = 0,
-					["v"] = 0,
-					["r"] = 1,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 60233,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 45,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 15.01900000000023,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Grandeur", -- [1]
-				},
-				["abiSpelltext"] = "Grandeur",
-				["timerbar"] = 2,
-				["ids"] = {
-					60233, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "60233",
-				["abiEnd"] = 0,
-			}, -- [14]
-			{
-				["spellIDs"] = "59620",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["b"] = 0,
-					["v"] = 0,
-					["r"] = 1,
-				},
-				["showcd"] = false,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 59620,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "Berzerker",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					59620, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["abiEnd"] = 0,
-			}, -- [15]
 			{
 				["spellIDs"] = "22812",
 				["abiStack"] = 0,
@@ -2218,6 +1855,7 @@ DF_pred_configs = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
 			["color"] = {
+				["a"] = 1,
 				["r"] = 0,
 				["v"] = 0,
 				["b"] = 1,
@@ -2262,7 +1900,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 52610,
+				["abiSpellId"] = 9846,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -2277,12 +1915,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Rugissement sauvage", -- [1]
+					"Fureur du tigre", -- [1]
 				},
-				["abiSpelltext"] = "Rugissement sauvage",
+				["abiSpelltext"] = "Fureur du tigre",
 				["timerbar"] = 1,
 				["ids"] = {
-					52610, -- [1]
+					9846, -- [1]
 				},
 				["form"] = {
 					false, -- [1]
@@ -2299,7 +1937,7 @@ DF_pred_configs = {
 				["getUptime"] = true,
 				["sType"] = "Buff",
 				["abiSound"] = "",
-				["spellIDs"] = "52610",
+				["spellIDs"] = "9846",
 				["abiEnd"] = 0,
 			}, -- [1]
 			{
@@ -2624,110 +2262,6 @@ DF_pred_configs = {
 				["spellIDs"] = "99;25203",
 				["abiEnd"] = 0,
 			}, -- [7]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5529411764705883,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50334,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					50334, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50334",
-				["abiEnd"] = 0,
-			}, -- [8]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5764705882352941,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50213,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Fureur du tigre", -- [1]
-				},
-				["abiSpelltext"] = "Fureur du tigre",
-				["timerbar"] = 2,
-				["ids"] = {
-					50213, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50213",
-				["abiEnd"] = 0,
-			}, -- [9]
 			{
 				["abiStack"] = 0,
 				["positiony"] = 0,
@@ -3308,6 +2842,7 @@ DF_pred_configs = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
 			["color"] = {
+				["a"] = 1,
 				["r"] = 0,
 				["v"] = 0,
 				["b"] = 1,
@@ -3352,7 +2887,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 52610,
+				["abiSpellId"] = 9846,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -3367,12 +2902,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Rugissement sauvage", -- [1]
+					"Fureur du tigre", -- [1]
 				},
-				["abiSpelltext"] = "Rugissement sauvage",
+				["abiSpelltext"] = "Fureur du tigre",
 				["timerbar"] = 1,
 				["ids"] = {
-					52610, -- [1]
+					9846, -- [1]
 				},
 				["form"] = {
 					false, -- [1]
@@ -3389,7 +2924,7 @@ DF_pred_configs = {
 				["getUptime"] = true,
 				["sType"] = "Buff",
 				["abiSound"] = "",
-				["spellIDs"] = "52610",
+				["spellIDs"] = "9846",
 				["abiEnd"] = 0,
 			}, -- [1]
 			{
@@ -3714,110 +3249,6 @@ DF_pred_configs = {
 				["spellIDs"] = "99;25203",
 				["abiEnd"] = 0,
 			}, -- [7]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5529411764705883,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50334,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					50334, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50334",
-				["abiEnd"] = 0,
-			}, -- [8]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5764705882352941,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50213,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Fureur du tigre", -- [1]
-				},
-				["abiSpelltext"] = "Fureur du tigre",
-				["timerbar"] = 2,
-				["ids"] = {
-					50213, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50213",
-				["abiEnd"] = 0,
-			}, -- [9]
 			{
 				["abiStack"] = 0,
 				["positiony"] = 0,
@@ -4398,6 +3829,7 @@ DF_pred_configs = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
 			["color"] = {
+				["a"] = 1,
 				["r"] = 0,
 				["v"] = 0,
 				["b"] = 1,
@@ -4442,7 +3874,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 52610,
+				["abiSpellId"] = 9846,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -4457,12 +3889,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Rugissement sauvage", -- [1]
+					"Fureur du tigre", -- [1]
 				},
-				["abiSpelltext"] = "Rugissement sauvage",
+				["abiSpelltext"] = "Fureur du tigre",
 				["timerbar"] = 1,
 				["ids"] = {
-					52610, -- [1]
+					9846, -- [1]
 				},
 				["form"] = {
 					false, -- [1]
@@ -4479,7 +3911,7 @@ DF_pred_configs = {
 				["getUptime"] = true,
 				["sType"] = "Buff",
 				["abiSound"] = "",
-				["spellIDs"] = "52610",
+				["spellIDs"] = "9846",
 				["abiEnd"] = 0,
 			}, -- [1]
 			{
@@ -4856,110 +4288,6 @@ DF_pred_configs = {
 				["spellIDs"] = "5211",
 				["abiEnd"] = 0,
 			}, -- [8]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5529411764705883,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50334,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					50334, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50334",
-				["abiEnd"] = 0,
-			}, -- [9]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5764705882352941,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50213,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Fureur du tigre", -- [1]
-				},
-				["abiSpelltext"] = "Fureur du tigre",
-				["timerbar"] = 2,
-				["ids"] = {
-					50213, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50213",
-				["abiEnd"] = 0,
-			}, -- [10]
 			{
 				["spellIDs"] = "22812",
 				["abiStack"] = 0,
@@ -5540,6 +4868,7 @@ DF_pred_configs = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
 			["color"] = {
+				["a"] = 1,
 				["r"] = 0,
 				["v"] = 0,
 				["b"] = 1,
@@ -5584,7 +4913,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 52610,
+				["abiSpellId"] = 9846,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -5599,12 +4928,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Rugissement sauvage", -- [1]
+					"Fureur du tigre", -- [1]
 				},
-				["abiSpelltext"] = "Rugissement sauvage",
+				["abiSpelltext"] = "Fureur du tigre",
 				["timerbar"] = 1,
 				["ids"] = {
-					52610, -- [1]
+					9846, -- [1]
 				},
 				["form"] = {
 					false, -- [1]
@@ -5621,7 +4950,7 @@ DF_pred_configs = {
 				["getUptime"] = true,
 				["sType"] = "Buff",
 				["abiSound"] = "",
-				["spellIDs"] = "52610",
+				["spellIDs"] = "9846",
 				["abiEnd"] = 0,
 			}, -- [1]
 			{
@@ -5998,110 +5327,6 @@ DF_pred_configs = {
 				["spellIDs"] = "5211",
 				["abiEnd"] = 0,
 			}, -- [8]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5529411764705883,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50334,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Berserk", -- [1]
-				},
-				["abiSpelltext"] = "Berserk",
-				["timerbar"] = 2,
-				["ids"] = {
-					50334, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50334",
-				["abiEnd"] = 0,
-			}, -- [9]
-			{
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 1,
-					["b"] = 0.5764705882352941,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 50213,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = false,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Fureur du tigre", -- [1]
-				},
-				["abiSpelltext"] = "Fureur du tigre",
-				["timerbar"] = 2,
-				["ids"] = {
-					50213, -- [1]
-				},
-				["form"] = {
-					false, -- [1]
-					true, -- [2]
-					false, -- [3]
-					true, -- [4]
-					false, -- [5]
-					false, -- [6]
-					false, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["sType"] = "Buff",
-				["abiSound"] = "",
-				["spellIDs"] = "50213",
-				["abiEnd"] = 0,
-			}, -- [10]
 			{
 				["spellIDs"] = "22812",
 				["abiStack"] = 0,
@@ -6736,111 +5961,7 @@ DF_pred_configs = {
 		},
 		["spells"] = {
 			{
-				["spellIDs"] = "48518",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0,
-					["v"] = 0.1882352941176471,
-					["b"] = 1,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 48518,
-				["icon"] = true,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 30,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = true,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Eclipse", -- [1]
-				},
-				["abiSpelltext"] = "Eclipse",
-				["timerbar"] = 0,
-				["ids"] = {
-					48518, -- [1]
-				},
-				["form"] = {
-					true, -- [1]
-					false, -- [2]
-					true, -- [3]
-					false, -- [4]
-					true, -- [5]
-					true, -- [6]
-					true, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = true,
-				["abiSound"] = "",
-				["sType"] = "Buff",
-				["abiEnd"] = 0,
-			}, -- [1]
-			{
-				["spellIDs"] = "48517",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["b"] = 0,
-					["v"] = 0,
-					["r"] = 1,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 48517,
-				["icon"] = true,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 30,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = true,
-				["abiTimeLeft"] = 0,
-				["sType"] = "Buff",
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Eclipse", -- [1]
-				},
-				["abiSpelltext"] = "Eclipse",
-				["timerbar"] = 0,
-				["ids"] = {
-					48517, -- [1]
-				},
-				["form"] = {
-					true, -- [1]
-					false, -- [2]
-					true, -- [3]
-					false, -- [4]
-					true, -- [5]
-					true, -- [6]
-					true, -- [7]
-				},
-				["strongcheck"] = true,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = true,
-				["abiSound"] = "",
-				["height"] = 32,
-				["abiEnd"] = 0,
-			}, -- [2]
-			{
-				["spellIDs"] = "48463",
+				["spellIDs"] = "26988",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -6852,7 +5973,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 48463,
+				["abiSpellId"] = 26988,
 				["icon"] = true,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -6872,7 +5993,7 @@ DF_pred_configs = {
 				["abiSpelltext"] = "Eclat lunaire",
 				["timerbar"] = 0,
 				["ids"] = {
-					48463, -- [1]
+					26988, -- [1]
 				},
 				["form"] = {
 					true, -- [1]
@@ -6892,7 +6013,7 @@ DF_pred_configs = {
 				["abiEnd"] = 0,
 			}, -- [3]
 			{
-				["spellIDs"] = "57851;48468",
+				["spellIDs"] = "27013",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -6919,14 +6040,12 @@ DF_pred_configs = {
 				["combo"] = false,
 				["abiUserText"] = "",
 				["names"] = {
-					"Essaim d'insectes amélioré", -- [1]
 					"Essaim d'insectes", -- [2]
 				},
 				["abiSpelltext"] = "Essaim d'insectes",
 				["timerbar"] = 0,
 				["ids"] = {
-					57851, -- [1]
-					48468, -- [2]
+					27013, -- [1]
 				},
 				["form"] = {
 					true, -- [1]
@@ -7052,7 +6171,7 @@ DF_pred_configs = {
 				["abiEnd"] = 0,
 			}, -- [6]
 			{
-				["spellIDs"] = "53201",
+				["spellIDs"] = "37124",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -7064,7 +6183,7 @@ DF_pred_configs = {
 				["showcd"] = true,
 				["abiCD"] = 0,
 				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 53201,
+				["abiSpellId"] = 37124,
 				["icon"] = false,
 				["abiAlphaPulse"] = 0,
 				["abiInternalCD"] = 0,
@@ -7084,7 +6203,7 @@ DF_pred_configs = {
 				["abiSpelltext"] = "Météores",
 				["timerbar"] = 2,
 				["ids"] = {
-					53201, -- [1]
+					37124, -- [1]
 				},
 				["form"] = {
 					true, -- [1]
@@ -7103,58 +6222,6 @@ DF_pred_configs = {
 				["height"] = 32,
 				["abiEnd"] = 0,
 			}, -- [7]
-			{
-				["spellIDs"] = "61384",
-				["abiStack"] = 0,
-				["positiony"] = 0,
-				["color"] = {
-					["a"] = 1,
-					["r"] = 0.6588235294117647,
-					["v"] = 0,
-					["b"] = 1,
-				},
-				["showcd"] = true,
-				["abiCD"] = 0,
-				["abiOldTimeLeft"] = 0,
-				["abiSpellId"] = 61384,
-				["icon"] = false,
-				["abiAlphaPulse"] = 0,
-				["abiInternalCD"] = 0,
-				["abiUpTime"] = 0,
-				["abiUptime"] = 0,
-				["perso"] = true,
-				["abiTimeLeft"] = 0,
-				["height"] = 32,
-				["positionx"] = 0,
-				["abiStart"] = 0,
-				["abiDuration"] = 0,
-				["combo"] = false,
-				["abiUserText"] = "",
-				["names"] = {
-					"Typhon", -- [1]
-				},
-				["abiSpelltext"] = "Typhon",
-				["timerbar"] = 2,
-				["ids"] = {
-					61384, -- [1]
-				},
-				["form"] = {
-					true, -- [1]
-					false, -- [2]
-					true, -- [3]
-					false, -- [4]
-					true, -- [5]
-					true, -- [6]
-					true, -- [7]
-				},
-				["strongcheck"] = false,
-				["width"] = 32,
-				["abiPower"] = 0,
-				["getUptime"] = false,
-				["abiSound"] = "",
-				["sType"] = "Debuff",
-				["abiEnd"] = 0,
-			}, -- [8]
 		},
 		["ooc"] = {
 			["spell"] = 12536,

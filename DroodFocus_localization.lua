@@ -214,7 +214,7 @@ DF.locale = {
 }
 
 DF.help ={
-	["ID's list"]="List of Spells ID|comma separator. You can find SpellID in predefinited list or on Wowhead.com|For exemple, 'Savage Roar' link: http://www.wowhead.com/?spell=52610.|Spell ID is 52610.",
+	["ID's list"]="List of Spells ID|comma separator. You can find SpellID in predefinited list or on Wowhead.com|For exemple, 'Savage Roar' link: https://tbc.wowhead.com/spell=9846.|Spell ID is 9846.",
 	["Level"]="Level|Set the level of this frame (determines which of overlapping frames shows on top).|Higher numbers always show up on top of lower numbers.",
 	["Blend mode"]="Blend mode|Blend mode of the texture.|Adds texture color values to the underlying color values, using the alpha channel;|Light areas in the texture lighten the background while dark areas are more transparent.",
 	["Spell ID"]="Spell ID|ID of the spell will trigger the effect.|You can find SpellID on http://www.wowhead.com.",
@@ -485,7 +485,7 @@ if (GetLocale() == "frFR") then
 	}
 
 	DF.help ={
-		["ID's list"]="Liste des IDs|Séparées par un point-virgule. Vous pouvez trouver les ID dans la liste prédéfinies ou sur Wowhead.com|Par exemple, Le lien pour 'Rugissement sauvage': http://fr.wowhead.com/?spell=52610.|l'ID du sort est 52610.",
+		["ID's list"]="Liste des IDs|Séparées par un point-virgule. Vous pouvez trouver les ID dans la liste prédéfinies ou sur Wowhead.com|Par exemple, Le lien pour 'Fureur du tigre': https://fr.tbc.wowhead.com/spell=9846.|l'ID du sort est 9846.",
 		["Level"]="Level|Niveau d'affichage du cadre.|Un cadre de niveau 10 sera affiché au dessus d'un cadre de niveau inférieur.",
 		["Blend mode"]="Mode de fusion|mode de fusion de la texture.|Ajoute des valeurs de transparence pour les couleurs sous-jacentes|En utilisant le canal alpha. Les zones claires sont plus visibles que les zones sombres, plus transparentes.",
 		["Spell ID"]="ID du sort|L'ID du sort qui déclenche l'effet.|Vous pouvez trouver les ID sur Wowhead.com.",

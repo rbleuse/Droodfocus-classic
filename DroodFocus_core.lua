@@ -170,13 +170,13 @@ function DF:OnEvent(eventArg, ...)
 end
 
 -- OnUpdate
-function DF:OnUpdate(...)
-	
+function DF:OnUpdate(elapsed)
+
 	DF.currentTime = GetTime()
 
 	DF:toggle_toggle()
 
-	DF:spells_update(arg1)
+	DF:spells_update(elapsed)
 	DF:icons_update()
 	DF:timerbars_update()
 	DF:ooc_update()
@@ -311,11 +311,11 @@ function DF:ShowID(ftype)
 
 		if ftype=="buff" then
 			
-			name, _, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura("player", index, "HELPFUL") 
+			name, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura("player", index, "HELPFUL") 
 		
 		elseif ftype=="debuff" then
 			
-			name, _, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura("playertarget", index, "HARMFUL") 
+			name, _, _, debuffType, _, _, unitCaster, _, _, spellId = UnitAura("playertarget", index, "HARMFUL") 
 		
 		else
 		

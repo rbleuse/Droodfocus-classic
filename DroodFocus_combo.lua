@@ -306,7 +306,7 @@ function DF:combo_update()
 	
 	if ((DF.playerClass=="DRUID" and DF:currentForm()==3) or DF.playerClass=="ROGUE") then
 		
-		c = GetComboPoints(UnitHasVehicleUI("player") and "vehicle" or "player", "target");
+		c = UnitPower("target", 4)
 		
 		if DF_config.combo.showText and c and c>0 then
 			combotext:SetText(tostring(c))

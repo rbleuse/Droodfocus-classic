@@ -182,7 +182,7 @@ end
 -- vérification du buff
 function DF:ooc_check_buff()
 
-	if UnitBuff("player",ooc_spell) then
+	if AuraUtil.FindAuraByName(ooc_spell, "player") then
 	   
 	    if (state==0 or state==2) then
 	    	

@@ -33,18 +33,17 @@ local DF_broker = DF.LDB:NewDataObject("Broker_DroodFocus", {
 DF_MinimapButton=CreateFrame('Button', 'DroodFocusMinimapButton', Minimap);
 
 function DF:DF_MinimapLoad()
-		
 	-- minimap
 
 	DF_MinimapButton:SetWidth(31); DF_MinimapButton:SetHeight(31)
 	DF_MinimapButton:SetFrameLevel(8)
 	DF_MinimapButton:RegisterForClicks('anyUp')
 	DF_MinimapButton:RegisterForDrag('LeftButton')
-	DF_MinimapButton:SetHighlightTexture('Interface/Minimap/UI-Minimap-ZoomButton-Highlight')
+	DF_MinimapButton:SetHighlightTexture('Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight')
 
 	local overlay = DF_MinimapButton:CreateTexture(nil, 'OVERLAY')
 	overlay:SetWidth(53); overlay:SetHeight(53)
-	overlay:SetTexture('Interface/Minimap/MiniMap-TrackingBorder')
+	overlay:SetTexture('Interface\\Minimap\\MiniMap-TrackingBorder')
 	overlay:SetPoint('TOPLEFT')
 
 	local icon = DF_MinimapButton:CreateTexture(nil, 'BACKGROUND')

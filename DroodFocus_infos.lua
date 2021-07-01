@@ -10,7 +10,7 @@ local frame
 local frameTexts={}
 local frameTexture=nil
 
-local hitAuraName=GetSpellInfo(6562)
+local hitAura = 6562
 local targetLevel =0
 
 -- initialisation frames
@@ -106,13 +106,13 @@ end
 
 local function getMeleeHit()
 	local hitAura = 0
-	if UnitAura("player",hitAuraName) then hitAura=1 end
+	if UnitAura("player",hitAura) then hitAura=1 end
 	local hit =GetCombatRatingBonus(CR_HIT_MELEE)+hitAura
 	return DF:doubleNumbers(hit).."%%"
 end
 local function getRangedHit()
 	local hitAura = 0
-	if UnitAura("player",hitAuraName) then hitAura=1 end
+	if UnitAura("player",hitAura) then hitAura=1 end
 	local hit =GetCombatRatingBonus(CR_HIT_RANGED)+hitAura
 	return DF:doubleNumbers(hit).."%%"
 end

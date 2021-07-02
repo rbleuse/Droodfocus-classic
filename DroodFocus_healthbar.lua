@@ -81,12 +81,12 @@ function DF:init_healthbar_frame()
 	if DF_config.healthbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.healthbar.borderColor.r, DF_config.healthbar.borderColor.v, DF_config.healthbar.borderColor.b,DF_config.healthbar.borderColor.a)
+		frameTexture:SetColorTexture(DF_config.healthbar.borderColor.r, DF_config.healthbar.borderColor.v, DF_config.healthbar.borderColor.b,DF_config.healthbar.borderColor.a)
 		frame.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.healthbar.borderColor.r, DF_config.healthbar.borderColor.v, DF_config.healthbar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.healthbar.borderColor.r, DF_config.healthbar.borderColor.v, DF_config.healthbar.borderColor.b,0)
 		frame.texture=frameTexture
 		
 	end

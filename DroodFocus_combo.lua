@@ -40,13 +40,6 @@ local comboPts = 0
 -- initialisation frames
 function DF:init_combo_frame()
 
-	-- workaround to change for runes for DK
-	if DF.playerClass=="DEATHKNIGHT" then
-		if not string.find(DF_config.combo.texturePath, "runes")  then
-			DF_config.combo.texturePath="Interface\\AddOns\\DroodFocus-TBC\\datas\\runes.tga"
-		end
-	end
-	
 	if not frame then
 		
 		-- cadre principal
@@ -165,9 +158,9 @@ function DF:init_combo_frame()
 	frameTexture:SetAllPoints(frame)
 
 	if DF.configmode then
-		frameTexture:SetTexture(1,1,1,0.25)
+		frameTexture:SetColorTexture(1,1,1,0.25)
 	else
-		frameTexture:SetTexture(1,1,1,0)
+		frameTexture:SetColorTexture(1,1,1,0)
 	end
 
 	frametextTexture:SetTexCoord(0, 1, 0, 1)
@@ -175,9 +168,9 @@ function DF:init_combo_frame()
 	frametextTexture:SetAllPoints(frametext)
 
 	if DF.configmode then
-		frametextTexture:SetTexture(1,1,1,0.25)
+		frametextTexture:SetColorTexture(1,1,1,0.25)
 	else
-		frametextTexture:SetTexture(1,1,1,0)
+		frametextTexture:SetColorTexture(1,1,1,0)
 	end
 
 	-- paramétres background
@@ -266,11 +259,11 @@ end
 function DF:combo_update()
 	
 	if (DF.configmode) then
-		frameTexture:SetTexture(1,1,1,0.25)
-		frametextTexture:SetTexture(1,1,1,0.25)
+		frameTexture:SetColorTexture(1,1,1,0.25)
+		frametextTexture:SetColorTexture(1,1,1,0.25)
 	else
-		frameTexture:SetTexture(1,1,1,0)
-		frametextTexture:SetTexture(1,1,1,0)
+		frameTexture:SetColorTexture(1,1,1,0)
+		frametextTexture:SetColorTexture(1,1,1,0)
 	end
 	
 	if not DF_config.combo.enable then

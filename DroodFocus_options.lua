@@ -400,7 +400,7 @@ function DF:options_createpanels()
 	DF:options_createButton(pt,"sharemediabutton1",DF.locale["test"],9,6,DF.options_testMedia,"")
 	DF:options_createButton(pt,"sharemediabutton2",DF.locale["add"],17,6,DF.options_testMedia,"add")
 	
-	shareMediaBox = CreateFrame("FRAME", "DFshareMediaBox", pt, BackdropTemplateMixin and "BackdropTemplate" or nil)
+	shareMediaBox = CreateFrame("FRAME", "DFshareMediaBox", pt, BackdropTemplateMixin and "BackdropTemplate")
 	shareMediaBox:SetWidth(380)
  	shareMediaBox:SetHeight(128)
 	shareMediaBox:SetPoint("TOPLEFT", pt, "TOPLEFT", 10, -140)
@@ -1157,7 +1157,7 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 		temp:SetWidth((202*largeur)-4)
 		temp:SetPoint("TOPLEFT", DroodFocusOptions[name], "TOPLEFT", 2, -2)
 		temp.texture:SetAllPoints(temp)
-		temp.texture:SetTexture(90/255,106/255,80/255,0.85);
+		temp.texture:SetColorTexture(90/255,106/255,80/255,0.85);
 		temp.text = temp:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 		temp.text:SetText(DF.locale["versionName"].." - "..title)
 		temp.text:SetPoint("LEFT", temp, "LEFT", 6, 0);	
@@ -1633,9 +1633,8 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 end
 
 function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,fonction,help)
-	
 	local obj = CreateFrame("FRAME", name, parent)
-	local overlay = CreateFrame("FRAME", name.."border", parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
+	local overlay = CreateFrame("FRAME", name.."border", parent, BackdropTemplateMixin and "BackdropTemplate")
 
 	obj.base=base
 	obj:EnableMouse(true)
@@ -1654,12 +1653,12 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 
 	obj:SetScript("OnShow", function(self)
 		if self.base then
-			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			obj:EnableMouse(true)
 			overlay:SetAlpha(1)
 			obj:SetAlpha(1)
 		else
-			obj.texture:SetTexture(0,0,0,1)
+			obj.texture:SetColorTexture(0,0,0,1)
 			obj:EnableMouse(false)
 			overlay:SetAlpha(0.5)
 			obj:SetAlpha(0.5)
@@ -1671,7 +1670,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 		ColorPickerFrame.opacityFunc=nil
 		ColorPickerFrame.cancelFunc=nil
 		ColorPickerFrame.hasOpacity=true
-			ColorPickerFrame.opacity = 1-self.base[index].a
+		ColorPickerFrame.opacity = 1-self.base[index].a
 		ColorPickerFrame.previousValues = {self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a};
 		ColorPickerFrame:SetColorRGB(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 		ColorPickerFrame.func = function()
@@ -1692,7 +1691,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].v=G
 			self.base[index].b=B
 			self.base[index].a=A
-			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
 		end	
 		
@@ -1701,7 +1700,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].v=ColorPickerFrame.previousValues[2]
 			self.base[index].b=ColorPickerFrame.previousValues[3]
 			self.base[index].a=ColorPickerFrame.previousValues[4]
-			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
 		end	
 
@@ -1719,7 +1718,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 end
 
 function DF:options_createBox(parent,name,posx,posy,bwidth,bheight)
-	local obj = CreateFrame('Frame', name, parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
+	local obj = CreateFrame('Frame', name, parent, BackdropTemplateMixin and "BackdropTemplate")
 	obj:SetWidth(bwidth)
  	obj:SetHeight(bheight)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", posx, posy)
@@ -1961,7 +1960,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	police = obj.fontString:GetFont();obj.fontString:SetFont(police,10)
 
 	-- création du menu
-	local menu = CreateFrame("FRAME", name.."menudropdown", parent, BackdropTemplateMixin and "BackdropTemplate" or nil)
+	local menu = CreateFrame("FRAME", name.."menudropdown", parent, BackdropTemplateMixin and "BackdropTemplate")
 	menu.obj=obj
 	menu.slide=nil
 	menu.optionsList=optionsList

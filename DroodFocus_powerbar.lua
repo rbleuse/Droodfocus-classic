@@ -88,12 +88,12 @@ function DF:init_powerbar_frame()
 	if DF_config.powerbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.powerbar.borderColor.r, DF_config.powerbar.borderColor.v, DF_config.powerbar.borderColor.b,DF_config.powerbar.borderColor.a)
+		frameTexture:SetColorTexture(DF_config.powerbar.borderColor.r, DF_config.powerbar.borderColor.v, DF_config.powerbar.borderColor.b,DF_config.powerbar.borderColor.a)
 		frame.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.powerbar.borderColor.r, DF_config.powerbar.borderColor.v, DF_config.powerbar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.powerbar.borderColor.r, DF_config.powerbar.borderColor.v, DF_config.powerbar.borderColor.b,0)
 		frame.texture=frameTexture
 		
 	end

@@ -79,12 +79,12 @@ function DF:init_manabar_frame()
 	if DF_config.manabar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.manabar.borderColor.r, DF_config.manabar.borderColor.v, DF_config.manabar.borderColor.b,DF_config.manabar.borderColor.a)
+		frameTexture:SetColorTexture(DF_config.manabar.borderColor.r, DF_config.manabar.borderColor.v, DF_config.manabar.borderColor.b,DF_config.manabar.borderColor.a)
 		frame.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.manabar.borderColor.r, DF_config.manabar.borderColor.v, DF_config.manabar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.manabar.borderColor.r, DF_config.manabar.borderColor.v, DF_config.manabar.borderColor.b,0)
 		frame.texture=frameTexture
 		
 	end

@@ -72,9 +72,9 @@ function DF:init_cooldown_frame()
 	frameTexture:SetAllPoints(frame)
 
 	if DF.configmode then
-		frameTexture:SetTexture(1,1,1,0.25)
+		frameTexture:SetColorTexture(1,1,1,0.25)
 	else
-		frameTexture:SetTexture(1,1,1,0)
+		frameTexture:SetColorTexture(1,1,1,0)
 	end
 
 	-- paramétres background
@@ -118,9 +118,9 @@ end
 function DF:cooldown_update()
 
 	if DF.configmode then
-		frameTexture:SetTexture(1,1,1,0.25)
+		frameTexture:SetColorTexture(1,1,1,0.25)
 	else
-		frameTexture:SetTexture(1,1,1,0)
+		frameTexture:SetColorTexture(1,1,1,0)
 	end	
 	
 	if not DF_config.cooldown.enable then

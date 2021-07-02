@@ -103,9 +103,9 @@ function DF:init_gps_frame()
 		frameTexture[i]:SetAllPoints(frame[i])
 	
 		if DF.configmode then
-			frameTexture[i]:SetTexture(1,1,1,0.25)
+			frameTexture[i]:SetColorTexture(1,1,1,0.25)
 		else
-			frameTexture[i]:SetTexture(1,1,1,0)
+			frameTexture[i]:SetColorTexture(1,1,1,0)
 		end
 			
 		-- paramétres cadre texture
@@ -146,11 +146,11 @@ function DF:gps_update()
 
 	if (DF.configmode) then
 		for i = 1,2 do
-			frameTexture[i]:SetTexture(1,1,1,0.25)
+			frameTexture[i]:SetColorTexture(1,1,1,0.25)
 		end
 	else
 		for i = 1,2 do
-			frameTexture[i]:SetTexture(1,1,1,0)
+			frameTexture[i]:SetColorTexture(1,1,1,0)
 		end
 	end
 	

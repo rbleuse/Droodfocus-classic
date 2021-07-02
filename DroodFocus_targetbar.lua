@@ -79,12 +79,12 @@ function DF:init_targetbar_frame()
 	if DF_config.targetbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.targetbar.borderColor.r, DF_config.targetbar.borderColor.v, DF_config.targetbar.borderColor.b,1)
+		frameTexture:SetColorTexture(DF_config.targetbar.borderColor.r, DF_config.targetbar.borderColor.v, DF_config.targetbar.borderColor.b,1)
 		frame.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.targetbar.borderColor.r, DF_config.targetbar.borderColor.v, DF_config.targetbar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.targetbar.borderColor.r, DF_config.targetbar.borderColor.v, DF_config.targetbar.borderColor.b,0)
 		frame.texture=frameTexture
 		
 	end

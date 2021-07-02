@@ -131,12 +131,12 @@ function DF:init_castbar_frame()
 	if DF_config.castbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.castbar.borderColor.r, DF_config.castbar.borderColor.v, DF_config.castbar.borderColor.b,DF_config.castbar.borderColor.a)
+		frameTexture:SetColorTexture(DF_config.castbar.borderColor.r, DF_config.castbar.borderColor.v, DF_config.castbar.borderColor.b,DF_config.castbar.borderColor.a)
 		framez.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.castbar.borderColor.r, DF_config.castbar.borderColor.v, DF_config.castbar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.castbar.borderColor.r, DF_config.castbar.borderColor.v, DF_config.castbar.borderColor.b,0)
 		framez.texture=frameTexture
 		
 	end

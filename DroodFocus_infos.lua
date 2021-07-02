@@ -74,7 +74,7 @@ function DF:init_infos_frame()
 	frame:SetWidth(frameTexts:GetStringWidth()+4)
 	frame:SetHeight(frameTexts:GetStringHeight()+4)
 
-	frameTexture:SetTexture(DF_config.infos.backColor.r, DF_config.infos.backColor.v, DF_config.infos.backColor.b, DF_config.infos.backColor.a)
+	frameTexture:SetColorTexture(DF_config.infos.backColor.r, DF_config.infos.backColor.v, DF_config.infos.backColor.b, DF_config.infos.backColor.a)
 
 	if not DF_config.infos.enable then
 		frame:Hide()

@@ -91,12 +91,12 @@ function DF:init_timerbars_frame()
 		if DF_config.timerbar.border then
 			frames[i].frameTexture:ClearAllPoints()
 			frames[i].frameTexture:SetAllPoints(frames[i].frame)
-			frames[i].frameTexture:SetTexture(DF_config.timerbar.borderColor.r, DF_config.timerbar.borderColor.v, DF_config.timerbar.borderColor.b,DF_config.timerbar.borderColor.a)
+			frames[i].frameTexture:SetColorTexture(DF_config.timerbar.borderColor.r, DF_config.timerbar.borderColor.v, DF_config.timerbar.borderColor.b,DF_config.timerbar.borderColor.a)
 			frames[i].frame.texture=frames[i].frameTexture
 		else
 			frames[i].frameTexture:ClearAllPoints()
 			frames[i].frameTexture:SetAllPoints(frames[i].frame)
-			frames[i].frameTexture:SetTexture(DF_config.timerbar.borderColor.r, DF_config.timerbar.borderColor.v, DF_config.timerbar.borderColor.b,0)
+			frames[i].frameTexture:SetColorTexture(DF_config.timerbar.borderColor.r, DF_config.timerbar.borderColor.v, DF_config.timerbar.borderColor.b,0)
 			frames[i].frame.texture=frames[i].frameTexture			
 		end
 		

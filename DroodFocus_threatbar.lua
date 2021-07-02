@@ -79,12 +79,12 @@ function DF:init_threatbar_frame()
 	if DF_config.threatbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.threatbar.borderColor.r, DF_config.threatbar.borderColor.v, DF_config.threatbar.borderColor.b,1)
+		frameTexture:SetColorTexture(DF_config.threatbar.borderColor.r, DF_config.threatbar.borderColor.v, DF_config.threatbar.borderColor.b,1)
 		frame.texture=frameTexture
 	else
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
-		frameTexture:SetTexture(DF_config.threatbar.borderColor.r, DF_config.threatbar.borderColor.v, DF_config.threatbar.borderColor.b,0)
+		frameTexture:SetColorTexture(DF_config.threatbar.borderColor.r, DF_config.threatbar.borderColor.v, DF_config.threatbar.borderColor.b,0)
 		frame.texture=frameTexture
 		
 	end

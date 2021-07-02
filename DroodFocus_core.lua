@@ -36,7 +36,7 @@ function DF:init_frames()
 	DF:init_combo_frame()
 	DF:init_arrows_frame()
 	DF:init_alert_frame()
-	DF:init_cooldown_frame()	
+	DF:init_cooldown_frame()
 	DF:init_blood_frame()
 	DF:init_infos_frame()
 	DF:init_portrait_frame()
@@ -177,27 +177,26 @@ function DF:OnUpdate(elapsed)
 	DF:toggle_toggle()
 
 	DF:spells_update(elapsed)
-	DF:icons_update()
-	DF:timerbars_update()
-	DF:ooc_update()
-	DF:combo_update()
+	DF:icons_update(elapsed)
+	DF:timerbars_update(elapsed)
+	DF:ooc_update(elapsed)
+	DF:combo_update(elapsed)
 
-	DF:arrows_update()
-	DF:alert_update()
-	DF:cooldown_update()
-	DF:infos_update()
-	DF:portrait_update()
-	DF:gps_update()
-	DF:castbar_update()
-	
-	DF:powerbar_update()
-	DF:healthbar_update()
-	DF:manabar_update()	
-	DF:targetbar_update()
-	DF:threatbar_update()
-	
+	DF:arrows_update(elapsed)
+	DF:alert_update(elapsed)
+	DF:cooldown_update(elapsed)
+	DF:infos_update(elapsed)
+	DF:portrait_update(elapsed)
+	DF:gps_update(elapsed)
+	DF:castbar_update(elapsed)
+
+	DF:powerbar_update(elapsed)
+	DF:healthbar_update(elapsed)
+	DF:manabar_update(elapsed)
+	DF:targetbar_update(elapsed)
+	DF:threatbar_update(elapsed)
+
 	DF:blood_update()
-	
 end
 
 function DF:toogle_lock()
@@ -230,12 +229,11 @@ function DF:toogle_lock()
 	DF:cooldown_toogle_lock(itsok)
 	DF:infos_toogle_lock(itsok)
 	DF:portrait_toogle_lock(itsok)
-	
-	DF:blood_activate()
-	DF:blood_activate()
-	DF:blood_activate()
-	DF:blood_activate()
-	
+
+	DF:blood_activate(0.5)
+	DF:blood_activate(1)
+	DF:blood_activate(0.5)
+	DF:blood_activate(1)
 end
 
 -- gestion ligne de commande

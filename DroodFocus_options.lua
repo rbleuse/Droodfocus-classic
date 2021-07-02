@@ -192,49 +192,36 @@ falseEditBox:EnableMouse(false)
 falseEditBox:SetAutoFocus(false)
 falseEditBox:SetScript("OnEditFocusGained", function(self)
   self:ClearFocus()
-end)		
+end)
 
 -- construit liste pour options
 function DF:options_ShareMediaLists()
+	optionsTextures[1] = {
+		texte = "None",
+		valeur = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+		form = "background"
+	};
 
-	local temp = DF.LSM:List("background")
-	local fetch=nil
-	local index=1
-	
-	optionsTextures[index]={texte="None",valeur="Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",form="background"}; index=index+1
-	for tkey,tvalue in pairs(temp) do
-		fetch=DF.LSM:Fetch("background", tvalue)
-		optionsTextures[index]={texte=tvalue,valeur=fetch,form="background"}; index=index+1
+	local function buildOptions(name, list)
+		local temp = DF.LSM:List(name)
+		local fetch = nil
+		local index = #list
+
+		for _, tvalue in pairs(temp) do
+			index = index + 1
+			fetch = DF.LSM:Fetch(name, tvalue)
+			list[index] = {
+				texte = tvalue,
+				valeur = fetch,
+				form = name
+			};
+		end
 	end
 
-	temp = DF.LSM:List("font")
-	fetch=nil
-	index=1
-
-	for tkey,tvalue in pairs(temp) do
-		fetch=DF.LSM:Fetch("font", tvalue)
-		optionsFonts[index]={texte=tvalue,valeur=fetch,form="font"}; index=index+1
-	end
-
-	temp = DF.LSM:List("statusbar")
-	fetch=nil
-	index=1
-	
-	for tkey,tvalue in pairs(temp) do
-		fetch=DF.LSM:Fetch("statusbar", tvalue)
-		optionsStatusbars[index]={texte=tvalue,valeur=fetch,form="statusbar"}; index=index+1
-	end
-
-	temp = DF.LSM:List("sound")
-	fetch=nil
-	index=1
-	
-	optionsSounds[index]={texte="None",valeur="",form="sound"}; index=index+1
-	for tkey,tvalue in pairs(temp) do
-		fetch=DF.LSM:Fetch("sound", tvalue)
-		optionsSounds[index]={texte=tvalue,valeur=fetch,form="sound"}; index=index+1
-	end
-	
+	buildOptions("background", optionsTextures)
+	buildOptions("font", optionsFonts)
+	buildOptions("statusbar", optionsStatusbars)
+	buildOptions("sound", optionsSounds)
 end
 
 function DF:options_addID()
@@ -266,7 +253,7 @@ function DF:options_createpanels()
 
 	-- frame preview texture
 	apercutexture = CreateFrame("FRAME","DF_PREVIEWTEXTURE",UIParent)
-	apercutexture_texture= apercutexture:CreateTexture(nil,"BACKGROUND")
+	apercutexture_texture= apercutexture:CreateTexture("DF_PREVIEWTEXTURETexture","BACKGROUND")
 	
 	apercutexture:SetMovable(false)
 	apercutexture:EnableMouse(false)		
@@ -1348,22 +1335,17 @@ function DF:options_createCheckBox(parent,name,base,index,infos,posx,posy,foncti
 		  else
 		  	self:SetChecked(false)
 		  end 
-		  obj:EnableMouse(true) 
+		  obj:EnableMouse(true)
 		  obj:SetAlpha(1)
 		else
-			obj:EnableMouse(false) 
+			obj:EnableMouse(false)
 			obj:SetAlpha(0.5)
 		end
-	end)	
+	end)
 	obj:SetScript("OnClick", function(self)
 		falseEditBox:SetFocus()
-		if (self:GetChecked()==1) then
-			self.base[index]=true
-			if fonction then fonction() end
-		else
-			self.base[index]=false
-			if fonction then fonction() end
-		end
+		self.base[index] = self:GetChecked() or false
+		if fonction then fonction() end
 	end)
 	obj.fontString = obj:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	obj.fontString:SetPoint("LEFT", obj, "RIGHT", 0, 2)
@@ -2051,19 +2033,17 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 				pointeur.items[i].letext:SetText(pointeur.optionsList[toshow].texte)
 				pointeur.items[i].letext:Show()
 				pointeur.items[i]:Show()
-				
+
 				if pointeur.optionsList[toshow].form=="background" then
 					pointeur.items[i]:SetScript("OnEnter",function(self)
-						
 						apercutexture:ClearAllPoints()
-						apercutexture:SetPoint("TOPLEFT", self.parent, "TOPRIGHT", 0, 0)	
+						apercutexture:SetPoint("TOPLEFT", self.parent, "TOPRIGHT", 0, 0)
 						apercutexture_texture:SetTexture(pointeur.optionsList[toshow].valeur)
 						apercutexture:Show()
-
 					end);
 					pointeur.items[i]:SetScript("OnLeave",function(self)
 						apercutexture:Hide()
-					end);						
+					end);
 				end
 			
 			else
@@ -2144,46 +2124,37 @@ function DF:options_testMedia()
 	local fname=options_sharemedia.fname
 
 	local mediaValide=false
-	local oldMedia=nil
 	
 	shareMediaTexture:SetTexture(nil)
 	shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",14)
 	
 	if ftype~="" and fpath~="" and fname~="" then
-
 		if ftype=="statusbar" or ftype=="background" then
 
 			shareMediaTexture:SetTexture(fpath)
 			if shareMediaFrame.texture:GetTexture() then
 				mediaValide=true
 			end
-				
 		elseif ftype=="font" then
-			
 			shareMediaFont:SetFont(fpath,14)
 
 			if shareMediaFont:GetFont()~="Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf" then
 				mediaValide=true
 			end
-			
 		end
-
 	end
 
 	if not mediaValide then
-		StaticPopup_Show ("MEDIAERREUR","Media invalid")
+		StaticPopup_Show("MEDIAERREUR","Media invalid")
 	else
 		if DF.myArgs=="add" then
-			
 			fetch=DF.LSM:Fetch("background", fname)
 			if fetch then
-				StaticPopup_Show ("MEDIAERREUR","Media already exist")
+				StaticPopup_Show("MEDIAERREUR","Media already exist")
 			else
 				DF:libs_saveNewFile(ftype,fname,fpath)
-				StaticPopup_Show ("MEDIAERREUR","Media added")
+				StaticPopup_Show("MEDIAERREUR","Media added")
 			end
-			
 		end
 	end
-	
 end

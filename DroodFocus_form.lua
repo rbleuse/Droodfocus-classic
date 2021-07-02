@@ -6,17 +6,17 @@
 
 local DF = DF_namespace
 
--- Retourne la forme du joueur 0: autre, 1: chat, 2: ours 
+-- Player shapeshift
+-- 0: human, 1: bear, 2: aquatic, 3: cat, 4: travel, 5: moonkin(balance)/flight(resto/feral/guardian), 6: flight(balance)/tree(resto)
 function DF:currentForm()
-	
-	-- determiner si féral
-	-- le cas échéant si la forme ==5, retourner 6
-	local nbform=GetNumShapeshiftForms()
-	local form=GetShapeshiftForm(true)
 
-	if nbform==5 and form==5 then form=6 end
+	-- determiner si féral
+	-- le cas échéant si la forme == 5, retourner 6
+	local nbform = GetNumShapeshiftForms()
+	local form = GetShapeshiftForm(true)
+
+	if nbform == 5 and form == 5 then form = 6 end
 	return form
-		
 end
 
 function DF:form_goofForm(list,test)

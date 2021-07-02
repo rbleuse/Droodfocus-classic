@@ -1398,7 +1398,8 @@ function DF:options_createHelp(parent,ancre,nom,index)
 end
 
 function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx,posy,fonction,help)
-
+	--name="DotF"..name;
+	local value
 	local obj = CreateFrame('Slider', name, parent, 'OptionsSliderTemplate')
 	obj.base=base
 	obj.pas=pas
@@ -1406,16 +1407,16 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 	obj.maxi=maxi
 	obj:EnableMouseWheel(1)
 	obj:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
-	obj:SetWidth(180)
+	obj:SetWidth(180-32)
  	obj:SetHeight(24)
-	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 12+(posx*11.5), -28-(posy*38))
+	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 16+12+(posx*11.5), -28-(posy*38))
 	obj:SetOrientation('HORIZONTAL')
 	getglobal(obj:GetName()..'Low'):SetText(tostring(mini))
 	getglobal(obj:GetName()..'High'):SetText(tostring(maxi))
 	getglobal(obj:GetName()..'Low'):SetText("")
 	getglobal(obj:GetName()..'High'):SetText("")	
 	getglobal(obj:GetName() .. 'Text'):SetText(infos)
-	getglobal(obj:GetName() .. 'Text'):SetPoint("BOTTOMLEFT", obj, "TOPLEFT", 0, 0)
+	getglobal(obj:GetName() .. 'Text'):SetPoint("BOTTOMLEFT", obj, "TOPLEFT", -12, 0)
 	
 	getglobal(obj:GetName() .. 'Text'):GetFont();getglobal(obj:GetName() .. 'Text'):SetFont(police,10)
 	getglobal(obj:GetName() .. 'Low'):GetFont();getglobal(obj:GetName() .. 'Low'):SetFont(police,8)
@@ -1424,16 +1425,19 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 	obj:SetMinMaxValues(mini*100, maxi*100)
 	obj:SetValueStep(pas*100)
 	if base then
-		obj:SetValue(base[index])
+		obj:SetValue(tonumber(base[index]))
 	end	
 	
 	local fontString = obj:CreateFontString(name.."value", "OVERLAY", "GameFontNormalSmall")
-	fontString:SetPoint("BOTTOMRIGHT", obj, "TOPRIGHT", 0, 0)
+	fontString:SetPoint("BOTTOMRIGHT", obj, "TOPRIGHT", 16, 0)
 	fontString:SetJustifyH("CENTER")
 
 	obj:SetScript("OnShow", function(self)
 	  if self.base then
-			value = format("%.2f", self.base[index])
+	  	if self.base[index]==nil then
+	  		self.base[index]=0
+	  	end
+			local value = format("%.2f", self.base[index])
 			_G[name.."value"]:SetText(value)
 			obj:SetValue(self.base[index]*100)
 		  obj:EnableMouse(true) 
@@ -1444,18 +1448,81 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 		end
 	end)
 	obj:SetScript("OnMouseWheel",function(self,delta)
-		local offset=self:GetValue()+(delta*(self.pas*100))
-		self:SetValue(offset)
-	end)	
-	obj:SetScript("OnValueChanged", function(self)
 		falseEditBox:SetFocus()
 		if self.base then
-			value = format("%.2f", self:GetValue()/100)
+			local offset=self:GetValue()+(delta*(self.pas*100))
+			self:SetValue(offset)
+			local value = format("%.2f", self:GetValue()/100)
+			_G[name.."value"]:SetText(value)
+			self.base[index] = self:GetValue()/100
+			if fonction then fonction() end			
+		end
+	end)	
+	
+	obj:SetScript("OnMouseUp", function(self)
+		falseEditBox:SetFocus()
+		if self.base then
+			local value = format("%.2f", self:GetValue()/100)
 			_G[name.."value"]:SetText(value)
 			self.base[index] = self:GetValue()/100
 			if fonction then fonction() end
+		end	
+	end)
+	
+	obj:SetScript("OnValueChanged", function(self)
+		falseEditBox:SetFocus()
+		if self.base then
+			local value = format("%.2f", self:GetValue()/100)
+			_G[name.."value"]:SetText(value)
+			self.base[index] = self:GetValue()/100
+		--	if fonction then fonction() end
 		end
 	end)	
+
+	--*****************************************************************************************
+	local plusbut = CreateFrame("Button", name.."plusbut", obj, "OptionsButtonTemplate")
+	plusbut:SetText("+")
+	plusbut:SetWidth(16)
+	plusbut:SetPoint("TOPLEFT", obj, "TOPRIGHT", 0, 0)
+	plusbut:SetScript("OnClick", function(self)
+		if obj.base then
+			local offset=obj:GetValue()+(obj.pas*100)
+			obj:SetValue(offset)
+			if fonction then fonction() end
+		end
+	end)
+	plusbut:SetScript("OnShow", function(self)
+	  if obj.base then
+			plusbut:EnableMouse(true) 
+			plusbut:SetAlpha(1)	
+		else
+			plusbut:EnableMouse(false) 
+			plusbut:SetAlpha(0.5)
+		end
+	end)	
+	
+	local moinsbut = CreateFrame("Button", name.."moinsbut", obj, "OptionsButtonTemplate")
+	moinsbut:SetText("-")
+	moinsbut:SetWidth(16)
+	moinsbut:SetPoint("TOPRIGHT", obj, "TOPLEFT", 0, 0)
+	moinsbut:SetScript("OnClick", function(self)
+		if obj.base then
+			local offset=obj:GetValue()-(obj.pas*100)
+			obj:SetValue(offset)
+			if fonction then fonction() end
+		end
+	end)
+	moinsbut:SetScript("OnShow", function(self)
+	  if obj.base then
+			moinsbut:EnableMouse(true) 
+			moinsbut:SetAlpha(1)
+		else
+			moinsbut:EnableMouse(false) 
+			moinsbut:SetAlpha(0.5)
+		end
+	end)	
+	--*****************************************************************************************
+	
 	if help then DF:options_createHelp(obj,getglobal(obj:GetName() .. 'Text'),name,help) end
 end
 

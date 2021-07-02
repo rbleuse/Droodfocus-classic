@@ -115,17 +115,17 @@ function DF:init_combo_frame()
 		
 		-- points de combo
 		for i = 1,6 do
-			combos[i].frame = CreateFrame("FRAME","DF_COMBO_FRAME_"..i,frame)
-			combos[i].overlay = CreateFrame("FRAME","DF_COMBO_"..i,combos[i].frame)
-			combos[i].texture = combos[i].overlay:CreateTexture(nil,"BACKGROUND")
+			combos[i].frame = CreateFrame("FRAME","DF_COMBO_FRAME_"..tostring(i),frame)
+			combos[i].overlay = CreateFrame("FRAME","DF_COMBO_"..tostring(i),combos[i].frame)
+			combos[i].texture = combos[i].overlay:CreateTexture("DF_COMBO_TEXTURE"..tostring(i),"BACKGROUND")
 			combos[i].frame:EnableMouse(false)
 		end
 		frame:EnableMouse(false)
-		frameTexture = frame:CreateTexture(nil,"BACKGROUND")
+		frameTexture = frame:CreateTexture("DF_COMBO_FRAME_texture","BACKGROUND")
 		
 		frametextzoom = CreateFrame("FRAME","DF_COMBO_FRAMETEXTZOOM",frametext)
 		combotext = frametextzoom:CreateFontString("DF_COMBOTEXT","ARTWORK")
-		frametextTexture = frametext:CreateTexture(nil,"BACKGROUND")
+		frametextTexture = frametext:CreateTexture("DF_COMBO_FRAME_TEXTURE","BACKGROUND")
 		
 	end
 
@@ -299,7 +299,7 @@ function DF:combo_update()
 	
 	if ((DF.playerClass=="DRUID" and DF:currentForm()==3) or DF.playerClass=="ROGUE") then
 		
-		c = UnitPower("target", 4)
+		c = UnitPower("player", 4)
 		
 		if DF_config.combo.showText and c and c>0 then
 			combotext:SetText(tostring(c))

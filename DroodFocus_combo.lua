@@ -385,31 +385,6 @@ function DF:combo_update()
 			
 		end
 		
-	elseif DF.playerClass=="DEATHKNIGHT" then
-
-		combotext:SetText("")
-
-		for i = 1,6 do
-
-			runeType = GetRuneType(i)-1
-			start, duration, runeReady = GetRuneCooldown(i)
-
-			if runeReady then
-				decal=1
-				if combos[i].state==0 then
-					combos[i].scale = DF_config.combo.impulsion
-					combos[i].state=3
-				end	
-			else
-				combos[i].state=0	
-				decal=0		
-			end
-
-			combos[i].offseta=(runeType*0.25)+(decal*0.125)
-			combos[i].offsetb=combos[i].offseta+0.125
-			
-		end
-		
 	else
 		combotext:SetText("")
 		for i = 1,6 do

@@ -40,7 +40,7 @@ function DF:init_frames()
 	DF:init_blood_frame()
 	DF:init_infos_frame()
 	DF:init_portrait_frame()
-	DF:init_gps_frame()
+	-- DF:init_gps_frame()
 	DF:init_castbar_frame()
 
 end
@@ -100,6 +100,7 @@ function DF:OnEvent(eventArg, ...)
 		DFeventFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 		DFeventFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 		DFeventFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
+
 		DFeventFrame:SetScript("OnUpdate", DF.OnUpdate)
 		
 		-- bienvenue
@@ -128,45 +129,54 @@ function DF:OnEvent(eventArg, ...)
 			
 	elseif(eventArg == "COMBAT_LOG_EVENT_UNFILTERED") then	
 
-   	if (arg2=="SPELL_DAMAGE") then
-			
-			if arg3==DF.playerId and arg18 then
-				
-	 			DF:sound_set_state(true)
+		local eventInfo = {CombatLogGetCurrentEventInfo()}
+		local cType = eventInfo[2]
+
+		if (cType=="SWING_DAMAGE") then
+			local cSourceId= eventInfo[4]
+			local cCritical= eventInfo[18]
+			if (cSourceId==DF.playerId and cCritical) then
 				DF:blood_activate()
-				
-			elseif arg6==DF.playerId and UnitHealth("player")<(UnitHealthMax("player")/2.5) then
-			
-			 	DF:alert_activate("Interface\\AddOns\\DroodFocus-TBC\\datas\\alertWarning.tga")
-			 	
 			end
-					
-		elseif (arg2=="SWING_DAMAGE" and arg3==DF.playerId and arg15) then
-			
-			DF:blood_activate()
-			
-		elseif (arg2=="SPELL_CAST_FAILED" and arg3==DF.playerId) then
+		elseif cType ~= nil and strfind(cType,"SPELL_DAMAGE") then
+			local cSourceId= eventInfo[4]
+			local cCritical= eventInfo[21]
+			local cDestId= eventInfo[8]
+			local cAmount= eventInfo[15]
 
-			if (arg12==SPELL_FAILED_OUT_OF_RANGE) then
-				DF:alert_activate("2")
-				
-			elseif (arg12==SPELL_FAILED_NOT_BEHIND) then
-				DF:alert_activate("1")
-				
+			if cSourceId==DF.playerId and cDestId==UnitGUID("playertarget") and (cAmount and cAmount>0) then
+				DF:sound_set_state(true)
+				if (cCritical) then
+					DF:blood_activate()
+				end
 			end
+		elseif (cType=="SPELL_CAST_FAILED") then
+			local cSourceId= eventInfo[4]
+			local cMessage= eventInfo[15]
 
-		elseif (arg2=="SPELL_AURA_APPLIED" and arg6==DF.playerId and arg12=="DEBUFF" and DF_config.alert.showDebuff) then
-
-			-- le joueur viens de subir un debuff, affiche l'icone dans le système d'alert
-			local _, _, imgDebuff, _, _, _, _, _, _ = GetSpellInfo(arg9);
-			if imgDebuff then
-				DF:alert_activate(imgDebuff,true)
+			if (cSourceId==DF.playerId) then
+				if (cMessage==SPELL_FAILED_OUT_OF_RANGE) then
+					DF:alert_activate("2",false)
+				elseif (cMessage==SPELL_FAILED_NOT_BEHIND) then
+					DF:alert_activate("1",false)
+				end
 			end
-			
-		end		
+		elseif(cType == "SPELL_AURA_APPLIED" or cType == "SPELL_AURA_REFRESH") then
+			local cType= eventInfo[15]
+			local cDestId= eventInfo[8]
 
+			if cDestId==DF.playerId then
+
+				if (cType=="DEBUFF" and DF_config.alert.showDebuff) then
+					-- le joueur viens de subir un debuff, affiche l'icone dans le système d'alert
+					local _, _, imgDebuff, _, _, _, _, _, _ = GetSpellInfo(cSpellId);
+					if imgDebuff then
+						DF:alert_activate(imgDebuff,true)
+					end
+				end
+			end
+		end
 	end
-
 end
 
 -- OnUpdate
@@ -177,24 +187,24 @@ function DF:OnUpdate(elapsed)
 	DF:toggle_toggle()
 
 	DF:spells_update(elapsed)
-	DF:icons_update(elapsed)
-	DF:timerbars_update(elapsed)
-	DF:ooc_update(elapsed)
+	DF:icons_update()
+	DF:timerbars_update()
+	DF:ooc_update()
 	DF:combo_update(elapsed)
 
-	DF:arrows_update(elapsed)
-	DF:alert_update(elapsed)
-	DF:cooldown_update(elapsed)
-	DF:infos_update(elapsed)
-	DF:portrait_update(elapsed)
-	DF:gps_update(elapsed)
-	DF:castbar_update(elapsed)
+	DF:arrows_update()
+	DF:alert_update()
+	DF:cooldown_update()
+	DF:infos_update()
+	DF:portrait_update()
+	-- DF:gps_update()
+	DF:castbar_update()
 
 	DF:powerbar_update(elapsed)
-	DF:healthbar_update(elapsed)
-	DF:manabar_update(elapsed)
-	DF:targetbar_update(elapsed)
-	DF:threatbar_update(elapsed)
+	DF:healthbar_update()
+	DF:manabar_update()
+	DF:targetbar_update()
+	DF:threatbar_update()
 
 	DF:blood_update()
 end
@@ -230,10 +240,10 @@ function DF:toogle_lock()
 	DF:infos_toogle_lock(itsok)
 	DF:portrait_toogle_lock(itsok)
 
-	DF:blood_activate(0.5)
-	DF:blood_activate(1)
-	DF:blood_activate(0.5)
-	DF:blood_activate(1)
+	DF:blood_activate()
+	DF:blood_activate()
+	DF:blood_activate()
+	DF:blood_activate()
 end
 
 -- gestion ligne de commande

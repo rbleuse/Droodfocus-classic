@@ -9,6 +9,9 @@ local DF = DF_namespace
 local frame=nil
 local frameTexture=nil
 
+local frequency =1/60
+local tempo=(frequency/15)*2
+
 local combos={
 	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
 	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
@@ -256,7 +259,7 @@ function DF:combo_toggle()
 end
 
 -- gestion de l'animation
-function DF:combo_update()
+function DF:combo_update(elapsed)
 	
 	if (DF.configmode) then
 		frameTexture:SetColorTexture(1,1,1,0.25)
@@ -274,6 +277,10 @@ function DF:combo_update()
 	local currentForm = DF:currentForm()
 	local c = 0
 	local multiple=1
+
+	tempo=tempo+elapsed
+	if tempo<frequency then return end
+	tempo=0
 
 	DF:combo_toggle()
 
@@ -297,17 +304,22 @@ function DF:combo_update()
 -- 5 point actif ours 1 à 4
 -- 6 point actif ours 5
 	
-	if ((DF.playerClass=="DRUID" and DF:currentForm()==3) or DF.playerClass=="ROGUE") then
-		
-		c = UnitPower("player", 4)
-		
-		if DF_config.combo.showText and c and c>0 then
-			combotext:SetText(tostring(c))
+	if ((DF.playerClass == "DRUID" and currentForm == 3) or DF.playerClass == "ROGUE") then
+
+		c = UnitPower("player", Enum.PowerType.ComboPoints)
+
+		if not c or c == nil then
+			c = 0
+		end
+
+		if DF_config.combo.showText and ((c and c > 0) or DF.configmode) then
+			if not DF.configmode then
+				combotext:SetText(tostring(c))
+			else
+				combotext:SetText("5")
+			end
 		else
 			combotext:SetText("")
-		end
-		if DF_config.combo.showText and DF.configmode then
-			combotext:SetText("5")
 		end
 				
 		for i = 1,5 do
@@ -344,6 +356,7 @@ function DF:combo_update()
 	elseif (DF.playerClass=="DRUID" and DF:currentForm()==1) then
 
 		c = comboPts
+		DEFAULT_CHAT_FRAME:AddMessage("combo="..tostring(c))
 		
 		if DF_config.combo.showText and c and c>0 then
 			combotext:SetText(tostring(c))

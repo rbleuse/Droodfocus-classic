@@ -259,15 +259,11 @@ function DF:cooldown_check()
 			if cooldown_table[index].active then
 				-- enregistre "plus sous CD" et pulse
 				cooldown_table[index].active=false
-						_, _, texture, _, _, _, _, _, _ = GetSpellInfo(index)
+				_, _, texture, _, _, _, _, _, _ = GetSpellInfo(index)
 				DF:cooldown_activate(texture)
-				
 			end
-			
 		end
-		
 	end
-
 end
 
 function DF:cooldown_addCD(index,cdstart,cdduration)

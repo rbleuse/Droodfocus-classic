@@ -21,8 +21,8 @@ function DF:init_arrows_frame()
 		if not frames[i].frame then
 		
 			-- cadre principal
-			frames[i].frame = CreateFrame("FRAME","DF_ARROW_FRAME"..i,DF.anchor[1].frame)
-			frames[i].texture =frames[i].frame:CreateTexture(nil,"BACKGROUND")
+			frames[i].frame = CreateFrame("FRAME","DF_ARROW_FRAME"..tostring(i),DF.anchor[1].frame)
+			frames[i].texture =frames[i].frame:CreateTexture("DF_ARROW_FRAME_TEXTURE"..tostring(i),"BACKGROUND")
 	
 		end
 	
@@ -79,15 +79,12 @@ function DF:arrows_update()
 
 	for i = 1,4 do
 
-		if DF_config.powerbar.arrows[i]>0 then
-			
-			if DF_config.powerbar.arrows[i]<=100 then
-				value = (DF_config.powerbar.arrows[i]/100)
-			else
-				_, _, _, cout, _, _, _, _, _ = GetSpellInfo(DF_config.powerbar.arrows[i])
-				value = (cout/100)
-			end
-		
+		cout = DF_config.powerbar.arrows[i]
+
+		if cout==nil then cout=-1 end
+
+		if cout >= 0 and cout < 100 then -- indicateur actif
+			value = (cout/100)
 			frames[i].frame:ClearAllPoints()
 			
 			if DF_config.powerbar.orientation=="VERTICAL" then

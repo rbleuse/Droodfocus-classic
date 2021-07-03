@@ -17,6 +17,9 @@ local text=nil
 local cursor=0
 local offset = 1
 
+local frequency =1/60
+local tempo=(frequency/15)*6
+
 -- initialisation frames
 function DF:init_powerbar_frame()
 	
@@ -161,9 +164,13 @@ function DF:init_powerbar_frame()
 end
 
 -- gestion de l'animation
-function DF:powerbar_update()
+function DF:powerbar_update(elapsed)
 	
 	if not DF_config.powerbar.enable then return end
+
+	tempo=tempo+elapsed
+	if tempo<frequency then return end
+	tempo=0	
 
 	local currentForm = DF:currentForm()
 	if not DF:form_goofForm(DF_config.powerbar.form,currentForm) then
@@ -251,7 +258,7 @@ end
 function DF:powerbar_sparck(cursor)
 	local largeur=DF_config.powerbar.width-(DF_config.powerbar.borderSize*2)
 	if cursor>0 and cursor<100 and DF_config.powerbar.orientation~="VERTICAL" and DF_config.powerbar.showSpark then
-		sparckx=((cursor/100)*largeur)-10
+		local sparckx=((cursor/100)*largeur)-10
 		spark:SetPoint("LEFT", foreground, "LEFT", sparckx, -1)
 		spark:Show()
 	else

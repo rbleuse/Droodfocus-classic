@@ -38,7 +38,7 @@ local frames={
 	state=0,
 	height=256,
 	pas=0.005
-	},		
+	},
 	{
 	frame=nil,
 	overlay=nil,
@@ -48,13 +48,23 @@ local frames={
 	state=0,
 	height=256,
 	pas=0.005
-	},			
+	},
+	{
+	frame=nil,
+	overlay=nil,
+	overlayTexture=nil,
+	position={0,0},
+	alpha=1,
+	state=0,
+	height=256,
+	pas=0.005
+	},
 }
 
 -- initialisation frames
 function DF:init_blood_frame()
 	
-	for i = 1,4 do
+	for i = 1,5 do
 		
 		if not frames[i].frame then
 			
@@ -113,13 +123,13 @@ end
 function DF:blood_update()
 
 	if not DF_config.blood.enable then
-		for i = 1,4 do
+		for i = 1,5 do
 			frames[i].frame:Hide()
 		end
 		return
 	end
 	
-	for i = 1,4 do
+	for i = 1,5 do
 		
 		if frames[i].state~=0 then
 			

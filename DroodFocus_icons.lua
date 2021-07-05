@@ -263,8 +263,7 @@ function DF:icons_update()
 				IconPower = DF_config.spells[i].abiPower[targetID]
 				
 				if not IconPower then
-						frames[i].pointpatexture:SetVertexColor(1, 1, 1,0.5)
-						frames[i].pointpa:Show()
+					frames[i].pointpa:Hide()
 				else
 					if (currentPower==IconPower or IconPower==0) then
 						

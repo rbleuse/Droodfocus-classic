@@ -167,7 +167,9 @@ end
 function DF:spell_getPowerAttack()
 	
 	local base, posBuff, negBuff = UnitAttackPower("player")
-	return base + posBuff + negBuff
+	local puissance = base + posBuff + negBuff
+	_, _, _, _, posBuff, negBuff = UnitDamage("player")
+	return puissance + posBuff + negBuff
 end
 
 function DF:spell_check(num)

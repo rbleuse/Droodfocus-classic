@@ -1729,7 +1729,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].v=G
 			self.base[index].b=B
 			self.base[index].a=A
-			obj.texture:SetTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
+			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
 		end	
 		

@@ -5,7 +5,7 @@
 ## Email: 
 ## Notes: DroodFocus - Now works for all classes. 
 ## SavedVariablesPerCharacter: DF_config
-## SavedVariables: DF_saved_configs, DF_sharemedia, DF_talents
+## SavedVariables: DF_saved_configs, DF_sharemedia
 
 Libs\LibStub.lua
 Libs\CallbackHandler-1.0.lua
@@ -18,7 +18,6 @@ DroodFocus_spellsList.lua
 DroodFocus_config.lua
 DroodFocus_libs.lua
 DroodFocus_tools.lua
-DroodFocus_talent.lua
 DroodFocus_minimap.lua
 DroodFocus_grid.lua
 DroodFocus_form.lua
@@ -29,7 +28,6 @@ DroodFocus_castbar.lua
 DroodFocus_healthbar.lua
 DroodFocus_manabar.lua
 DroodFocus_targetbar.lua
-DroodFocus_threatbar.lua
 DroodFocus_combo.lua
 DroodFocus_arrows.lua
 DroodFocus_alert.lua
@@ -42,7 +40,6 @@ DroodFocus_portrait.lua
 DroodFocus_combat.lua
 DroodFocus_toggle.lua
 DroodFocus_infos.lua
-DroodFocus_gps.lua
 DroodFocus_sound.lua
 DroodFocus_options.lua
 DroodFocus_core.lua

@@ -83,19 +83,11 @@ function DF:libs_registerUsersFiles()
 end
 
 function DF:libs_saveNewFile(ftype,fname,fpath)
-
 	fpath=fpath:gsub("\\\\", "\\")
 	fpath=fpath:sub(2)
-	
+
 	DF_sharemedia[fname]={["ftype"]=ftype,["fpath"]=fpath}
 	DF:libs_registerUsersFiles()
-	
+
 	DF:options_ShareMediaLists()
-	
 end
-
-
-
-
-
- 

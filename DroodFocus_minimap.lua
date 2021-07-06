@@ -7,13 +7,13 @@
 local DF = DF_namespace
 
 -- broker
-DF.LDB = LibStub:GetLibrary("LibDataBroker-1.1") 
+DF.LDB = LibStub:GetLibrary("LibDataBroker-1.1")
 local DF_broker = DF.LDB:NewDataObject("Broker_DroodFocus", {
 	type = "launcher",
 	icon = "Interface\\icons\\Ability_Druid_CatForm",
 	label = "DroodFocus",
 	text  = "DroodFocus",
-	
+
 	OnClick = function(self, btn)
 		if (btn=="LeftButton") then
 			DF:options_show("DFOPTIONSelement")
@@ -21,33 +21,35 @@ local DF_broker = DF.LDB:NewDataObject("Broker_DroodFocus", {
 			DF:toogle_configmode()
 		end
 	end,
-	
+
 	OnTooltipShow = function(tooltip)
 		if not tooltip or not tooltip.AddLine then return end
 		tooltip:AddLine( DF.locale["versionName"].." (Broker)",1,1,0,nil )
 		tooltip:AddLine( DF.locale["brokerInfo1"],1,1,1,nil )
 		tooltip:AddLine( DF.locale["brokerInfo2"],1,1,1,nil )
 	end,
-})	
+})
 
-DF_MinimapButton=CreateFrame('Button', 'DroodFocusMinimapButton', Minimap);
+DF_MinimapButton = CreateFrame('Button', 'DroodFocusMinimapButton', Minimap)
 
 function DF:DF_MinimapLoad()
 	-- minimap
-
-	DF_MinimapButton:SetWidth(31); DF_MinimapButton:SetHeight(31)
+	DF_MinimapButton:SetWidth(31)
+	DF_MinimapButton:SetHeight(31)
 	DF_MinimapButton:SetFrameLevel(8)
 	DF_MinimapButton:RegisterForClicks('anyUp')
 	DF_MinimapButton:RegisterForDrag('LeftButton')
 	DF_MinimapButton:SetHighlightTexture('Interface\\Minimap\\UI-Minimap-ZoomButton-Highlight')
 
 	local overlay = DF_MinimapButton:CreateTexture(nil, 'OVERLAY')
-	overlay:SetWidth(53); overlay:SetHeight(53)
+	overlay:SetWidth(53)
+	overlay:SetHeight(53)
 	overlay:SetTexture('Interface\\Minimap\\MiniMap-TrackingBorder')
 	overlay:SetPoint('TOPLEFT')
 
 	local icon = DF_MinimapButton:CreateTexture(nil, 'BACKGROUND')
-	icon:SetWidth(20); icon:SetHeight(20)
+	icon:SetWidth(20)
+	icon:SetHeight(20)
 	icon:SetTexture("Interface\\icons\\Ability_Druid_CatForm")
 	icon:SetTexCoord(0.05, 0.95, 0.05, 0.95)
 	icon:SetPoint('TOPLEFT', 7, -5)
@@ -58,11 +60,10 @@ function DF:DF_MinimapLoad()
 	DF_MinimapButton:SetScript('OnMouseUp', DF_MinimapButton.OnMouseUp)
 	DF_MinimapButton:SetScript('OnEnter', DF_MinimapButton.OnEnter)
 	DF_MinimapButton:SetScript('OnLeave', DF_MinimapButton.OnLeave)
-	DF_MinimapButton:SetScript('OnClick', DF_MinimapButton.OnClick)
-	
+	DF_MinimapButton:SetScript('OnClick', DF_broker.OnClick)
+
 	DF_MinimapToggle()
 	DF_Minimap_Update()
-	
 end
 
 function DF_MinimapToggle()
@@ -73,26 +74,12 @@ function DF_MinimapToggle()
 	end
 end
 
-function DF_MinimapButton:OnClick(button)
-	if button == 'LeftButton' then
-		DF:options_show("DFOPTIONSelement")
-	elseif button == 'RightButton' then
-		DF:toogle_configmode()
-	end
-end
-
 function DF_MinimapButton:OnEnter()
 	if not self.dragging then
 		GameTooltip:SetOwner(self, 'ANCHOR_BOTTOMRIGHT')
-		DF_MinimapButton:OnTooltipShow(GameTooltip)
+		DF_broker.OnTooltipShow(GameTooltip)
 		GameTooltip:Show()
 	end
-end
-
-function DF_MinimapButton:OnTooltipShow(tooltip)
-	tooltip:AddLine( DF.locale["versionName"],1,1,0,nil )
-	tooltip:AddLine( DF.locale["brokerInfo1"],1,1,1,nil )
-	tooltip:AddLine( DF.locale["brokerInfo2"],1,1,1,nil )
 end
 
 function DF_MinimapButton:OnLeave()
@@ -178,12 +165,8 @@ function DF_MinimapButton:UpdatePosition()
 	end
 
 	self:SetPoint("CENTER", Minimap, "CENTER", x, y)
-	
 end
 
 function DF_Minimap_Update()
-	DF_MinimapButton:UpdatePosition();
-end 
-
-
- 
+	DF_MinimapButton:UpdatePosition()
+end

@@ -13,37 +13,34 @@ local text=nil
 local frameTexture=nil
 
 local cursor=0
-local offset = 1
 
 -- initialisation frames
 function DF:init_targetbar_frame()
-	
 	if not frame then
-		
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_targetbar_FRAME",DF.anchor[1].frame)
 		frame:SetScript("OnMouseDown",function(self,button)
 			if button=="LeftButton" then
-  			frame:StartMoving()
-  		elseif button=="RightButton" then
-  			DF:options_show("targetbar",frame)
-  		end
+				frame:StartMoving()
+			elseif button=="RightButton" then
+				DF:options_show("targetbar",frame)
+			end
 		end)
 		frame:SetScript("OnMouseUp",function(self,button)
 			if button=="LeftButton" then
-	  		frame:StopMovingOrSizing()
-	  		local anchorx=DF.anchor[1].frame:GetLeft()
-	  		local anchory=DF.anchor[1].frame:GetTop()		  			  		
-	  		DF_config.targetbar.positionx=DF:alignToGridX(self:GetLeft()-anchorx)
-	  		DF_config.targetbar.positiony=DF:alignToGridY(self:GetTop()-anchory)
-	  		frame:ClearAllPoints()
-	  		frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.targetbar.positionx, DF_config.targetbar.positiony)
+				frame:StopMovingOrSizing()
+				local anchorx=DF.anchor[1].frame:GetLeft()
+				local anchory=DF.anchor[1].frame:GetTop()		  			  		
+				DF_config.targetbar.positionx=DF:alignToGridX(self:GetLeft()-anchorx)
+				DF_config.targetbar.positiony=DF:alignToGridY(self:GetTop()-anchory)
+				frame:ClearAllPoints()
+				frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.targetbar.positionx, DF_config.targetbar.positiony)
 				DF.environnement["targetbarleft"]:Hide()
 				DF.environnement["targetbartop"]:Hide()
 				DF.environnement["targetbarleft"]:Show()
 				DF.environnement["targetbartop"]:Show()
-		  end
-		end)	
+		 	 end
+		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
 				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
@@ -51,13 +48,12 @@ function DF:init_targetbar_frame()
 				GameTooltip:AddLine("DROODFOCUS TARGETBAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
-				GameTooltip:Show()		
-			end		
-		end)		
+				GameTooltip:Show()
+			end
+		end)
 		frame:SetScript("OnLeave",function(self,button)
-
 			if DF.configmode then GameTooltip:Hide() end
-		end)		
+		end)
 		-- cadre pour la texture
 		background = CreateFrame("StatusBar","DF_targetbar_BACKGROUND",frame)
 		foreground = CreateFrame("StatusBar","DF_targetbar_FOREGROUND",frame)
@@ -65,12 +61,12 @@ function DF:init_targetbar_frame()
 		frameTexture=frame:CreateTexture(nil)
 		frame:EnableMouse(false)	
 	end
-	
+
 	local level = DF_config.targetbar.level*10
 
 	-- paramétres cadre principal
 	frame:SetMovable(true)
-		
+
 	frame:SetWidth(DF_config.targetbar.width)
 	frame:SetHeight(DF_config.targetbar.height)
 	frame:ClearAllPoints()
@@ -86,7 +82,6 @@ function DF:init_targetbar_frame()
 		frameTexture:SetAllPoints(frame)
 		frameTexture:SetColorTexture(DF_config.targetbar.borderColor.r, DF_config.targetbar.borderColor.v, DF_config.targetbar.borderColor.b,0)
 		frame.texture=frameTexture
-		
 	end
 
 	-- paramétres background
@@ -112,7 +107,7 @@ function DF:init_targetbar_frame()
 	foreground:SetStatusBarColor(DF_config.targetbar.color.r, DF_config.targetbar.color.v, DF_config.targetbar.color.b, DF_config.targetbar.color.a)
 	background:SetOrientation(DF_config.targetbar.orientation)
 	foreground:SetOrientation(DF_config.targetbar.orientation)
-	
+
 	-- paramétres text
 	DF:MySetFont(text,DF_config.targetbar.fontPath,DF_config.targetbar.fontSize)
 	text:SetShadowColor(0, 0, 0, 0.75)
@@ -121,24 +116,22 @@ function DF:init_targetbar_frame()
 	text:SetText("TEST")
 	text:ClearAllPoints()
 	text:SetPoint(DF_config.targetbar.textAlign, foreground, DF_config.targetbar.textAlign, DF_config.targetbar.textx, DF_config.targetbar.texty)
-	
+
 	if not DF_config.targetbar.showText then
 		text:Hide()
 	else
 		text:Show()
 	end
-	
-	if not DF_config.targetbar.enable then 
+
+	if not DF_config.targetbar.enable then
 		frame:Hide()
 	else
 		frame:Show()
 	end
-		
 end
 
 -- gestion de l'animation
 function DF:targetbar_update()
-	
 	if not DF_config.targetbar.enable then return end
 
 	local currentForm = DF:currentForm()
@@ -148,56 +141,43 @@ function DF:targetbar_update()
 	else
 		frame:Show()
 	end
-	
+
 	local current=0
 	local value=0
 	local maxi=100
 
 	if DF.configmode then
-		
 		current=50
 		maxi=100
-		
 	else
-		
-		current = UnitHealth("target");		
-		maxi = UnitHealthMax("target");
-			
+		current = UnitHealth("target")
+		maxi = UnitHealthMax("target")
 	end
 
-	maxi2=maxi
-	if maxi2==0 then
-		maxi2=100
+	local maxi2 = maxi
+	if maxi2 == 0 then
+		maxi2 = 100
 	end
 
 	value = 100 * (current/maxi2)
-	
+
 	if cursor>value then
-		
 		cursor = cursor - DF_config.cursorspeed
 		if cursor<value then cursor=value end
-		
 	elseif cursor<value then
-		
 		cursor = cursor + DF_config.cursorspeed
 		if cursor>value then cursor=value end
-		
 	end
-	
+
 	foreground:SetValue(cursor)
 	text:SetText(DF:formatText(maxi,current,DF_config.targetbar.sformat))
-	
 end
 
 -- enable/disable déplacement du cadre avec la souris
 function DF:targetbar_toogle_lock(flag)
-	
 	frame:EnableMouse(flag)
-	
 end
 
 function DF:targetbar_reinit()
-	
 	DF:init_targetbar_frame()
-	
 end

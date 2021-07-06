@@ -20,9 +20,7 @@ function DF:currentForm()
 end
 
 function DF:form_goofForm(list,test)
-	
 	return list[test+1]
-		
 end
 
 function DF:form_initStanceList()
@@ -36,12 +34,11 @@ function DF:form_initStanceList()
 	elseif DF.playerClass=="PRIEST" then
 		DF.locale["form1"]="Shadowform"
 	elseif DF.playerClass=="ROGUE" then
-		DF.locale["form1"]="Stealth"		
-		DF.locale["form3"]="Shadow Dance"		
+		DF.locale["form1"]="Stealth"
+		DF.locale["form3"]="Shadow Dance"
 	elseif DF.playerClass=="WARRIOR" then
-		DF.locale["form1"]="Battle Stance"		
+		DF.locale["form1"]="Battle Stance"
 		DF.locale["form2"]="Defensive Stance"
-		DF.locale["form3"]="Berserker Stance "
+		DF.locale["form3"]="Berserker Stance"
 	end
-	
 end

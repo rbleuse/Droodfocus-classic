@@ -14,37 +14,34 @@ local foreground=nil
 local text=nil
 
 local cursor=0
-local offset = 1
 
 -- initialisation frames
 function DF:init_healthbar_frame()
-	
 	if not frame then
-		
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_healthbar_FRAME",DF.anchor[1].frame)
 		frame:SetScript("OnMouseDown",function(self,button)
 			if button=="LeftButton" then
-  			frame:StartMoving()
-  		elseif button=="RightButton" then
-  			DF:options_show("healthbar",frame)
-  		end
+				frame:StartMoving()
+			elseif button=="RightButton" then
+				DF:options_show("healthbar",frame)
+			end
 		end)
 		frame:SetScript("OnMouseUp",function(self,button)
 			if button=="LeftButton" then
-	  		frame:StopMovingOrSizing()
-	  		local anchorx=DF.anchor[1].frame:GetLeft()
-	  		local anchory=DF.anchor[1].frame:GetTop()		  			  		
-	  		DF_config.healthbar.positionx=DF:alignToGridX(self:GetLeft()-anchorx)
-	  		DF_config.healthbar.positiony=DF:alignToGridY(self:GetTop()-anchory)
-	  		frame:ClearAllPoints()
-	  		frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.healthbar.positionx, DF_config.healthbar.positiony)
+				frame:StopMovingOrSizing()
+				local anchorx=DF.anchor[1].frame:GetLeft()
+				local anchory=DF.anchor[1].frame:GetTop()
+				DF_config.healthbar.positionx=DF:alignToGridX(self:GetLeft()-anchorx)
+				DF_config.healthbar.positiony=DF:alignToGridY(self:GetTop()-anchory)
+				frame:ClearAllPoints()
+				frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.healthbar.positionx, DF_config.healthbar.positiony)
 				DF.environnement["healthbarleft"]:Hide()
 				DF.environnement["healthbartop"]:Hide()
 				DF.environnement["healthbarleft"]:Show()
 				DF.environnement["healthbartop"]:Show()
-		  end
-		end)	
+			end
+		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
 				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
@@ -52,26 +49,26 @@ function DF:init_healthbar_frame()
 				GameTooltip:AddLine("DROODFOCUS HEALTHBAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
-				GameTooltip:Show()		
-			end		
-		end)		
+				GameTooltip:Show()
+			end
+		end)
 		frame:SetScript("OnLeave",function(self,button)
 			if DF.configmode then GameTooltip:Hide() end
-		end)		
-				
+		end)
+
 		-- cadre pour la texture
 		background = CreateFrame("StatusBar","DF_healthbar_BACKGROUND",frame)
 		foreground = CreateFrame("StatusBar","DF_healthbar_FOREGROUND",frame)
 		text = foreground:CreateFontString("DF_healthbar_TEXT","ARTWORK")
 		frameTexture=frame:CreateTexture(nil)
-		frame:EnableMouse(false)		
+		frame:EnableMouse(false)
 	end
 
 	local level = DF_config.healthbar.level*10
-	
+
 	-- paramétres cadre principal
 	frame:SetMovable(true)
-	
+
 	frame:SetWidth(DF_config.healthbar.width)
 	frame:SetHeight(DF_config.healthbar.height)
 	frame:ClearAllPoints()
@@ -88,7 +85,6 @@ function DF:init_healthbar_frame()
 		frameTexture:SetAllPoints(frame)
 		frameTexture:SetColorTexture(DF_config.healthbar.borderColor.r, DF_config.healthbar.borderColor.v, DF_config.healthbar.borderColor.b,0)
 		frame.texture=frameTexture
-		
 	end
 
 	-- paramétres background
@@ -115,7 +111,7 @@ function DF:init_healthbar_frame()
 		background:SetStatusBarColor(1,1,1,0.33)
 		foreground:SetStatusBarColor(1,1,1,1)
 	end
-	
+
 	background:SetOrientation(DF_config.healthbar.orientation)
 	foreground:SetOrientation(DF_config.healthbar.orientation)
 
@@ -127,24 +123,22 @@ function DF:init_healthbar_frame()
 	text:SetText("TEST")
 	text:ClearAllPoints()
 	text:SetPoint(DF_config.healthbar.textAlign, foreground, DF_config.healthbar.textAlign, DF_config.healthbar.textx, DF_config.healthbar.texty)
-	
+
 	if not DF_config.healthbar.showText then
 		text:Hide()
 	else
 		text:Show()
 	end
-	
-	if not DF_config.healthbar.enable then 
+
+	if not DF_config.healthbar.enable then
 		frame:Hide()
 	else
 		frame:Show()
 	end
-		
 end
 
 -- gestion de l'animation
 function DF:healthbar_update()
-	
 	if not DF_config.healthbar.enable then return end
 
 	local currentForm = DF:currentForm()
@@ -154,21 +148,17 @@ function DF:healthbar_update()
 	else
 		frame:Show()
 	end
-	
+
 	local current=0
 	local value=0
 	local maxi=100
 
 	if DF.configmode then
-		
 		current=50
 		maxi=100
-		
 	else
-		
-		current = UnitHealth("player");		
-		maxi = UnitHealthMax("player");
-			
+		current = UnitHealth("player")
+		maxi = UnitHealthMax("player")
 	end
 
 	value = 100 * (current/maxi)
@@ -176,50 +166,34 @@ function DF:healthbar_update()
 	if DF_config.healthbar.colorchg then
 
 		if value>0 and value<=33 then
-			
 			background:SetStatusBarColor(DF_config.healthbar.colorBad.r/3, DF_config.healthbar.colorBad.v/3, DF_config.healthbar.colorBad.b/3, DF_config.healthbar.colorBad.a)
 			foreground:SetStatusBarColor(DF_config.healthbar.colorBad.r, DF_config.healthbar.colorBad.v, DF_config.healthbar.colorBad.b, DF_config.healthbar.colorBad.a)
-			
 		elseif value>33 and value<=66 then
-			
 			background:SetStatusBarColor(DF_config.healthbar.colorAverage.r/3, DF_config.healthbar.colorAverage.v/3, DF_config.healthbar.colorAverage.b/3, DF_config.healthbar.colorAverage.a)
 			foreground:SetStatusBarColor(DF_config.healthbar.colorAverage.r, DF_config.healthbar.colorAverage.v, DF_config.healthbar.colorAverage.b, DF_config.healthbar.colorAverage.a)
-			
 		elseif value>66 then
-			
 			background:SetStatusBarColor(DF_config.healthbar.colorGood.r/3, DF_config.healthbar.colorGood.v/3, DF_config.healthbar.colorGood.b/3, DF_config.healthbar.colorGood.a)
 			foreground:SetStatusBarColor(DF_config.healthbar.colorGood.r, DF_config.healthbar.colorGood.v, DF_config.healthbar.colorGood.b, DF_config.healthbar.colorGood.a)
-			
 		end
-		
 	end
-	
+
 	if cursor>value then
-		
 		cursor = cursor - DF_config.cursorspeed
 		if cursor<value then cursor=value end
-		
 	elseif cursor<value then
-		
 		cursor = cursor + DF_config.cursorspeed
 		if cursor>value then cursor=value end
-		
 	end
-	
+
 	foreground:SetValue(cursor)
 	text:SetText(DF:formatText(maxi,current,DF_config.healthbar.sformat))
-	
 end
 
 -- enable/disable déplacement du cadre avec la souris
 function DF:healthbar_toogle_lock(flag)
-	
 	frame:EnableMouse(flag)
-	
 end
 
 function DF:healthbar_reinit()
-	
 	DF:init_healthbar_frame()
-	
 end

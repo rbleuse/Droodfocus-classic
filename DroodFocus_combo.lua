@@ -6,11 +6,11 @@
 
 local DF = DF_namespace
 
-local frame=nil
-local frameTexture=nil
+local frame = nil
+local frameTexture = nil
 
-local frequency =1/60
-local tempo=(frequency/15)*2
+local frequency = 1 / 60
+local tempo = (frequency / 15) * 2
 
 local combos={
 	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
@@ -44,31 +44,30 @@ local comboPts = 0
 function DF:init_combo_frame()
 
 	if not frame then
-		
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_COMBO_FRAME",DF.anchor[1].frame)
 		frame:SetScript("OnMouseDown",function(self,button)
-			if button=="LeftButton" then
-  			frame:StartMoving()
-  		elseif button=="RightButton" then
-  			DF:options_show("combo",frame)
-  		end
+			if button == "LeftButton" then
+				frame:StartMoving()
+			elseif button == "RightButton" then
+				DF:options_show("combo", frame)
+			end
 		end)
 		frame:SetScript("OnMouseUp",function(self,button)
 			if button=="LeftButton" then
-	  		frame:StopMovingOrSizing()
-	  		local anchorx=DF.anchor[1].frame:GetLeft()
-	  		local anchory=DF.anchor[1].frame:GetTop()
-	  		DF_config.combo.positionx=self:GetLeft()-anchorx
-	  		DF_config.combo.positiony=self:GetTop()-anchory
-	  		frame:ClearAllPoints()
-	  		frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.positionx, DF_config.combo.positiony)
+				frame:StopMovingOrSizing()
+				local anchorx=DF.anchor[1].frame:GetLeft()
+				local anchory=DF.anchor[1].frame:GetTop()
+				DF_config.combo.positionx=self:GetLeft()-anchorx
+				DF_config.combo.positiony=self:GetTop()-anchory
+				frame:ClearAllPoints()
+				frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.positionx, DF_config.combo.positiony)
 				DF.environnement["comboleft"]:Hide()
 				DF.environnement["combotop"]:Hide()
 				DF.environnement["comboleft"]:Show()
 				DF.environnement["combotop"]:Show()
-		  end
-		end)	
+			end
+		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
 				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
@@ -77,11 +76,11 @@ function DF:init_combo_frame()
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
 				GameTooltip:Show()		
-			end		
-		end)		
+			end
+		end)
 		frame:SetScript("OnLeave",function(self,button)
 			if DF.configmode then GameTooltip:Hide() end
-		end)		
+		end)
 
 		frametext = CreateFrame("FRAME","DF_COMBO_FRAMETEXT",DF.anchor[1].frame)
 		frametext:SetScript("OnMouseDown",function(self,button)
@@ -101,7 +100,7 @@ function DF:init_combo_frame()
 	  		frametext:ClearAllPoints()
 	  		frametext:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.textOffsetX, DF_config.combo.textOffsetY)
 		  end
-		end)	
+		end)
 		frametext:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
 				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
@@ -109,13 +108,13 @@ function DF:init_combo_frame()
 				GameTooltip:AddLine("DROODFOCUS COMBOTEXT",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
-				GameTooltip:Show()		
-			end		
-		end)		
+				GameTooltip:Show()
+			end
+		end)
 		frametext:SetScript("OnLeave",function(self,button)
 			if DF.configmode then GameTooltip:Hide() end
-		end)		
-		
+		end)
+
 		-- points de combo
 		for i = 1,6 do
 			combos[i].frame = CreateFrame("FRAME","DF_COMBO_FRAME_"..tostring(i),frame)
@@ -125,11 +124,10 @@ function DF:init_combo_frame()
 		end
 		frame:EnableMouse(false)
 		frameTexture = frame:CreateTexture("DF_COMBO_FRAME_texture","BACKGROUND")
-		
+
 		frametextzoom = CreateFrame("FRAME","DF_COMBO_FRAMETEXTZOOM",frametext)
 		combotext = frametextzoom:CreateFontString("DF_COMBOTEXT","ARTWORK")
 		frametextTexture = frametext:CreateTexture("DF_COMBO_FRAME_TEXTURE","BACKGROUND")
-		
 	end
 
 	local level = DF_config.combo.level*10
@@ -178,13 +176,12 @@ function DF:init_combo_frame()
 
 	-- paramétres background
 	for i = 1,6 do
-		
 		combos[i].frame:SetWidth(DF_config.combo.width)
 		combos[i].frame:SetHeight(DF_config.combo.height)
 		combos[i].frame:ClearAllPoints()
 		combos[i].frame:SetPoint("CENTER", frame, "CENTER", (i-1)*DF_config.combo.offsetx, -((i-1)*DF_config.combo.offsety))
 		combos[i].frame:SetFrameLevel(level+i)	
-		
+
 		combos[i].overlay:SetWidth(DF_config.combo.width)
 		combos[i].overlay:SetHeight(DF_config.combo.height)
 		combos[i].overlay:SetPoint("CENTER", combos[i].frame, "CENTER", 0, 0)
@@ -198,9 +195,8 @@ function DF:init_combo_frame()
 		combos[i].texture:SetBlendMode(DF_config.combo.mode)
 		
 		combos[i].overlay.texture = combos[i].texture
-	
-	end		
-	
+	end
+
 	if DF_config.combo.ptype==1 then
 		for i = 1,6 do
 			combos[i].frame:ClearAllPoints()
@@ -210,18 +206,16 @@ function DF:init_combo_frame()
 		local angleA=DF_config.combo.angleA
 		local angleB=DF_config.combo.angleB
 		local pas = (angleB-angleA)/5
-		
+
 		for i = 1,6 do
-			
 			local px=DF_config.combo.rayon*math.cos(angleA/180*math.pi)
 			local py=DF_config.combo.rayon*math.sin(angleA/180*math.pi)
-			
+
 			combos[i].frame:ClearAllPoints()
 			combos[i].frame:SetPoint("CENTER", frame, "CENTER", px, -py)
-	
+
 			angleA=angleA+pas
-			
-		end		
+		end
 	end
 
 	DF:MySetFont(combotext,DF_config.combo.fontPath,DF_config.combo.fontSize,"OUTLINE")
@@ -236,31 +230,25 @@ function DF:init_combo_frame()
 	combotext:SetPoint("CENTER", frametextzoom,"CENTER", 0,0)
 	combotext:SetText("")
 
-	if not DF_config.combo.enable then 
+	if not DF_config.combo.enable then
 		for i = 1,6 do combos[i].overlay:Hide() end
 	end
 
-	if not DF_config.combo.showText then 
+	if not DF_config.combo.showText then
 		frametext:Hide()
 	else
 		frametext:Show()
 	end
-	
 end
 
 function DF:combo_toggle()
-
 	if DF.playerClass=="DRUID" or DF.playerClass=="ROGUE" then
-
 		combos[6].state=-1
-		
 	end
-	
 end
 
 -- gestion de l'animation
 function DF:combo_update(elapsed)
-	
 	if (DF.configmode) then
 		frameTexture:SetColorTexture(1,1,1,0.25)
 		frametextTexture:SetColorTexture(1,1,1,0.25)
@@ -268,7 +256,7 @@ function DF:combo_update(elapsed)
 		frameTexture:SetColorTexture(1,1,1,0)
 		frametextTexture:SetColorTexture(1,1,1,0)
 	end
-	
+
 	if not DF_config.combo.enable then
 		for i = 1,6 do combos[i].overlay:Hide() end
 		return
@@ -303,7 +291,7 @@ function DF:combo_update(elapsed)
 -- 4 point actif chat/rogue 5
 -- 5 point actif ours 1 à 4
 -- 6 point actif ours 5
-	
+
 	if ((DF.playerClass == "DRUID" and currentForm == 3) or DF.playerClass == "ROGUE") then
 
 		c = UnitPower("player", Enum.PowerType.ComboPoints)
@@ -321,11 +309,9 @@ function DF:combo_update(elapsed)
 		else
 			combotext:SetText("")
 		end
-				
+
 		for i = 1,5 do
-		
 			if i<=c or DF.configmode then
-				
 				-- point ON
 				if i==5 then
 					combos[i].offseta=offsets[4]*0.125
@@ -334,30 +320,23 @@ function DF:combo_update(elapsed)
 					combos[i].offseta=offsets[3]*0.125
 					combos[i].offsetb=(offsets[3]*0.125)+0.125
 				end
-				
+
 				if combos[i].state==0 then
 					combos[i].scale = DF_config.combo.impulsion + (multiple*0.1)
 					multiple = multiple + 1
-				end	
-				
-				combos[i].state=1
+				end
 
+				combos[i].state=1
 			else
-				
 				-- point OFF
 				combos[i].offseta=offsets[2]*0.125
 				combos[i].offsetb=(offsets[2]*0.125)+0.125
 				combos[i].state=0
-				
 			end
-			
 		end
-		
 	elseif (DF.playerClass=="DRUID" and DF:currentForm()==1) then
-
 		c = comboPts
-		DEFAULT_CHAT_FRAME:AddMessage("combo="..tostring(c))
-		
+
 		if DF_config.combo.showText and c and c>0 then
 			combotext:SetText(tostring(c))
 		else
@@ -366,11 +345,9 @@ function DF:combo_update(elapsed)
 		if DF_config.combo.showText and DF.configmode then
 			combotext:SetText("5")
 		end
-						
+
 		for i = 1,5 do
-		
 			if i<=c or DF.configmode then
-				
 				-- point ON
 				if i==5 then
 					combos[i].offseta=offsets[6]*0.125
@@ -383,62 +360,47 @@ function DF:combo_update(elapsed)
 				if combos[i].state==0 then
 					combos[i].scale = DF_config.combo.impulsion + (multiple*0.1)
 					multiple = multiple + 1
-				end	
-				
+				end
+
 				combos[i].state=1
-				
 			else
-				
 				-- point OFF
 				combos[i].offseta=offsets[2]*0.125
 				combos[i].offsetb=(offsets[2]*0.125)+0.125
 				combos[i].state=0
-				
 			end
-			
 		end
-		
 	else
 		combotext:SetText("")
 		for i = 1,6 do
-				combos[i].offseta=offsets[1]*0.125
-				combos[i].offsetb=(offsets[1]*0.125)+0.125
-				combos[i].state=0
+			combos[i].offseta=offsets[1]*0.125
+			combos[i].offsetb=(offsets[1]*0.125)+0.125
+			combos[i].state=0
 		end
-		
 	end
 
 	for i = 1, 6 do
-		
 		combos[i].scale = combos[i].scale - 0.05
-		
+
 		if combos[i].scale<1 then
-				combos[i].scale=1
-		end	
-	
-		combos[i].texture:SetTexCoord(0, 1, combos[i].offseta, combos[i].offsetb)	
+			combos[i].scale=1
+		end
+
+		combos[i].texture:SetTexCoord(0, 1, combos[i].offseta, combos[i].offsetb)
 		combos[i].overlay:SetScale(combos[i].scale)
-		
 	end
-	
 end
 
 function DF:combo_set(nb)
-	
 	comboPts = nb
-	
 end
 
 -- enable/disable déplacement du cadre avec la souris
 function DF:combo_toogle_lock(flag)
-	
 	frame:EnableMouse(flag)
 	frametext:EnableMouse(flag)
-	
 end
 
 function DF:combo_reinit()
-	
 	DF:init_combo_frame()
-	
 end

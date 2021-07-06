@@ -14,14 +14,11 @@ local selectPt=nil
 local currentPosition=1
 local nbLines = 8
 
-local startX=16
-local startY=-16
 local startLevel=1
 
-local trash = {}
 local lignes = {}
 
-local _G = getfenv(0);
+local _G = getfenv(0)
 
 local options_sharemedia = {["fpath"]="",["ftype"]="",["fname"]=""}
 local shareMediaFrame = nil
@@ -35,18 +32,11 @@ local apercutexture_texture= nil
 DF.selectedSpell=nil
 
 StaticPopupDialogs["MEDIAERREUR"] = {
-  text = "- DroodFocus -\n\n%s",
-  button1 = "Ok",
-  timeout = 0,
-  whileDead = 1,
-  hideOnEscape = 1
-};
-
-local optionsTarget={
-	{texte="none",valeur="",form=nil},
-	{texte="target ",valeur="target",form=nil},
-	{texte="focus",valeur="focus",form=nil},
-	{texte="pet",valeur="pet",form=nil},
+	text = "- DroodFocus -\n\n%s",
+	button1 = "Ok",
+	timeout = 0,
+	whileDead = 1,
+	hideOnEscape = 1
 }
 
 -- table pour listes de choix
@@ -108,47 +98,41 @@ local optionsOrientation={
 local optionsSavedconfig= {}
 
 function DF:options_prepareSpellsList()
-	
 	-- renseigne les noms localisés
 	local nb=getn(DF.spellsList)
 	for i = 1,nb do
 
+		local name
+		local rank
 		if (DF.spellsList[i].ltype==1) then
-			
-			lenom,lerang = GetSpellInfo(DF.spellsList[i].id)
+			name, rank = GetSpellInfo(DF.spellsList[i].id)
 
-			if (lenom) then
-				if lerang~="" then
-					rangchaine=" ("..tostring(lerang)..")"
+			if (name) then
+				local rangchaine
+				if rank~="" then
+					rangchaine=" ("..tostring(rank)..")"
 				else
 					rangchaine=""
 				end
-				DF.spellsList[i].texte="(S) "..lenom..rangchaine
-				
+				DF.spellsList[i].texte="(S) "..name..rangchaine
 			else
-				
 				DF.spellsList[i].texte="(S) SpellID["..DF.spellsList[i].id.."]"
-				
 			end
-			
 		elseif (DF.spellsList[i].ltype>1) then
-
-			lenom = GetItemInfo(DF.spellsList[i].id)
-			if (lenom) then
-				DF.spellsList[i].texte="(O) "..lenom
+			name = GetItemInfo(DF.spellsList[i].id)
+			if (name) then
+				DF.spellsList[i].texte="(O) "..name
 			else
-				DF.spellsList[i].texte="(O) ItemID["..DF.spellsList[i].id.."]"	
+				DF.spellsList[i].texte="(O) ItemID["..DF.spellsList[i].id.."]"
 			end
-			
 		end
+	end
 
-	end	
-	
 	-- trier la liste
 	local mini=0
 	local valeur=""
 	local save ={}
-	
+
 	for i = 1,nb do
 		mini=i
 		valeur=DF.spellsList[mini].texte
@@ -158,27 +142,24 @@ function DF:options_prepareSpellsList()
 				valeur=DF.spellsList[mini].texte
 			end
 		end
-		
+
 		save = DF.spellsList[i]
 		DF.spellsList[i]=DF.spellsList[mini]
 		DF.spellsList[mini]=save
-		
 	end
-	
 end
 
 function DF:options_SavedconfigLists()
 	local index=1
 	optionsSavedconfig=table.wipe(optionsSavedconfig)
-	for tkey,tvalue in pairs(DF_saved_configs) do
+	for tkey, _ in pairs(DF_saved_configs) do
 		optionsSavedconfig[index]={texte=DF_saved_configs[tkey].configname,valeur=DF_saved_configs[tkey].configname}
 		index=index+1
-	end	
-	for tkey,tvalue in pairs(DF_pred_configs) do
+	end
+	for tkey, _ in pairs(DF_pred_configs) do
 		optionsSavedconfig[index]={texte=DF_pred_configs[tkey].configname,valeur=DF_pred_configs[tkey].configname}
 		index=index+1
-	end	
-	
+	end
 end
 
 local optionsTextures={}
@@ -200,7 +181,7 @@ function DF:options_ShareMediaLists()
 		texte = "None",
 		valeur = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
 		form = "background"
-	};
+	}
 
 	local function buildOptions(name, list)
 		local temp = DF.LSM:List(name)
@@ -214,7 +195,7 @@ function DF:options_ShareMediaLists()
 				texte = tvalue,
 				valeur = fetch,
 				form = name
-			};
+			}
 		end
 	end
 
@@ -226,41 +207,35 @@ end
 
 function DF:options_addID()
 	if DF.selectedSpell then
-		
-		--DF:debugLine("DF.selectedSpell",DF.selectedSpell)
-		
 		local value =_G["DFSPELLOPT_ids"]:GetText()
-		
+
 		if value=="" then
 			_G["DFSPELLOPT_ids"]:SetText(DF.selectedSpell)
 		else
 			_G["DFSPELLOPT_ids"]:SetText(value..";"..DF.selectedSpell)
 		end
 		_G["DFSPELLOPT_ids"]:SetFocus()
-
 	end
-	
 end
 
 -- creation des panneaux de configs
 function DF:options_createpanels()
-	
 	DF:options_ShareMediaLists()
 	DF:options_SavedconfigLists()
 	DF:options_prepareSpellsList()
-	
+
 	local pt
 
 	-- frame preview texture
 	apercutexture = CreateFrame("FRAME","DF_PREVIEWTEXTURE",UIParent)
 	apercutexture_texture= apercutexture:CreateTexture("DF_PREVIEWTEXTURETexture","BACKGROUND")
-	
+
 	apercutexture:SetMovable(false)
-	apercutexture:EnableMouse(false)		
+	apercutexture:EnableMouse(false)
 	apercutexture:SetWidth(128)
 	apercutexture:SetHeight(128)
 	apercutexture:ClearAllPoints()
-	apercutexture:SetPoint("CENTER", UIParent, "CENTER", 0, 0)	
+	apercutexture:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
 	apercutexture:SetFrameStrata("TOOLTIP")
 	apercutexture:Hide()
 
@@ -276,32 +251,32 @@ function DF:options_createpanels()
 	pt.name = "DroodFocus"
 	DF:options_createTitle(pt,DF.locale["versionName"])
 
-	picture1 = CreateFrame("FRAME","picture1",pt);
-	picture1:SetWidth(256);
-	picture1:SetHeight(128);
-	picture1:SetPoint("TOP", pt, "TOP",0, -10);
-	picture1t = picture1:CreateTexture(nil,"BACKGROUND");
-	picture1t:SetAllPoints(picture1); -- attache la texture a la frame
-	picture1t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture");
-	picture1t:SetBlendMode("BLEND");
-	picture1.texture = picture1t;
-	
+	local picture1 = CreateFrame("FRAME","picture1",pt)
+	picture1:SetWidth(256)
+	picture1:SetHeight(128)
+	picture1:SetPoint("TOP", pt, "TOP",0, -10)
+	local picture1t = picture1:CreateTexture(nil,"BACKGROUND")
+	picture1t:SetAllPoints(picture1) -- attache la texture a la frame
+	picture1t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture")
+	picture1t:SetBlendMode("BLEND")
+	picture1.texture = picture1t
+
 	DF:options_createConfigButton(pt,"DFmainpanelbutton",DF.locale["DFmainpanel"],3,3,DF.options_show,"DFOPTIONSelement")
-	InterfaceOptions_AddCategory(pt);
+	InterfaceOptions_AddCategory(pt)
 
 	-- panneaux spéciaux
 	pt = DF:options_createPanel("DFOPTIONSelement",2,15,true,DF.locale["mainmain"])
 	pt.name = "DroodFocus elements"
 
-	picture2 = CreateFrame("FRAME","picture2",pt);
-	picture2:SetWidth(256*0.75);
-	picture2:SetHeight(128*0.75);
-	picture2:SetPoint("TOPRIGHT", pt, "TOPRIGHT",-16, -80);
-	picture2t = picture2:CreateTexture(nil,"BACKGROUND");
-	picture2t:SetAllPoints(picture2); -- attache la texture a la frame
-	picture2t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture");
-	picture2t:SetBlendMode("BLEND");
-	picture2.texture = picture2t;
+	local picture2 = CreateFrame("FRAME","picture2",pt)
+	picture2:SetWidth(256*0.75)
+	picture2:SetHeight(128*0.75)
+	picture2:SetPoint("TOPRIGHT", pt, "TOPRIGHT",-16, -80)
+	local picture2t = picture2:CreateTexture(nil,"BACKGROUND")
+	picture2t:SetAllPoints(picture2) -- attache la texture a la frame
+	picture2t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture")
+	picture2t:SetBlendMode("BLEND")
+	picture2.texture = picture2t
 
 	DF:options_createEditbox(pt,"confignamebox",DF_config,"configname",DF.locale["configname"],0,1,nil,false)
 	DF:options_createButton(pt,"confignamesavebutton",DF.locale["save"],17,1,DF.config_Save,1)
@@ -316,7 +291,6 @@ function DF:options_createpanels()
 	DF:options_createConfigButton(pt,"mainhealthbarcheck",DF.locale["healthbar"],17,7,DF.options_show,"healthbar")
 	DF:options_createConfigButton(pt,"mainmanabarcheck",DF.locale["manabar"],0,8,DF.options_show,"manabar")
 	DF:options_createConfigButton(pt,"maintargetbarcheck",DF.locale["targetbar"],17,8,DF.options_show,"targetbar")
-	DF:options_createConfigButton(pt,"mainthreattbarcheck",DF.locale["threatbar"],0,9,DF.options_show,"threatbar")
 	DF:options_createConfigButton(pt,"maincombobarcheck",DF.locale["combo"],17,9,DF.options_show,"combo")
 	DF:options_createConfigButton(pt,"mainbloodcheck",DF.locale["blood"],0,10,DF.options_show,"blood")
 	DF:options_createConfigButton(pt,"maingridcheck",DF.locale["grid"],17,10,DF.options_show,"grid")
@@ -326,16 +300,14 @@ function DF:options_createpanels()
 	DF:options_createConfigButton(pt,"maintimerbarcheck",DF.locale["timerbar"],0,12,DF.options_show,"timerbar")
 	DF:options_createConfigButton(pt,"mainportraitcheck",DF.locale["portrait"],0,13,DF.options_show,"portrait")
 	DF:options_createConfigButton(pt,"maincooldowncheck",DF.locale["cooldown"],17,13,DF.options_show,"cooldown")
-	DF:options_createConfigButton(pt,"maingpscheck",DF.locale["gps"],0,14,DF.options_show,"gps")
 	DF:options_createConfigButton(pt,"mainsoundcheck",DF.locale["sound"],17,14,DF.options_show,"sound")
 	DF:options_createConfigButton(pt,"mainsharemediacheck",DF.locale["sharemedia"],17,15,DF.options_show,"sharemedia")
-	--DF:options_createConfigButton(pt,"maintalentcheck",DF.locale["talent"],17,15,DF.options_show,"talent")
 	DF:options_createConfigButton(pt,"maincastbarcheck",DF.locale["castbar"],0,15,DF.options_show,"castbar")
 	DF:options_createCheckBox(pt,"mainminimapcheck",DF_config,"minimap",DF.locale["minimap"],0,0,DF_MinimapToggle)
 
 	pt:ClearAllPoints()
 	pt:SetPoint("RIGHT", UIParent, "RIGHT", -16, 0)
-	
+
 	pt = DF:options_createPanel("blood",2,1,true,DF.locale["blood"])
 	pt.name = DF.locale["blood"]
 	pt.parent = "DroodFocus"
@@ -350,20 +322,6 @@ function DF:options_createpanels()
 	DF:options_createSlider(pt,"gridslidersizex",DF_config,"gridSizeX",0.25,16,0.25,DF.locale["gridsizex"],0,1,nil)
 	DF:options_createSlider(pt,"gridslidersizey",DF_config,"gridSizeY",0.25,16,0.25,DF.locale["gridsizey"],17,1,nil)
 
-	pt = DF:options_createPanel("talent",2,5,true,DF.locale["talent"])
-	pt.name = DF.locale["talent"]
-	pt.parent = "DroodFocus"
-	DF:options_createSubTitle(pt,DF.locale["talentinfos"],0,0)
-	DF:options_createText(pt,DF.locale["talentinfos2"],0,1)
-	DF:options_createSubTitle(pt,DF.locale["currenttalent"],0,2)
-	local textet = pt:CreateFontString("dfcurrenttalenttext", "OVERLAY", "GameFontNormal")
-	textet:SetPoint("TOPLEFT", pt, "TOPLEFT", 8, -32-(2*38)-16)
-	local textec = pt:CreateFontString("dfcurrenttalentconfigtext", "OVERLAY", "GameFontNormal")
-	textec:SetPoint("TOPLEFT", pt, "TOPLEFT", 8, -32-(2*38)-32)
-	DF:options_createButton(pt,"talentbuttonset",DF.locale["set"],0,4,DF.talent_setSpeConfig,tostring(DF.playerTalent))
-	DF:options_createButton(pt,"talentbuttonclear",DF.locale["clear"],8,4,DF.talent_clearSpeConfig,tostring(DF.playerTalent))
-	DF:options_createText(pt,DF.locale["talentinfos3"],0,5)
-	
 	pt = DF:options_createPanel("sound",2,4,true,DF.locale["sound"])
 	pt.name = DF.locale["sound"]
 	pt.parent = "DroodFocus"
@@ -376,7 +334,6 @@ function DF:options_createpanels()
 	DF:options_createListbox(pt,"soundfile5",DF_config.sound.soundfiles,6,DF.locale["sound"].." "..DF.locale["form5"],0,4,nil,optionsSounds,false,"Stance")
 	DF:options_createListbox(pt,"soundfile6",DF_config.sound.soundfiles,7,DF.locale["sound"].." "..DF.locale["form6"],17,4,nil,optionsSounds,false,"Stance")
 
-
 	pt = DF:options_createPanel("sharemedia",2,6,true,DF.locale["sharemedia"])
 	pt.name = DF.locale["sharemedia"]
 	pt.parent = "DroodFocus"
@@ -386,7 +343,7 @@ function DF:options_createpanels()
 	DF:options_createEditbox(pt,"sharemediapath",options_sharemedia,"fpath",DF.locale["mpath"],0,2,nil,true,"mpath")
 	DF:options_createButton(pt,"sharemediabutton1",DF.locale["test"],9,6,DF.options_testMedia,"")
 	DF:options_createButton(pt,"sharemediabutton2",DF.locale["add"],17,6,DF.options_testMedia,"add")
-	
+
 	shareMediaBox = CreateFrame("FRAME", "DFshareMediaBox", pt, BackdropTemplateMixin and "BackdropTemplate")
 	shareMediaBox:SetWidth(380)
  	shareMediaBox:SetHeight(128)
@@ -394,18 +351,18 @@ function DF:options_createpanels()
 	shareMediaBox:SetBackdrop({bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }})
-	shareMediaBox:SetBackdropColor(0,0,0,1);	
+	shareMediaBox:SetBackdropColor(0,0,0,1)
 
 	shareMediaFrame = CreateFrame("FRAME","DF_shareMediaframe",pt)
 	shareMediaTexture=shareMediaFrame:CreateTexture("DF_shareMediaTexture","BACKGROUND")
 
 	-- paramétres cadre texture
 	shareMediaFrame:SetMovable(false)
-	shareMediaFrame:EnableMouse(false)		
+	shareMediaFrame:EnableMouse(false)
 	shareMediaFrame:SetWidth(370)
 	shareMediaFrame:SetHeight(118)
 	shareMediaFrame:SetPoint("CENTER", shareMediaBox, "CENTER", 0, 0)
-	
+
 	-- paramétres texture
 	shareMediaTexture:SetTexCoord(0, 1, 0, 1)
 	shareMediaTexture:SetWidth(370)
@@ -413,19 +370,20 @@ function DF:options_createpanels()
 	shareMediaTexture:ClearAllPoints()
 	shareMediaTexture:SetAllPoints(shareMediaFrame)
 	shareMediaTexture:SetTexture(nil)
-	
+
 	shareMediaFrame.texture = shareMediaTexture
-		
+
 	shareMediaFont = shareMediaFrame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	shareMediaFont:SetPoint("CENTER", shareMediaFrame, "CENTER", 0, 0)
 	shareMediaFont:SetJustifyH("CENTER")
 	shareMediaFont:SetText("MEDIA PREVIEW")
-	police = shareMediaFont:GetFont();shareMediaFont:SetFont(police,14)
+	local police = shareMediaFont:GetFont()
+	shareMediaFont:SetFont(police,14)
 
 	shareMediaBox:SetScript("OnShow", function(self)
 		shareMediaTexture:SetTexture(nil)
 		shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",14)
-	end)	
+	end)
 
 	pt = DF:options_createPanel("infos",2,5,true,DF.locale["infos"])
 	pt.name = DF.locale["infos"]
@@ -443,17 +401,17 @@ function DF:options_createpanels()
 	pt.name = DF.locale["spells"]
 	pt.parent = "DroodFocus"
 	DF:options_createBox(pt,"DFspellsbox",8,-28,390,(17*nbLines)+10)
-	
+
 	_G["DFspellsbox"]:EnableMouse(true)
 	_G["DFspellsbox"]:EnableMouseWheel(true)
 	_G["DFspellsbox"]:SetScript("OnMouseWheel",function(self,delta)
 		local offset=_G["DFdebufflistContenerSlider"]:GetValue()+(delta*-1)
 		_G["DFdebufflistContenerSlider"]:SetValue(offset)
 	end)
-		
+
 	DF:options_DebuffList_create(pt)
 	DF:options_DebuffList_populate()
-	
+
 	DF:options_createButton(pt,"DFSPELLOPT_up",DF.locale["up"],0,4,DF.options_DebuffList_up,nil)
 	DF:options_createButton(pt,"DFSPELLOPT_down",DF.locale["down"],7,4,DF.options_DebuffList_down,nil)
 	DF:options_createButton(pt,"DFSPELLOPT_new",DF.locale["new"],14,4,DF.options_DebuffList_new,nil)
@@ -492,7 +450,7 @@ function DF:options_createpanels()
 
 	pt = DF:options_createPanel("visibility",2,6,true,DF.locale["visibility"])
 	pt.name = DF.locale["visibility"]
-	pt.parent = "DroodFocus"			
+	pt.parent = "DroodFocus"	
 	DF:options_createText(pt,DF.locale["infovisibility"],0,0)
 	DF:options_createCheckBox(pt,"dfvisibilityalwaysui",DF_config,"uiAlwaysShow",DF.locale["always"],0,1,DF.toggle_toggle,"always")
 	DF:options_createCheckBox(pt,"dfcombat",DF_config,"inCombat",DF.locale["incombat"],0,2,DF.toggle_toggle)	
@@ -588,25 +546,6 @@ function DF:options_createpanels()
 	DF:options_createSlider(pt,"anchor6sliderlevel",DF_config.anchor6,"level",1,20,1,DF.locale["level"],0,4,DF.anchor_reinit,"Level")
 	DF:options_createSlider(pt,"anchor6sliderscale",DF_config.anchor6,"scale",0.05,2,0.05,DF.locale["scale"],17,4,DF.anchor_reinit,"Scale")
 
-
-	pt = DF:options_createPanel("gps",2,8,true,DF.locale["gps"])
-	pt.name = DF.locale["gps"]
-	pt.parent = "DroodFocus"
-	DF:options_createCheckBox(pt,"gpscheck",DF_config.gps,"enable",DF.locale["active"],0,0,DF.gps_reinit,"gps")
-	DF:options_createListbox(pt,"gpstarget1",DF_config.gps.gpsTarget,1,DF.locale["target"].." 1",0,1,DF.gps_reinit,optionsTarget,false,"target")
-	DF:options_createListbox(pt,"gpstarget2",DF_config.gps.gpsTarget,2,DF.locale["target"].." 2",17,1,DF.gps_reinit,optionsTarget,false,"target")
-	DF:options_createEditbox(pt,"gpsw",DF_config.gps,"width",DF.locale["width"],0,2,DF.gps_reinit)
-	DF:options_createEditbox(pt,"gpsh",DF_config.gps,"height",DF.locale["height"],17,2,DF.gps_reinit)
-	DF:options_createListbox(pt,"gpsmode",DF_config.gps,"mode",DF.locale["mode"],0,3,DF.gps_reinit,optionsBlend,false,"Blend mode")
-	DF:options_createSlider(pt,"gpsslideralpha",DF_config.gps,"alpha",0,1,0.10,DF.locale["activeAlpha"],17,3,DF.gps_reinit,"alpha")
-	DF:options_createListbox(pt,"gpsfont1",DF_config.gps,"fontPath",DF.locale["fontPath"],0,4,DF.gps_reinit,optionsFonts)
-	DF:options_createSlider(pt,"gpsslidersize",DF_config.gps,"fontSize",6,28,1,DF.locale["fontSize"],17,4,DF.gps_reinit)
-	DF:options_createSlider(pt,"gpsslideroffset1x",DF_config.gps,"offsetx",-128,128,1,DF.locale["toffsetx"],0,5,DF.gps_reinit,"Text offset")
-	DF:options_createSlider(pt,"gpsslideroffset1y",DF_config.gps,"offsety",-128,128,1,DF.locale["toffsety"],17,5,DF.gps_reinit,"Text offset")
-	DF:options_createSlider(pt,"gpssliderlevel",DF_config.gps,"level",1,20,1,DF.locale["level"],0,6,DF.gps_reinit,"Level")
-	DF:options_createSubTitle(pt,DF.locale["colors"],0,7)
-	DF:options_createColorBox(pt,"gpstextcolor",DF_config.gps,"textColor",DF.locale["text"].." "..DF.locale["color"],0,8,DF.gps_reinit)
-	
 	pt = DF:options_createPanel("ooc",2,7,true,DF.locale["ooc"])
 	pt.name = DF.locale["ooc"]
 	pt.parent = "DroodFocus"
@@ -658,7 +597,6 @@ function DF:options_createpanels()
 	DF:options_createListbox(pt,"portraitmode",DF_config.portrait,"mode",DF.locale["mode"],0,7,DF.portrait_reinit,optionsBlend,false,"Blend mode")
 	DF:options_createSlider(pt,"portraitsliderlevel",DF_config.portrait,"level",1,20,1,DF.locale["level"],17,7,DF.portrait_reinit,"Level")
 
-
 	pt = DF:options_createPanel("powerbar",3,14,true,DF.locale["powerbar"])
 	pt.name = DF.locale["powerbar"]
 	pt.parent = "DroodFocus"
@@ -698,7 +636,7 @@ function DF:options_createpanels()
 	DF:options_createCheckBox(pt,"powerbar_form4",DF_config.powerbar.form,5,DF.locale["form4"],34,5,DF.powerbar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"powerbar_form5",DF_config.powerbar.form,6,DF.locale["form5"],34,6,DF.powerbar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"powerbar_form6",DF_config.powerbar.form,7,DF.locale["form6"],34,7,DF.powerbar_reinit,"Stance")
-	
+
 	pt = DF:options_createPanel("castbar",3,13,true,DF.locale["castbar"])
 	pt.name = DF.locale["castbar"]
 	pt.parent = "DroodFocus"
@@ -711,11 +649,11 @@ function DF:options_createpanels()
 	DF:options_createListbox(pt,"castbarorient",DF_config.castbar,"orientation",DF.locale["orientation"],17,3,DF.castbar_reinit,optionsOrientation)
 	DF:options_createCheckBox(pt,"castbarshowspark",DF_config.castbar,"showSpark",DF.locale["showSpark"],0,4,DF.castbar_reinit,"spark")
 	DF:options_createSlider(pt,"castbarsliderimpulsion",DF_config.castbar,"impulsion",0,4,0.1,DF.locale["pulse"],17,4,DF.castbar_reinit,"pulse2")
-	
+
 	DF:options_createCheckBox(pt,"castbarshowt",DF_config.castbar,"showText",DF.locale["showText"],0,5,DF.castbar_reinit)
 	DF:options_createListbox(pt,"castbarfont1",DF_config.castbar,"fontPath",DF.locale["text"].." "..DF.locale["fontPath"],17,5,DF.castbar_reinit,optionsFonts)
 	DF:options_createSlider(pt,"castbarslidersize",DF_config.castbar,"fontSize",6,28,1,DF.locale["text"].." "..DF.locale["fontSize"],34,5,DF.castbar_reinit)
-	
+
 	DF:options_createListbox(pt,"castbartextalign",DF_config.castbar,"textAlign",DF.locale["text"].." "..DF.locale["align"],0,6,DF.castbar_reinit,optionsTextalign,false,"align")
 	DF:options_createSlider(pt,"castbarslideralignx",DF_config.castbar,"textx",-32,32,0.5,DF.locale["text"].." "..DF.locale["offsetx"],17,6,DF.castbar_reinit,"Text offset")
 	DF:options_createSlider(pt,"castbarslideraligny",DF_config.castbar,"texty",-32,32,0.5,DF.locale["text"].." "..DF.locale["offsety"],34,6,DF.castbar_reinit,"Text offset")
@@ -723,12 +661,11 @@ function DF:options_createpanels()
 	DF:options_createCheckBox(pt,"castbarshowttimer",DF_config.castbar,"showTimer",DF.locale["number"].." "..DF.locale["active"],0,7,DF.castbar_reinit)
 	DF:options_createListbox(pt,"castbarfont1timer",DF_config.castbar,"fontPathtimer",DF.locale["number"].." "..DF.locale["fontPath"],17,7,DF.castbar_reinit,optionsFonts)
 	DF:options_createSlider(pt,"castbarslidersizetimer",DF_config.castbar,"fontSizetimer",6,28,1,DF.locale["number"].." "..DF.locale["fontSize"],34,7,DF.castbar_reinit)
-	
+
 	DF:options_createListbox(pt,"castbartextaligntimer",DF_config.castbar,"timerAlign",DF.locale["number"].." "..DF.locale["align"],0,8,DF.castbar_reinit,optionsTextalign,false,"align")
 	DF:options_createSlider(pt,"castbarslideralignxtimer",DF_config.castbar,"timerx",-32,32,0.5,DF.locale["number"].." "..DF.locale["offsetx"],17,8,DF.castbar_reinit,"Text offset")
 	DF:options_createSlider(pt,"castbarslideralignytimer",DF_config.castbar,"timery",-32,32,0.5,DF.locale["number"].." "..DF.locale["offsety"],34,8,DF.castbar_reinit,"Text offset")
 
-	
 	DF:options_createCheckBox(pt,"castbarborder",DF_config.castbar,"border",DF.locale["border"].." "..DF.locale["active"],0,9,DF.castbar_reinit)
 	DF:options_createSlider(pt,"castbarbordersize",DF_config.castbar,"borderSize",0,8,1,DF.locale["border"].." "..DF.locale["size"],17,9,DF.castbar_reinit)
 	DF:options_createSlider(pt,"castbarsliderlevel",DF_config.castbar,"level",1,20,1,DF.locale["level"],0,10,DF.castbar_reinit,"Level")
@@ -806,7 +743,7 @@ function DF:options_createpanels()
 	DF:options_createCheckBox(pt,"manabar_form4",DF_config.manabar.form,5,DF.locale["form4"],34,5,DF.manabar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"manabar_form5",DF_config.manabar.form,6,DF.locale["form5"],34,6,DF.manabar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"manabar_form6",DF_config.manabar.form,7,DF.locale["form6"],34,7,DF.manabar_reinit,"Stance")
-		
+
 	pt = DF:options_createPanel("targetbar",3,12,true,DF.locale["targetbar"])
 	pt.name = DF.locale["targetbar"]
 	pt.parent = "DroodFocus"
@@ -839,43 +776,10 @@ function DF:options_createpanels()
 	DF:options_createCheckBox(pt,"targetbar_form4",DF_config.targetbar.form,5,DF.locale["form4"],34,5,DF.targetbar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"targetbar_form5",DF_config.targetbar.form,6,DF.locale["form5"],34,6,DF.targetbar_reinit,"Stance")
 	DF:options_createCheckBox(pt,"targetbar_form6",DF_config.targetbar.form,7,DF.locale["form6"],34,7,DF.targetbar_reinit,"Stance")
-		
-	pt = DF:options_createPanel("threatbar",3,12,true,DF.locale["threatbar"])
-	pt.name = DF.locale["threatbar"]
-	pt.parent = "DroodFocus"
-	DF:options_createCheckBox(pt,"threatbarcheck",DF_config.threatbar,"enable",DF.locale["active"],0,0,DF.threatbar_reinit)
-	DF:options_createEditbox(pt,"threatbarleft",DF_config.threatbar,"positionx",DF.locale["positionx"],0,1,DF.threatbar_reinit,false,"position")
-	DF:options_createEditbox(pt,"threatbartop",DF_config.threatbar,"positiony",DF.locale["positiony"],17,1,DF.threatbar_reinit,false,"position")
-	DF:options_createEditbox(pt,"threatbarw",DF_config.threatbar,"width",DF.locale["width"],0,2,DF.threatbar_reinit)
-	DF:options_createEditbox(pt,"threatbarh",DF_config.threatbar,"height",DF.locale["height"],17,2,DF.threatbar_reinit)
-	DF:options_createListbox(pt,"threatbartexture1",DF_config.threatbar,"texturePath",DF.locale["texturePath"],0,3,DF.threatbar_reinit,optionsStatusbars)
-	DF:options_createListbox(pt,"threatbarorient",DF_config.threatbar,"orientation",DF.locale["orientation"],17,3,DF.threatbar_reinit,optionsOrientation)
-	DF:options_createCheckBox(pt,"threatbarshowt",DF_config.threatbar,"showText",DF.locale["showText"],0,4,DF.threatbar_reinit)
-	DF:options_createListbox(pt,"threatbarfont1",DF_config.threatbar,"fontPath",DF.locale["fontPath"],0,5,DF.threatbar_reinit,optionsFonts)
-	DF:options_createSlider(pt,"threatbarslidersize",DF_config.threatbar,"fontSize",6,28,1,DF.locale["fontSize"],17,5,DF.threatbar_reinit)
-	DF:options_createListbox(pt,"threatbartextalign",DF_config.threatbar,"textAlign",DF.locale["text"].." "..DF.locale["align"],0,6,DF.threatbar_reinit,optionsTextalign,false,"align")
-	DF:options_createSlider(pt,"threatbarslideralignx",DF_config.threatbar,"textx",-32,32,0.5,DF.locale["text"].." "..DF.locale["offsetx"],17,6,DF.threatbar_reinit,"Text offset")
-	DF:options_createSlider(pt,"threatbarslideraligny",DF_config.threatbar,"texty",-32,32,0.5,DF.locale["text"].." "..DF.locale["offsety"],17,7,DF.threatbar_reinit,"Text offset")
-	DF:options_createCheckBox(pt,"threatbarborder",DF_config.threatbar,"border",DF.locale["border"].." "..DF.locale["active"],0,8,DF.threatbar_reinit)
-	DF:options_createSlider(pt,"threatbarbordersize",DF_config.threatbar,"borderSize",0,8,1,DF.locale["border"].." "..DF.locale["size"],17,8,DF.threatbar_reinit)
-	DF:options_createSlider(pt,"threatbarsliderlevel",DF_config.threatbar,"level",1,20,1,DF.locale["level"],0,9,DF.threatbar_reinit,"Level")
-	DF:options_createSubTitle(pt,DF.locale["colors"],0,10)
-	DF:options_createColorBox(pt,"threatbarcolor",DF_config.threatbar,"color",DF.locale["threatbar"].." "..DF.locale["color"],0,11,DF.threatbar_reinit)
-	DF:options_createColorBox(pt,"threatbarbordercolor",DF_config.threatbar,"borderColor",DF.locale["border"].." "..DF.locale["color"],17,11,DF.threatbar_reinit)
-	DF:options_createColorBox(pt,"threatbartextcolor",DF_config.threatbar,"textColor",DF.locale["text"].." "..DF.locale["color"],0,12,DF.threatbar_reinit)
-	DF:options_createEditbox(pt,"threatbartextformat",DF_config.threatbar,"sformat",DF.locale["sformat"],17,4,DF.threatbar_reinit,false,"sformat")
-	DF:options_createText(pt,DF.locale["infostance"],34,0)
-	DF:options_createCheckBox(pt,"threatbar_form0",DF_config.threatbar.form,1,DF.locale["form0"],34,1,DF.threatbar_reinit,"Humanoïd")
-	DF:options_createCheckBox(pt,"threatbar_form1",DF_config.threatbar.form,2,DF.locale["form1"],34,2,DF.threatbar_reinit,"Stance")
-	DF:options_createCheckBox(pt,"threatbar_form2",DF_config.threatbar.form,3,DF.locale["form2"],34,3,DF.threatbar_reinit,"Stance")
-	DF:options_createCheckBox(pt,"threatbar_form3",DF_config.threatbar.form,4,DF.locale["form3"],34,4,DF.threatbar_reinit,"Stance")
-	DF:options_createCheckBox(pt,"threatbar_form4",DF_config.threatbar.form,5,DF.locale["form4"],34,5,DF.threatbar_reinit,"Stance")
-	DF:options_createCheckBox(pt,"threatbar_form5",DF_config.threatbar.form,6,DF.locale["form5"],34,6,DF.threatbar_reinit,"Stance")
-	DF:options_createCheckBox(pt,"threatbar_form6",DF_config.threatbar.form,7,DF.locale["form6"],34,7,DF.threatbar_reinit,"Stance")
-	
+
 	pt = DF:options_createPanel("cooldown",2,4,true,DF.locale["cooldown"])
 	pt.name = DF.locale["cooldown"]
-	pt.parent = "DroodFocus"			
+	pt.parent = "DroodFocus"
 	DF:options_createCheckBox(pt,"cooldowncheck",DF_config.cooldown,"enable",DF.locale["active"],0,0,DF.cooldown_reinit,"cooldown")
 	--DF:options_createEditbox(pt,"cooldownleft",DF_config.cooldown,"positionx",DF.locale["positionx"],0,1,DF.cooldown_reinit,false,"position")
 	--DF:options_createEditbox(pt,"cooldowntop",DF_config.cooldown,"positiony",DF.locale["positiony"],17,1,DF.cooldown_reinit,false,"position")
@@ -889,7 +793,7 @@ function DF:options_createpanels()
 
 	pt = DF:options_createPanel("combo",2,14,true,DF.locale["combo"])
 	pt.name = DF.locale["combo"]
-	pt.parent = "DroodFocus"			
+	pt.parent = "DroodFocus"
 	DF:options_createCheckBox(pt,"combocheck",DF_config.combo,"enable",DF.locale["active"],0,0,DF.combo_reinit,"combo")
 	DF:options_createEditbox(pt,"comboleft",DF_config.combo,"positionx",DF.locale["positionx"],0,1,DF.combo_reinit,false,"position")
 	DF:options_createEditbox(pt,"combotop",DF_config.combo,"positiony",DF.locale["positiony"],17,1,DF.combo_reinit,false,"position")
@@ -989,11 +893,9 @@ function DF:options_createpanels()
 	DF:options_createSlider(pt,"timerbarslideroffset2x",DF_config.timerbar.textsoffsets[2],"offsetx",-128,128,1,DF.locale["toffsetx"].." "..DF.locale["number"],0,6,DF.timerbar_reinit,"Text offset")
 	DF:options_createSlider(pt,"timerbarslideroffset2y",DF_config.timerbar.textsoffsets[2],"offsety",-128,128,1,DF.locale["toffsety"].." "..DF.locale["number"],17,6,DF.timerbar_reinit,"Text offset")
 
-	
 	-- frames levels
 	DF:options_chgFramesLevel(nil)
 	DF:options_hide()
-	
 end
 
 function DF:options_debuffList_apply()
@@ -1002,11 +904,9 @@ function DF:options_debuffList_apply()
 end
 
 function DF:options_DebuffList_up()
-	local maxi = getn(DF_config.spells)
 	local save={}
-	
+
 	if selectPt then
-		
 		if selectPt>1 then
 			DF:copyTable(DF_config.spells[selectPt-1],save)
 			DF:copyTable(DF_config.spells[selectPt],DF_config.spells[selectPt-1])
@@ -1016,48 +916,37 @@ function DF:options_DebuffList_up()
 			DF:spells_list_reinit()
 			DF:options_DebuffList_populate()
 		end
-		
-	end	
-	
+	end
 end
 
-
 function DF:options_DebuffList_new()
-	
 	table.insert(DF_config.spells, 1, {})
 	DF:copyTable(DF.newSpell,DF_config.spells[1])
 	DF:spells_list_reinit()
-	DF:options_DebuffList_populate()	
+	DF:options_DebuffList_populate()
 	selectPt=1
 	currentPosition=1
 	DF:options_DebuffList_click(selectPt)
 	_G["DFdebufflistContenerSlider"]:SetValue(1)
-		
 end
 
 function DF:options_DebuffList_kill()
-	
 	if selectPt and getn(DF_config.spells)>1 then
-		
-		table.remove(DF_config.spells ,selectPt )
+		table.remove(DF_config.spells ,selectPt)
 		selectPt=1
 		currentPosition=1
 		DF:options_DebuffList_click(selectPt)
 		DF:spells_list_reinit()
-		DF:options_DebuffList_populate()		
-		
-	end	
-	
+		DF:options_DebuffList_populate()
+	end
 end
 
 function DF:options_DebuffList_down()
 	local maxi = getn(DF_config.spells)
 	local save={}
-	
-	if selectPt then
-		
-		if selectPt<maxi then
 
+	if selectPt then
+		if selectPt<maxi then
 			DF:copyTable(DF_config.spells[selectPt+1],save)
 			DF:copyTable(DF_config.spells[selectPt],DF_config.spells[selectPt+1])
 			DF:copyTable(save,DF_config.spells[selectPt])
@@ -1066,21 +955,18 @@ function DF:options_DebuffList_down()
 			DF:spells_list_reinit()
 			DF:options_DebuffList_populate()
 		end
-		
-	end	
-	
+	end
 end
 
 function DF:options_show(name,parent)
 	if not name then name=DF.myArgs end
-	
+
 	if DroodFocusOptions[name]:IsVisible() then
 		DroodFocusOptions[name]:Hide()
 	else
 		DF:options_chgFramesLevel(name)
 		DroodFocusOptions[name]:Show()
 	end
-	
 end
 
 function DF:options_transp(name)
@@ -1090,7 +976,7 @@ function DF:options_transp(name)
 			DroodFocusOptions[name]:SetAlpha(1)
 		else
 			DroodFocusOptions[name].transp=true
-			DroodFocusOptions[name]:SetAlpha(0.33)			
+			DroodFocusOptions[name]:SetAlpha(0.33)	
 		end
 	end
 end
@@ -1099,7 +985,7 @@ function DF:options_hide(name)
 	if name then
 		DroodFocusOptions[name]:Hide()
 	else
-		for k,_ in pairs(DroodFocusOptions) do
+		for k, _ in pairs(DroodFocusOptions) do
 			if DroodFocusOptions[k].isMovable then
 				DroodFocusOptions[k]:Hide()
 			end
@@ -1116,9 +1002,9 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 	if movable then
 		DroodFocusOptions[name]:SetMovable(true)
 		DroodFocusOptions[name]:EnableMouse(true)
-		DroodFocusOptions[name]:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark.blp", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } });
-		DroodFocusOptions[name]:SetFrameStrata("DIALOG");
-		DroodFocusOptions[name]:SetBackdropColor(0,0,0,1);
+		DroodFocusOptions[name]:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark.blp", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
+		DroodFocusOptions[name]:SetFrameStrata("DIALOG")
+		DroodFocusOptions[name]:SetBackdropColor(0,0,0,1)
 		DroodFocusOptions[name]:SetWidth(202*largeur)
 		DroodFocusOptions[name]:SetHeight(28+((nline+1)*38))
 
@@ -1133,30 +1019,29 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 		end)
 		DroodFocusOptions[name]:SetScript("OnMouseUp",function(self)
 			DroodFocusOptions[name]:StopMovingOrSizing()
-		end)	
+		end)
 
-		temp = CreateFrame("FRAME","DroodFocusOptionsbar"..name,DroodFocusOptions[name]);
+		local temp = CreateFrame("FRAME","DroodFocusOptionsbar"..name,DroodFocusOptions[name])
 		temp:SetMovable(false)
 		temp:EnableMouse(movable)
-		t=temp:CreateTexture(nil);
-		temp.texture=t;
+		temp.texture = temp:CreateTexture(nil)
 		temp:SetHeight(22)
 		temp:SetWidth((202*largeur)-4)
 		temp:SetPoint("TOPLEFT", DroodFocusOptions[name], "TOPLEFT", 2, -2)
 		temp.texture:SetAllPoints(temp)
-		temp.texture:SetColorTexture(90/255,106/255,80/255,0.85);
+		temp.texture:SetColorTexture(90/255,106/255,80/255,0.85)
 		temp.text = temp:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 		temp.text:SetText(DF.locale["versionName"].." - "..title)
-		temp.text:SetPoint("LEFT", temp, "LEFT", 6, 0);	
+		temp.text:SetPoint("LEFT", temp, "LEFT", 6, 0)
 		temp:SetScript("OnMouseDown",function(self)
 			DF:options_chgFramesLevel(name)
 			DroodFocusOptions[name]:StartMoving()
 		end)
 		temp:SetScript("OnMouseUp",function(self)
 			DroodFocusOptions[name]:StopMovingOrSizing()
-		end)	
+		end)
 		temp:SetFrameLevel(DroodFocusOptions[name]:GetFrameLevel()+1)
-		
+
 		local button = CreateFrame("Button", "DroodFocusOptionsclose"..name, DroodFocusOptions[name], "GameMenuButtonTemplate")
 		button:SetText("X")
 		button:SetWidth(20)
@@ -1166,8 +1051,8 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 			DF:options_hide(name)
 		end)
 		button:SetFrameLevel(DroodFocusOptions[name]:GetFrameLevel()+2)
-		
-		local button = CreateFrame("Button", "DroodFocusOptionsderoule"..name, DroodFocusOptions[name], "GameMenuButtonTemplate")
+
+		button = CreateFrame("Button", "DroodFocusOptionsderoule"..name, DroodFocusOptions[name], "GameMenuButtonTemplate")
 		button:SetText("-")
 		button:SetWidth(20)
 		button:SetHeight(20)
@@ -1175,28 +1060,23 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 		button:SetScript("OnClick", function(self)
 			DF:options_transp(name)
 		end)
-		button:SetFrameLevel(DroodFocusOptions[name]:GetFrameLevel()+2)		
-		
+		button:SetFrameLevel(DroodFocusOptions[name]:GetFrameLevel()+2)
 	end
-	
+
 	return DroodFocusOptions[name]
 end
 
 function DF:options_chgFramesLevel(name)
-	
 	if not DroodFocusOptions[name] then
-		
 		startLevel=1
 		for k,_ in pairs(DroodFocusOptions) do
 			if DroodFocusOptions[k].isMovable then
 				DroodFocusOptions[k]:SetFrameLevel(startLevel)
 			end
 		end
-		
 	else
-		
 		startLevel=1
-		for k,_ in pairs(DroodFocusOptions) do
+		for k, _ in pairs(DroodFocusOptions) do
 			if DroodFocusOptions[k]:IsVisible() then
 				if DroodFocusOptions[k]:GetFrameLevel()>=startLevel and k~=name then
 					startLevel=DroodFocusOptions[k]:GetFrameLevel()+4
@@ -1207,33 +1087,30 @@ function DF:options_chgFramesLevel(name)
 		if DroodFocusOptions[name].isMovable then
 			DroodFocusOptions[name]:SetFrameLevel(startLevel)
 		end
-		
-	end	
-	
+	end
 end
 
 function DF:options_chgBase(name,newbase)
-	
 	local obj = _G[name]
 	if obj then
 		obj.base=newbase
 		obj:Hide()
 		obj:Show()
 	end
-	
 end
 
 function DF:options_createButton(parent,name,infos,posx,posy,fonction,args)
-	
+
 	-- titre
 	local obj = CreateFrame("Button", name, parent, "OptionsButtonTemplate")
 	obj:SetText(infos)
 	obj:SetWidth(80)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 8+(posx*11.5), -29-(posy*38))
-	
+
 	local fontString = obj:GetFontString()
-	police = fontString:GetFont();fontString:SetFont(police,10)
-		
+	local police = fontString:GetFont()
+	fontString:SetFont(police,10)
+
 	obj:SetScript("OnClick", function(self)
 		falseEditBox:SetFocus()
 		if fonction then
@@ -1241,7 +1118,6 @@ function DF:options_createButton(parent,name,infos,posx,posy,fonction,args)
 			fonction()
 		end
 	end)
-	
 end
 
 function DF:options_createSwapButton(parent,name,base,index,infos,textOn,textOff,posx,posy,fonction)
@@ -1274,7 +1150,8 @@ function DF:options_createSwapButton(parent,name,base,index,infos,textOn,textOff
 	fontString:SetPoint("LEFT", obj, "RIGHT", 0, 0)
 	fontString:SetJustifyH("LEFT")
 	fontString:SetText(infos)
-	police = fontString:GetFont();fontString:SetFont(police,10)	
+	local police = fontString:GetFont()
+	fontString:SetFont(police,10)
 end
 
 function DF:options_createConfigButton(parent,name,infos,posx,posy,fonction,args)
@@ -1293,7 +1170,8 @@ function DF:options_createConfigButton(parent,name,infos,posx,posy,fonction,args
 	fontString:SetPoint("LEFT", obj, "RIGHT", 0, 0)
 	fontString:SetJustifyH("LEFT")
 	fontString:SetText(infos)
-	police = fontString:GetFont();fontString:SetFont(police,10)	
+	local police = fontString:GetFont()
+	fontString:SetFont(police,10)
 end
 
 function DF:options_createTitle(parent,infos)
@@ -1301,14 +1179,14 @@ function DF:options_createTitle(parent,infos)
 	local title = parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	title:SetPoint("TOP", parent, "TOP", 0, -4)
 	title:SetJustifyH("CENTER")
-	title:SetText(string.upper(infos))	
+	title:SetText(string.upper(infos))
 end
 
 function DF:options_createSubTitle(parent,infos,posx,posy)
 	-- titre
 	local texte = parent:CreateFontString(nil, "OVERLAY", "GameFontNormal")
 	texte:SetPoint("TOPLEFT", parent, "TOPLEFT", 8, -32-(posy*38))
-	texte:SetText(infos)	
+	texte:SetText(infos)
 end
 
 function DF:options_createText(parent,infos,posx,posy,nblignes)
@@ -1319,24 +1197,25 @@ function DF:options_createText(parent,infos,posx,posy,nblignes)
 	texte:SetHeight(nblignes*11)
 	texte:SetJustifyH("LEFT")
 	texte:SetPoint("TOPLEFT", parent, "TOPLEFT", 8+(posx*11.5), -21-(posy*38))
-	texte:SetText(infos)	
-	police = texte:GetFont();texte:SetFont(police,10)	
+	texte:SetText(infos)
+	local police = texte:GetFont()
+	texte:SetFont(police,10)
 end
 
 function DF:options_createCheckBox(parent,name,base,index,infos,posx,posy,fonction,help)
 	 -- Create check button
 	local obj = CreateFrame("CHECKBUTTON", name, parent,"OptionsCheckButtonTemplate")
-	obj.base=base	
+	obj.base=base
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 8+(posx*11.5), -27-(posy*38))
 	obj:SetScript("OnShow", function(self)
-	  if self.base then
-		  if self.base[index]==true then
-		  	self:SetChecked(true)
-		  else
-		  	self:SetChecked(false)
-		  end 
-		  obj:EnableMouse(true)
-		  obj:SetAlpha(1)
+	  	if self.base then
+			if self.base[index]==true then
+				self:SetChecked(true)
+			else
+				self:SetChecked(false)
+			end 
+			obj:EnableMouse(true)
+			obj:SetAlpha(1)
 		else
 			obj:EnableMouse(false)
 			obj:SetAlpha(0.5)
@@ -1351,10 +1230,10 @@ function DF:options_createCheckBox(parent,name,base,index,infos,posx,posy,foncti
 	obj.fontString:SetPoint("LEFT", obj, "RIGHT", 0, 2)
 	obj.fontString:SetJustifyH("LEFT")
 	obj.fontString:SetText(infos)
-	police = obj.fontString:GetFont();obj.fontString:SetFont(police,10)
-	
+	local police = obj.fontString:GetFont()
+	obj.fontString:SetFont(police,10)
+
 	if help then DF:options_createHelp(obj,obj.fontString,name,help) end
-	
 end
 
 function DF:options_createHelp(parent,ancre,nom,index)
@@ -1362,21 +1241,21 @@ function DF:options_createHelp(parent,ancre,nom,index)
 	if DF.help[index] then
 		local pointI= CreateFrame("FRAME",nom.."pointi",parent)
 		local pointItexture=pointI:CreateTexture(nil,"BACKGROUND")
-		
+
 		pointI.lindex=index
-		
+
 		pointI:SetMovable(false)
 		pointI:EnableMouse(true)
 		pointI:SetWidth(16)
 		pointI:SetHeight(16)
 		pointI:SetPoint("LEFT", ancre, "RIGHT", 0, -1)
-	
+
 		-- paramétres texture
 		pointItexture:SetTexCoord(1, 0, 0, 1)
 		pointItexture:ClearAllPoints()
 		pointItexture:SetAllPoints(pointI)
 		pointItexture:SetTexture("Interface\\ChatFrame\\UI-ChatIcon-Chat-Up")
-		
+
 		pointI:SetScript("OnEnter", function(self)
 			GameTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
 			GameTooltip:ClearLines()
@@ -1388,18 +1267,15 @@ function DF:options_createHelp(parent,ancre,nom,index)
 					GameTooltip:AddLine(lignes[li],1,1,1,nil)
 				end
 			end
-			GameTooltip:Show()	
+			GameTooltip:Show()
 		end)
 		pointI:SetScript("OnLeave", function(self)
-			GameTooltip:Hide()	
-		end)	
+			GameTooltip:Hide()
+		end)
 	end
-	
 end
 
 function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx,posy,fonction,help)
-	--name="DotF"..name;
-	local value
 	local obj = CreateFrame('Slider', name, parent, 'OptionsSliderTemplate')
 	obj.base=base
 	obj.pas=pas
@@ -1411,23 +1287,28 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
  	obj:SetHeight(24)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 16+12+(posx*11.5), -28-(posy*38))
 	obj:SetOrientation('HORIZONTAL')
+	local texte = parent:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
+	local police = texte:GetFont()
 	getglobal(obj:GetName()..'Low'):SetText(tostring(mini))
 	getglobal(obj:GetName()..'High'):SetText(tostring(maxi))
 	getglobal(obj:GetName()..'Low'):SetText("")
-	getglobal(obj:GetName()..'High'):SetText("")	
+	getglobal(obj:GetName()..'High'):SetText("")
 	getglobal(obj:GetName() .. 'Text'):SetText(infos)
 	getglobal(obj:GetName() .. 'Text'):SetPoint("BOTTOMLEFT", obj, "TOPLEFT", -12, 0)
-	
-	getglobal(obj:GetName() .. 'Text'):GetFont();getglobal(obj:GetName() .. 'Text'):SetFont(police,10)
-	getglobal(obj:GetName() .. 'Low'):GetFont();getglobal(obj:GetName() .. 'Low'):SetFont(police,8)
-	getglobal(obj:GetName() .. 'High'):GetFont();getglobal(obj:GetName() .. 'High'):SetFont(police,8)
-	
+
+	getglobal(obj:GetName() .. 'Text'):GetFont()
+	getglobal(obj:GetName() .. 'Text'):SetFont(police,10)
+	getglobal(obj:GetName() .. 'Low'):GetFont()
+	getglobal(obj:GetName() .. 'Low'):SetFont(police,8)
+	getglobal(obj:GetName() .. 'High'):GetFont()
+	getglobal(obj:GetName() .. 'High'):SetFont(police,8)
+
 	obj:SetMinMaxValues(mini*100, maxi*100)
 	obj:SetValueStep(pas*100)
 	if base then
 		obj:SetValue(tonumber(base[index]))
-	end	
-	
+	end
+
 	local fontString = obj:CreateFontString(name.."value", "OVERLAY", "GameFontNormalSmall")
 	fontString:SetPoint("BOTTOMRIGHT", obj, "TOPRIGHT", 16, 0)
 	fontString:SetJustifyH("CENTER")
@@ -1440,10 +1321,10 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 			local value = format("%.2f", self.base[index])
 			_G[name.."value"]:SetText(value)
 			obj:SetValue(self.base[index]*100)
-		  obj:EnableMouse(true) 
-		  obj:SetAlpha(1)
+			obj:EnableMouse(true)
+			obj:SetAlpha(1)
 		else
-			obj:EnableMouse(false) 
+			obj:EnableMouse(false)
 			obj:SetAlpha(0.5)
 		end
 	end)
@@ -1455,10 +1336,10 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 			local value = format("%.2f", self:GetValue()/100)
 			_G[name.."value"]:SetText(value)
 			self.base[index] = self:GetValue()/100
-			if fonction then fonction() end			
+			if fonction then fonction() end
 		end
-	end)	
-	
+	end)
+
 	obj:SetScript("OnMouseUp", function(self)
 		falseEditBox:SetFocus()
 		if self.base then
@@ -1466,9 +1347,9 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 			_G[name.."value"]:SetText(value)
 			self.base[index] = self:GetValue()/100
 			if fonction then fonction() end
-		end	
+		end
 	end)
-	
+
 	obj:SetScript("OnValueChanged", function(self)
 		falseEditBox:SetFocus()
 		if self.base then
@@ -1477,7 +1358,7 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 			self.base[index] = self:GetValue()/100
 		--	if fonction then fonction() end
 		end
-	end)	
+	end)
 
 	--*****************************************************************************************
 	local plusbut = CreateFrame("Button", name.."plusbut", obj, "OptionsButtonTemplate")
@@ -1493,14 +1374,14 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 	end)
 	plusbut:SetScript("OnShow", function(self)
 	  if obj.base then
-			plusbut:EnableMouse(true) 
-			plusbut:SetAlpha(1)	
+			plusbut:EnableMouse(true)
+			plusbut:SetAlpha(1)
 		else
-			plusbut:EnableMouse(false) 
+			plusbut:EnableMouse(false)
 			plusbut:SetAlpha(0.5)
 		end
-	end)	
-	
+	end)
+
 	local moinsbut = CreateFrame("Button", name.."moinsbut", obj, "OptionsButtonTemplate")
 	moinsbut:SetText("-")
 	moinsbut:SetWidth(16)
@@ -1514,15 +1395,15 @@ function DF:options_createSlider(parent,name,base,index,mini,maxi,pas,infos,posx
 	end)
 	moinsbut:SetScript("OnShow", function(self)
 	  if obj.base then
-			moinsbut:EnableMouse(true) 
+			moinsbut:EnableMouse(true)
 			moinsbut:SetAlpha(1)
 		else
-			moinsbut:EnableMouse(false) 
+			moinsbut:EnableMouse(false)
 			moinsbut:SetAlpha(0.5)
 		end
-	end)	
+	end)
 	--*****************************************************************************************
-	
+
 	if help then DF:options_createHelp(obj,getglobal(obj:GetName() .. 'Text'),name,help) end
 end
 
@@ -1563,40 +1444,38 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 	obj:SetFontObject("GameFontNormal")
 	obj:IsMultiLine(false)
 	obj:SetScript("OnShow", function(self)
-			
-	  if self.base then
-	  	local texte =""
-	  	if type(self.base[index])=="table" then
-	  		for ind,val in pairs(self.base[index]) do
-	  			if texte~="" then texte=texte..";" end
- 					texte=texte..DF:options_returnText(val)
-				end
-				self:SetText(texte)
-				self.currentValue=texte
-	  	else
-	  		self:SetText(DF:options_returnText(self.base[index]))
-	  		self.currentValue=DF:options_returnText(self.base[index])
-	  	end
-	  	self:SetCursorPosition(0)
-		  self:EnableMouse(true) 
-		  self:SetAlpha(1)
-		  self.lebouton:EnableMouse(false) 
-		  self.lebouton:SetAlpha(0.5)			
+	 	if self.base then
+			local texte =""
+			if type(self.base[index])=="table" then
+				for _, val in pairs(self.base[index]) do
+					if texte~="" then texte=texte..";" end
+						texte=texte..DF:options_returnText(val)
+					end
+					self:SetText(texte)
+					self.currentValue=texte
+			else
+				self:SetText(DF:options_returnText(self.base[index]))
+				self.currentValue=DF:options_returnText(self.base[index])
+			end
+			self:SetCursorPosition(0)
+			self:EnableMouse(true)
+			self:SetAlpha(1)
+			self.lebouton:EnableMouse(false)
+			self.lebouton:SetAlpha(0.5)	
 		else
-			self:EnableMouse(false) 
+			self:EnableMouse(false)
 			self:SetAlpha(0.5)
-		  self.lebouton:EnableMouse(false) 
-		  self.lebouton:SetAlpha(0.5)			
+			self.lebouton:EnableMouse(false)
+			self.lebouton:SetAlpha(0.5)
 		end
-		
-	end)	
+	end)
 	-- text changé active bouton validation
 	obj:SetScript("OnTextChanged", function(self)
-	  if obj.currentValue~=self:GetText() then
-	  	self.lebouton:EnableMouse(true) 
-	  	self.lebouton:SetAlpha(1)			
+		if obj.currentValue~=self:GetText() then
+			self.lebouton:EnableMouse(true)
+			self.lebouton:SetAlpha(1)
 		end
-	end)		
+	end)
 
 	-- touche entrée pressée, enregistre et désactive bouton validation
 	obj:SetScript("OnEnterPressed", function(self)
@@ -1610,10 +1489,10 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 		obj.currentValue=self:GetText()
 		self:ClearFocus()
 		if fonction then fonction() end
-	  self.lebouton:EnableMouse(false) 
-	  self.lebouton:SetAlpha(0.5)			
-	end)	 
-	
+		self.lebouton:EnableMouse(false)
+		self.lebouton:SetAlpha(0.5)
+	end)
+
 	-- perte du focus, place valeur origine et désactive bouton validation
 	obj:SetScript("OnEditFocusLost", function(self)
 		if self:GetText()~=self.currentValue then
@@ -1628,26 +1507,27 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 			--self:ClearFocus()
 			self:HighlightText(0, 0)
 			if fonction then fonction() end
-		  self.lebouton:EnableMouse(false) 
-		  self.lebouton:SetAlpha(0.5)		
+			self.lebouton:EnableMouse(false)
+			self.lebouton:SetAlpha(0.5)
 		end
-	end)	 	
+	end)
 
 	-- touche ESC, place valeur origine et désactive bouton validation
 	obj:SetScript("OnEscapePressed", function(self)
 		self:SetText(DF:options_returnText(obj.currentValue))
-		self.lebouton:EnableMouse(false) 
-	  self.lebouton:SetAlpha(0.5)			
+		self.lebouton:EnableMouse(false)
+	  	self.lebouton:SetAlpha(0.5)
 		self:ClearFocus()
-	end)	
-	
+	end)
+
 	-- intitulé
 	obj.fontString = obj:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	obj.fontString:SetPoint("BOTTOMLEFT", obj, "TOPLEFT", 0, 2)
 	obj.fontString:SetJustifyH("LEFT")
 	obj.fontString:SetText(infos)
-	police = obj.fontString:GetFont();obj.fontString:SetFont(police,10)
-	
+	local police = obj.fontString:GetFont()
+	obj.fontString:SetFont(police,10)
+
 	-- création du bouton validation
 	local button = CreateFrame("Button", name.."_buttonok", obj, "OptionsButtonTemplate")
 	button.parent=obj	-- pointeur vers le parent
@@ -1656,8 +1536,9 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 	button:SetHeight(20)
 	button:SetPoint("TOPLEFT", obj, "TOPRIGHT", 0, 0)
 	local fontString = button:GetFontString()
-	police = fontString:GetFont();fontString:SetFont(police,10)
-	
+	police = fontString:GetFont()
+	fontString:SetFont(police,10)
+
 	-- bouton OK préssé, enregistre et désavtive le bouton
 	button:SetScript("OnClick", function(self)
 		if type(self.parent.base[index])=="table" then
@@ -1668,14 +1549,14 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 			self.parent.base[index] = self.parent:GetText()
 		end
 		self.parent.currentValue=self.parent:GetText()
-	  self:EnableMouse(false) 
-	  self:SetAlpha(0.5)	
-	  self.parent:ClearFocus()		
+		self:EnableMouse(false)
+		self:SetAlpha(0.5)
+		self.parent:ClearFocus()
 		if self.parent.fonction then self.parent.fonction() end
-	end)	 	
-  button:EnableMouse(false) 
-  button:SetAlpha(0.5)
-	  			
+	end)
+	button:EnableMouse(false)
+	button:SetAlpha(0.5)
+
 	-- pointeur vers le bouton
 	obj.lebouton=button
 	if help then DF:options_createHelp(obj,obj.fontString,name,help) end
@@ -1690,13 +1571,14 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 	obj:SetHeight(12)
 	obj:SetWidth(14)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", 14+(posx*11.5), -34-(posy*38))
-	
+
 	obj.texture=obj:CreateTexture(name.."text")
 	obj.texture:SetAllPoints(obj)
 	obj.text = obj:CreateFontString(name.."text", "OVERLAY", "GameFontHighlight")
 	obj.text:SetText(infos)
 	obj.text:SetPoint("LEFT", obj, "RIGHT", 6, 0)
-	police = obj.text:GetFont();obj.text:SetFont(police,10)
+	local police = obj.text:GetFont()
+	obj.text:SetFont(police,10)
 	obj:SetFrameLevel(2)
 	obj:EnableMouse(true)
 
@@ -1720,7 +1602,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 		ColorPickerFrame.cancelFunc=nil
 		ColorPickerFrame.hasOpacity=true
 		ColorPickerFrame.opacity = 1-self.base[index].a
-		ColorPickerFrame.previousValues = {self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a};
+		ColorPickerFrame.previousValues = {self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a}
 		ColorPickerFrame:SetColorRGB(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 		ColorPickerFrame.func = function()
 			local R,G,B = ColorPickerFrame:GetColorRGB()
@@ -1731,8 +1613,8 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].a=A
 			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
-		end	
-		
+		end
+
 		ColorPickerFrame.opacityFunc = function()
 			local R,G,B = ColorPickerFrame:GetColorRGB()
 			local A = 1-OpacitySliderFrame:GetValue()
@@ -1742,8 +1624,8 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].a=A
 			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
-		end	
-		
+		end
+
 		ColorPickerFrame.cancelFunc = function()
 			self.base[index].r=ColorPickerFrame.previousValues[1]
 			self.base[index].v=ColorPickerFrame.previousValues[2]
@@ -1751,13 +1633,12 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 			self.base[index].a=ColorPickerFrame.previousValues[4]
 			obj.texture:SetColorTexture(self.base[index].r,self.base[index].v,self.base[index].b,self.base[index].a)
 			if fonction then fonction() end
-		end	
+		end
 
 		ColorPickerFrame:Show()
+	end)
 
-	end)		
-		
-	overlay:SetBackdrop({ bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 8, edgeSize =8, insets = { left = 4, right = 4, top = 4, bottom = 4 } });
+	overlay:SetBackdrop({ bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 8, edgeSize =8, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
 	overlay:SetHeight(18)
 	overlay:SetWidth(20)
 	overlay:SetPoint("CENTER", obj, "CENTER", 0, 0)
@@ -1774,11 +1655,10 @@ function DF:options_createBox(parent,name,posx,posy,bwidth,bheight)
 	obj:SetBackdrop({bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }})
-	obj:SetBackdropColor(0,0,0,1);
+	obj:SetBackdropColor(0,0,0,1)
 end
 
 function DF:options_DebuffList_click(newPt)
-	
 	DF:options_chgBase("DFSPELLOPT_ids",DF_config.spells[newPt])
 	DF:options_chgBase("DFSPELLOPT_positionx",DF_config.spells[newPt])
 	DF:options_chgBase("DFSPELLOPT_positiony",DF_config.spells[newPt])
@@ -1809,19 +1689,13 @@ function DF:options_DebuffList_click(newPt)
 	_G["DFSPELLOPT_up"]:Enable()
 	_G["DFSPELLOPT_down"]:Enable()
 	_G["DFSPELLOPT_kill"]:Enable()
-
-	if DF_config.spells[newPt].abiLastCd>0 then
-		
-	end
-
 end
 
 function DF:options_DebuffList_create(parent)
 
-	contener=_G["DFspellsbox"]
+	local contener=_G["DFspellsbox"]
 
 	for i = 1,nbLines do
-
 		debuffListButton[i] = CreateFrame("Button", nil, contener)
 		debuffListButton[i]:SetPoint("TOPLEFT", contener, "TOPLEFT", 4, -5-((i-1)*17))
 		debuffListButton[i]:SetWidth(362)
@@ -1829,9 +1703,10 @@ function DF:options_DebuffList_create(parent)
 		debuffListButton[i]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 		debuffListButton[i]:SetNormalTexture(nil)
 		debuffListButton[i]:SetPushedTexture(nil)
-		letext = debuffListButton[i]:CreateFontString("debuffListButton"..tostring(i).."Text", "ARTWORK")
+		local letext = debuffListButton[i]:CreateFontString("debuffListButton"..tostring(i).."Text", "ARTWORK")
 		letext:SetFontObject(GameFontNormal)
-		police = letext:GetFont();letext:SetFont(police,10)	
+		local police = letext:GetFont()
+		letext:SetFont(police,10)
 		letext:SetText("button "..tostring(i))
 		letext:Show()
 		letext:ClearAllPoints()
@@ -1841,63 +1716,60 @@ function DF:options_DebuffList_create(parent)
 			selectPt=(i+currentPosition)-1
 			DF:options_DebuffList_populate()
 			DF:options_DebuffList_click(selectPt)
-		end);		
+		end)
 	end
-	
+
 	local obj = CreateFrame('Slider', "DFdebufflistContenerSlider", parent, 'OptionsSliderTemplate')
-	obj:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob");
+	obj:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
 	obj:SetWidth(20)
  	obj:SetHeight((8*17)+8)
  	obj:EnableMouse(true)
-	obj:SetPoint("RIGHT", contener, "RIGHT", -4, 0);
+	obj:SetPoint("RIGHT", contener, "RIGHT", -4, 0)
 	obj:SetOrientation('VERTICAL')
-	getglobal(obj:GetName() .. 'Low'):SetText("");
-	getglobal(obj:GetName() .. 'High'):SetText(""); 
-	getglobal(obj:GetName() .. 'Text'):SetText("");
-	obj:SetMinMaxValues(1, 1);
-	obj:SetValueStep(1);
-	obj:SetValue(1);
+	getglobal(obj:GetName() .. 'Low'):SetText("")
+	getglobal(obj:GetName() .. 'High'):SetText("")
+	getglobal(obj:GetName() .. 'Text'):SetText("")
+	obj:SetMinMaxValues(1, 1)
+	obj:SetValueStep(1)
+	obj:SetValue(1)
 	obj:SetScript("OnValueChanged", function(self)
-		currentPosition = self:GetValue();
-		DF:options_DebuffList_populate();		
-	end);
+		currentPosition = self:GetValue()
+		DF:options_DebuffList_populate()
+	end)
 	obj:SetFrameLevel(5)
 	contener:SetScript("OnShow", function(self)
-		DF:options_DebuffList_populate();	
-	end)		
-	
+		DF:options_DebuffList_populate()
+	end)
 end
 
 function DF:options_DebuffList_populate()
 
 	local maxi = getn(DF_config.spells)
 	local smaxi =  maxi-(nbLines-1)
-	
+
 	local reel=0
 	local textPt=nil
 	if (smaxi<1) then
 		smaxi=1
 	end
-	
+
 	if smaxi==1 then
-			_G["DFdebufflistContenerSlider"]:Hide()
-			_G["DFspellsbox"]:EnableMouseWheel(false)
+		_G["DFdebufflistContenerSlider"]:Hide()
+		_G["DFspellsbox"]:EnableMouseWheel(false)
 
 	else
 		_G["DFdebufflistContenerSlider"]:SetMinMaxValues(1, smaxi)
 		_G["DFdebufflistContenerSlider"]:Show()
 		_G["DFspellsbox"]:EnableMouseWheel(true)
-
 	end
-	
+
 	for i = 0,nbLines-1 do
-	
-		reel = currentPosition+i;
-		
-		textPt = _G["debuffListButton"..tostring(i+1).."Text"];
-		textPt:SetText("");
+		reel = currentPosition+i
+
+		textPt = _G["debuffListButton"..tostring(i+1).."Text"]
+		textPt:SetText("")
 		debuffListButton[i+1].sonnum=nil
-		
+
 		if (reel<=maxi) then
 			debuffListButton[i+1].sonnum=reel
 			if (DF_config.spells[reel].ids[1]==0 or not DF_config.spells[reel].names[1]) then
@@ -1909,17 +1781,15 @@ function DF:options_DebuffList_populate()
 					textPt:SetText(tostring(reel).." - "..DF_config.spells[reel].abiUserText)
 				end
 			end
-			
+
 			if (selectPt==reel) then
 				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 				debuffListButton[i+1]:SetNormalTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 				debuffListButton[i+1]:SetPushedTexture(nil)
---				textPt:SetTextColor(1,1,0,1);	
 			else
 				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 				debuffListButton[i+1]:SetNormalTexture(nil)
 				debuffListButton[i+1]:SetPushedTexture(nil)
---				textPt:SetTextColor(1,1,1,1);	
 			end
 
 			debuffListButton[i+1]:SetScript("OnEnter",function(self)
@@ -1933,31 +1803,25 @@ function DF:options_DebuffList_populate()
 					if DF_config.spells[self.sonnum].abiLastCd>0 then
 						GameTooltip:AddLine("   Calculated InternalCD: "..DF:doubleNumbers(DF_config.spells[self.sonnum].abiLastCd),1,1,1,nil)
 					end
-					GameTooltip:Show()	
+					GameTooltip:Show()
 				end
-			end);
+			end)
 			debuffListButton[i+1]:SetScript("OnLeave",function(self)
 				if self.sonnum then GameTooltip:Hide() end
-			end);						
-			debuffListButton[i+1]:Show();
-			
+			end)			
+			debuffListButton[i+1]:Show()
 		else
-			
 			debuffListButton[i+1]:SetScript("OnEnter", nil)
 			debuffListButton[i+1]:SetScript("OnLeave", nil)
-			debuffListButton[i+1]:Hide();
-			
+			debuffListButton[i+1]:Hide()
 		end
-	
 	end
-	
 end
 
 function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonction,optionsList,large,help)
-	
 	-- list des menu créés
 	if not dropdownlist then dropdownlist={} end
-		
+
 	local largeur=156
 	if not large then
 		largeur=156
@@ -1999,14 +1863,15 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 			self.lebouton:EnableMouse(false)
 		end
 		self:SetCursorPosition(0)
-	end)	
+	end)
 	obj:EnableMouse(false)
 
 	obj.fontString = obj:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
 	obj.fontString:SetPoint("BOTTOMLEFT", obj, "TOPLEFT", 0, 2)
 	obj.fontString:SetJustifyH("LEFT")
 	obj.fontString:SetText(infos)
-	police = obj.fontString:GetFont();obj.fontString:SetFont(police,10)
+	local police = obj.fontString:GetFont()
+	obj.fontString:SetFont(police,10)
 
 	-- création du menu
 	local menu = CreateFrame("FRAME", name.."menudropdown", parent, BackdropTemplateMixin and "BackdropTemplate")
@@ -2020,13 +1885,13 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	menu.items={}
 	menu:SetMovable(false)
 	menu:ClearAllPoints()
-	menu:SetBackdrop({ bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } });
+	menu:SetBackdrop({ bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
 	menu:SetHeight(((nbLines+1)*17)-8)
 	menu:SetWidth(260)
-	menu:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", -6, 4);
-	menu:SetFrameStrata("FULLSCREEN_DIALOG");
-	menu:Hide();
-	menu:SetBackdropColor(0,0,0,1);
+	menu:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", -6, 4)
+	menu:SetFrameStrata("FULLSCREEN_DIALOG")
+	menu:Hide()
+	menu:SetBackdropColor(0,0,0,1)
 	menu:EnableMouse(true)
 	menu:EnableMouseWheel(true)
 	menu:SetScript("OnMouseWheel",function(self,delta)
@@ -2035,7 +1900,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 			menu.slide:SetValue(offset)
 		end
 	end)
-	
+
 	-- register menu
 	table.insert(dropdownlist,name.."menudropdown")
 
@@ -2053,9 +1918,10 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 		menu.items[i].letext:SetFontObject(GameFontNormal)
 		menu.items[i].letext:SetWidth(230)
 		menu.items[i].letext:SetJustifyH("LEFT")
-		police = menu.items[i].letext:GetFont();menu.items[i].letext:SetFont(police,10)	
+		police = menu.items[i].letext:GetFont()
+		menu.items[i].letext:SetFont(police,10)
 		menu.items[i].lafont=police
-		
+
 		if i<=maxNbLines then
 			menu.items[i].letext:SetText(optionsList[i].texte)
 			menu.items[i].letext:Show()
@@ -2076,16 +1942,15 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 			menu:Hide()
 			menu.items[i].parent.isvisible=false
 			if fonction then fonction() end
-		end);		
+		end)
 
-	end   
+	end  
 
 	menu.redraw = function(pointeur)
 		local nbLines=getn(pointeur.optionsList)
 		for i = 1,20 do
 			local toshow=pointeur.offset+(i-1)
 			if toshow<=nbLines then
-				
 				if pointeur.optionsList[toshow].form=="statusbar" then
 					pointeur.items[i]:SetNormalTexture(pointeur.optionsList[toshow].valeur)
 				else
@@ -2095,8 +1960,8 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 					pointeur.items[i].letext:SetFont(pointeur.optionsList[toshow].valeur,10)
 				else
 					pointeur.items[i].letext:SetFont(pointeur.items[i].lafont,10)
-				end				
-				
+				end
+
 				pointeur.items[i].letext:SetText(pointeur.optionsList[toshow].texte)
 				pointeur.items[i].letext:Show()
 				pointeur.items[i]:Show()
@@ -2107,24 +1972,23 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 						apercutexture:SetPoint("TOPLEFT", self.parent, "TOPRIGHT", 0, 0)
 						apercutexture_texture:SetTexture(pointeur.optionsList[toshow].valeur)
 						apercutexture:Show()
-					end);
+					end)
 					pointeur.items[i]:SetScript("OnLeave",function(self)
 						apercutexture:Hide()
-					end);
+					end)
 				end
-			
 			else
 				pointeur.items[i].letext:SetText("")
 				pointeur.items[i]:Hide()
-			end			
-		end		
+			end
+		end
 	end
 
 	-- a l'affichage, rafraichir le contenu
 	menu:SetScript("OnShow",function(self)
 		self.redraw(self)
 	end)
-	
+
 	-- si contenu plus grand que affichage, créé un slider
 	if smaxi>1 then
 		local slide = CreateFrame('Slider', name.."Slider", menu, 'OptionsSliderTemplate')
@@ -2137,7 +2001,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 		slide:SetPoint("RIGHT", menu, "RIGHT", -4, 0)
 		slide:SetOrientation('VERTICAL')
 		getglobal(slide:GetName() .. 'Low'):SetText("")
-		getglobal(slide:GetName() .. 'High'):SetText("");
+		getglobal(slide:GetName() .. 'High'):SetText("")
 		getglobal(slide:GetName() .. 'Text'):SetText("")
 		slide:SetMinMaxValues(1, smaxi)
 		slide:SetValueStep(1)
@@ -2145,9 +2009,9 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 		slide:SetScript("OnValueChanged", function(self)
 			self.parent.offset = self:GetValue()
 			self.parent.redraw(self.parent)
-		end);	
+		end)
 	end
-	
+
 	-- création du bouton pour afficher le menu
 	local button = CreateFrame("Button", name.."_button", obj, "OptionsButtonTemplate")
 	button.lemenu=menu
@@ -2157,20 +2021,21 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	button:SetHeight(20)
 	button:SetPoint("TOPLEFT", obj, "TOPRIGHT", 2, 0)
 	local fontString = button:GetFontString()
-	police = fontString:GetFont();fontString:SetFont(police,10)
+	police = fontString:GetFont()
+	fontString:SetFont(police,10)
 	button:SetScript("OnClick", function(self)
 		falseEditBox:SetFocus()
 		local nbLines=getn(button.lemenu.optionsList)
 		if nbLines>20 then nbLines=20 end
 		if nbLines==0 then nbLines=1 end
 		button.lemenu:SetHeight(((nbLines+1)*17)-8)
-		for k,v in pairs(dropdownlist) do
+		for _k,v in pairs(dropdownlist) do
 			if v~=self.name.."menudropdown" then
 				_G[v]:Hide()
 				_G[v].isvisible=false
 			end
 		end
-		
+
 		if self.lemenu.isvisible then
 			self.lemenu:Hide()
 			self.lemenu.isvisible=false
@@ -2178,8 +2043,8 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 			self.lemenu:Show()
 			self.lemenu.isvisible=true
 		end
-	end)	 
-	
+	end)
+
 	obj.lebouton=button
 	if help then DF:options_createHelp(obj,obj.fontString,name,help) end
 end
@@ -2191,10 +2056,10 @@ function DF:options_testMedia()
 	local fname=options_sharemedia.fname
 
 	local mediaValide=false
-	
+
 	shareMediaTexture:SetTexture(nil)
 	shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",14)
-	
+
 	if ftype~="" and fpath~="" and fname~="" then
 		if ftype=="statusbar" or ftype=="background" then
 
@@ -2215,8 +2080,7 @@ function DF:options_testMedia()
 		StaticPopup_Show("MEDIAERREUR","Media invalid")
 	else
 		if DF.myArgs=="add" then
-			fetch=DF.LSM:Fetch("background", fname)
-			if fetch then
+			if DF.LSM:Fetch("background", fname) then
 				StaticPopup_Show("MEDIAERREUR","Media already exist")
 			else
 				DF:libs_saveNewFile(ftype,fname,fpath)

@@ -34,14 +34,11 @@ local maxi=100
 local reste=0
 local oldreste=0
 
-local cbspell, cbrank, cbdisplayName, cbicon, cbstartTime, cbendTime, cbisTradeSkill, cbcastID, cbinterrupt
-local cbspellch, cbrankch, cbdisplayNamech, cbiconch, cbstartTimech, cbendTimech, cbisTradeSkillch, cbcastIDch, cbinterruptch
+local cbspell, cbstartTime, cbendTime, cbinterrupt
 
 -- initialisation frames
 function DF:init_castbar_frame()
-	
 	if not frame then
-		
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_castbar_FRAME",DF.anchor[1].frame)
 		frame:SetScript("OnMouseDown",function(self,button)
@@ -65,7 +62,7 @@ function DF:init_castbar_frame()
 				DF.environnement["castbarleft"]:Show()
 				DF.environnement["castbartop"]:Show()
 	  	end
-		end)	
+		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
 				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
@@ -73,36 +70,35 @@ function DF:init_castbar_frame()
 				GameTooltip:AddLine("DROODFOCUS CASTBAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
-				GameTooltip:Show()		
-			end		
-		end)		
+				GameTooltip:Show()
+			end
+		end)
 		frame:SetScript("OnLeave",function(self,button)
 			if DF.configmode then GameTooltip:Hide() end
-		end)		
-				
+		end)
+
 		-- cadre pour la texture
 		framez = CreateFrame("FRAME","DF_castbar_FRAMEz",frame)
 		frameglow = CreateFrame("FRAME","DF_castbar_FRAMEz",frame)
 		background = CreateFrame("StatusBar","DF_castbar_BACKGROUND",framez)
 		foreground = CreateFrame("StatusBar","DF_castbar_FOREGROUND",framez)
-		spark =  CreateFrame("FRAME","DF_castbar_SPARK",foreground)
+		spark = CreateFrame("FRAME","DF_castbar_SPARK",foreground)
 
 		text = foreground:CreateFontString("DF_castbar_TEXT","ARTWORK")
 		texttimer = foreground:CreateFontString("DF_castbar_texttimer","ARTWORK")
-		
-		frame:EnableMouse(false)	
+
+		frame:EnableMouse(false)
 
 		sparkTexture=spark:CreateTexture(nil)
 		frameTexture=framez:CreateTexture(nil)
 		frameglowTexture=frameglow:CreateTexture(nil)
-		
 	end
 
 	local level = DF_config.castbar.level*10
-	
+
 	-- paramétres cadre principal
 	frame:SetMovable(true)
-		
+
 	frame:SetWidth(DF_config.castbar.width)
 	frame:SetHeight(DF_config.castbar.height)
 	frame:ClearAllPoints()
@@ -123,11 +119,11 @@ function DF:init_castbar_frame()
 	frameglowTexture:ClearAllPoints()
 	frameglowTexture:SetAllPoints(frameglow)
 	frameglowTexture:SetTexture(DF_config.castbar.texturePath)
-	frameglowTexture:SetVertexColor(0, 0.5, 1, 1);
-	
+	frameglowTexture:SetVertexColor(0, 0.5, 1, 1)
+
 	frameglowTexture:SetBlendMode("ADD")
 	frameglow.texture=frameglowTexture
-	
+
 	if DF_config.castbar.border then
 		frameTexture:ClearAllPoints()
 		frameTexture:SetAllPoints(frame)
@@ -138,9 +134,8 @@ function DF:init_castbar_frame()
 		frameTexture:SetAllPoints(frame)
 		frameTexture:SetColorTexture(DF_config.castbar.borderColor.r, DF_config.castbar.borderColor.v, DF_config.castbar.borderColor.b,0)
 		framez.texture=frameTexture
-		
 	end
-	
+
 	-- paramétres background
 	background:SetWidth(DF_config.castbar.width-DF_config.castbar.borderSize*2)
 	background:SetHeight(DF_config.castbar.height-DF_config.castbar.borderSize*2)
@@ -162,7 +157,7 @@ function DF:init_castbar_frame()
 	foreground:SetOrientation(DF_config.castbar.orientation)
 
 	spark:SetMovable(false)
-	spark:EnableMouse(false)		
+	spark:EnableMouse(false)
 	spark:SetWidth(20)
 	spark:SetHeight(DF_config.castbar.height*2.2)
 	spark:SetPoint("LEFT", foreground, "LEFT", 0, 0)
@@ -197,7 +192,7 @@ function DF:init_castbar_frame()
 	texttimer:SetText("8")
 	texttimer:ClearAllPoints()
 	texttimer:SetPoint(DF_config.castbar.timerAlign, foreground, DF_config.castbar.timerAlign, DF_config.castbar.timerx, DF_config.castbar.timery)
-	
+
 	if not DF_config.castbar.showText then
 		text:Hide()
 	else
@@ -209,54 +204,45 @@ function DF:init_castbar_frame()
 	else
 		texttimer:Show()
 	end
-	
-	if not DF_config.castbar.enable then 
+
+	if not DF_config.castbar.enable then
 		frame:Hide()
 	else
 		frame:Show()
 	end
-	
+
 	oldreste=0
-	
 end
 
 -- gestion de l'animation
 function DF:castbar_update()
-	
 	if not DF_config.castbar.enable then return end
 
 	if DF.configmode then
-		
 		current=50
 		maxi=100
 		alpha=1
 		reste=50
 		cbspell="CastBar"
-		
 	else
 
-		cbspell, cbrank, cbdisplayName, cbicon, cbstartTime, cbendTime, cbisTradeSkill, cbcastID, cbinterrupt = UnitCastingInfo("target")
+		cbspell, _, _, _, cbstartTime, cbendTime, _, _, cbinterrupt = UnitCastingInfo("target")
 
 		if not cbstartTime then
-			cbspell, cbrank, cbdisplayName, cbicon, cbstartTime, cbendTime, cbisTradeSkill, cbcastID, cbinterrupt = UnitChannelInfo("target")
+			cbspell, _, _, _, cbstartTime, cbendTime, _, _, cbinterrupt = UnitChannelInfo("target")
 		end
 
 		if cbstartTime then
-		
 			alpha=DF_config.castbar.activeAlpha
-		
-			maxi = cbendTime-cbstartTime
-			current = (GetTime()*1000) - cbstartTime		
-			reste = (maxi-current)/1000
 
+			maxi = cbendTime-cbstartTime
+			current = (GetTime()*1000) - cbstartTime
+			reste = (maxi-current)/1000
 		else
-			
 			current=100
 			maxi=100
 			reste=0
-			
 		end
-			
 	end
 
 	if reste>oldreste then
@@ -267,11 +253,11 @@ function DF:castbar_update()
 			foreground:SetStatusBarColor(DF_config.castbar.colori.r, DF_config.castbar.colori.v, DF_config.castbar.colori.b, DF_config.castbar.colori.a)
 		else
 			foreground:SetStatusBarColor(DF_config.castbar.color.r, DF_config.castbar.color.v, DF_config.castbar.color.b, DF_config.castbar.color.a)
-		end		
+		end
 		scale=1
 		alphaGlow=1.5
 	end
-	
+
 	if reste>0 then
 		scale=scale+(DF_config.castbar.impulsion/100)
 		if scale>4 then
@@ -280,7 +266,7 @@ function DF:castbar_update()
 		alphaGlow=alphaGlow-0.025
 		if alphaGlow<0 then
 			alphaGlow=0
-		end		
+		end
 	else
 		scale=scale+0.01
 		if scale>4 then
@@ -289,50 +275,45 @@ function DF:castbar_update()
 		alphaGlow=alphaGlow-0.05
 		if alphaGlow<0 then
 			alphaGlow=0
-		end		
+		end
 	end
-	
+
 	alpha=alpha-0.025
 	if alpha<DF_config.castbar.inactiveAlpha then
 		alpha=DF_config.castbar.inactiveAlpha
 	end
-	
+
 	if current<0 then
 		current=0
 	end
-	
+
 	value = 100 * (current/maxi)
-	
+
 	if cursor>value then
-		
 		cursor = cursor - DF_config.cursorspeed
 		if cursor<value then cursor=value end
-		
 	elseif cursor<value then
-		
 		cursor = cursor + DF_config.cursorspeed
 		if cursor>value then cursor=value end
-		
 	end
-	
+
 	frameglow:SetScale(scale)
 	alphaGlowTemp=alphaGlow
 	if alphaGlowTemp>1 then alphaGlowTemp=1 end
 	frameglow:SetAlpha(alphaGlowTemp)
-	
+
 	DF:castbar_sparck(cursor)
 	foreground:SetValue(cursor)
 	texttimer:SetText(DF:floatNumbers(reste))
 	framez:SetAlpha(alpha)
 
 	oldreste=reste
-	
 end
 
 function DF:castbar_sparck(cursor)
 	local largeur=DF_config.castbar.width-(DF_config.castbar.borderSize*2)
 	if cursor>0 and cursor<100 and DF_config.castbar.orientation~="VERTICAL" and DF_config.castbar.showSpark then
-		sparckx=((cursor/100)*largeur)-10
+		local sparckx = ((cursor / 100) * largeur) - 10
 		spark:SetPoint("LEFT", foreground, "LEFT", sparckx, -1)
 		spark:Show()
 	else
@@ -342,13 +323,9 @@ end
 
 -- enable/disable déplacement du cadre avec la souris
 function DF:castbar_toogle_lock(flag)
-	
 	frame:EnableMouse(flag)
-	
 end
 
 function DF:castbar_reinit()
-	
 	DF:init_castbar_frame()
-	
 end

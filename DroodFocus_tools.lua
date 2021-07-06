@@ -7,7 +7,7 @@
 local DF = DF_namespace
 
 function DF:debugLine(variable,valeur)
-	DEFAULT_CHAT_FRAME:AddMessage(tostring(variable).." -> "..tostring(valeur));
+	DEFAULT_CHAT_FRAME:AddMessage(tostring(variable).." -> "..tostring(valeur))
 end
 
 function DF:numbers(valeur)
@@ -32,18 +32,18 @@ function DF:minutes(valeur)
 	return string.format("%u",minute)..":"..secondes
 end
 
-function DF:explode ( seperator, str ) 
+function DF:explode (seperator, str)
  	local pos, arr = 0, {}
-	for st, sp in function() return string.find( str, seperator, pos, true ) end do
-		table.insert( arr, string.sub( str, pos, st-1 ) )
+	for st, sp in function() return string.find(str, seperator, pos, true) end do
+		table.insert(arr, string.sub(str, pos, st-1))
 		pos = sp + 1
 	end
-	table.insert( arr, string.sub( str, pos ) )
+	table.insert(arr, string.sub(str, pos))
 	return arr
 end
 
 function DF:hasbit(x, p)
-  return x % (p + p) >= p       
+  return x % (p + p) >= p
 end
 
 function DF:setbit(x, p)
@@ -56,26 +56,24 @@ end
 
 function DF:MySetFont(obj,path,size,mode)
 	obj:SetFont(path,size,mode)
-	local police = obj:GetFont();
+	local police = obj:GetFont()
 	if not police then
 		obj:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",size,mode)
-	end	
+	end
 end
 
 function DF:formatText(maxi,current,formatChaine)
-	
 	if maxi==0 then
 		formatChaine=""
-	else	
+	else
 		formatChaine=formatChaine:gsub("#m", DF:numbers(maxi))
 		formatChaine=formatChaine:gsub("#c", DF:numbers(current))
 		formatChaine=formatChaine:gsub("#p", DF:numbers((current/maxi)*100))
-	
+
 		formatChaine=formatChaine:gsub("#M", DF:doubleNumbers(maxi/1000))
 		formatChaine=formatChaine:gsub("#C", DF:doubleNumbers(current/1000))
 		formatChaine=formatChaine:gsub("#P", DF:floatNumbers((current/maxi)*100))
-	end	
-	
+	end
+
 	return formatChaine
-	
 end

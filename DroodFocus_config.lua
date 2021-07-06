@@ -43,24 +43,24 @@ DF_namespace.newSpell={
 }
 
 StaticPopupDialogs["WIPESPELLS"] = {
-  text = DF_namespace.locale["loadconfigansw"],
-  button1 = DF_namespace.locale["loadconfigkeep"],
-  button2 = DF_namespace.locale["loadconfigdisc"],
+	text = DF_namespace.locale["loadconfigansw"],
+	button1 = DF_namespace.locale["loadconfigkeep"],
+	button2 = DF_namespace.locale["loadconfigdisc"],
 	OnAccept = function()
 		DF_namespace:config_Loadok(DF_namespace.configToLoad,false,false)
 	end,
 	OnCancel = function()
 		DF_namespace:config_Loadok(DF_namespace.configToLoad,false,true)
-	end,  
-  timeout = 0,
-  whileDead = true,
-  hideOnEscape = true,
-};
+	end,
+	timeout = 0,
+	whileDead = true,
+	hideOnEscape = true,
+}
 
 -- effacement valeur d'une table
 function DF_namespace:clearTable(source,spellstoo)
 	local function _clear(csource)
-		for index, value in pairs(csource) do
+		for index, _ in pairs(csource) do
 			if type(csource[index]) ~= "table" then
 				csource[index]=nil
 			else
@@ -76,7 +76,7 @@ end
 -- copy d'une table vers une autre
 function DF_namespace:copyTable(source,destination,spellstoo)
 	local function _copy(csource,cdestination)
-		for index, value in pairs(csource) do
+		for index, _ in pairs(csource) do
 			if type(csource[index]) ~= "table" then
 				cdestination[index]=csource[index]
 			else
@@ -89,9 +89,8 @@ function DF_namespace:copyTable(source,destination,spellstoo)
 			end
 		end
 	end
-	
+
 	_copy(source,destination)
-	
 end
 
 function DF_namespace:deepcopy(object)
@@ -109,6 +108,7 @@ function DF_namespace:deepcopy(object)
         end
         return setmetatable(new_table, getmetatable(object))
     end
+
     return _copy(object)
 end
 
@@ -116,7 +116,7 @@ end
 function DF_namespace:completeTable(tcurrent,tdefaut)
 	local chemin="config"
 	local function _check(current,defaut,chemin)
-		for index, value in pairs(defaut) do
+		for index, _ in pairs(defaut) do
 			if type(defaut[index]) ~= "table" then
 				if current[index]==nil then
 					current[index]=defaut[index]
@@ -131,7 +131,7 @@ function DF_namespace:completeTable(tcurrent,tdefaut)
 			end
 		end
 	end
-	_check(tcurrent,tdefaut,chemin)	
+	_check(tcurrent,tdefaut,chemin)
 end
 
 function DF_namespace:configSaved(name)
@@ -141,9 +141,8 @@ function DF_namespace:configSaved(name)
 			return i
 		end
 	end
-	
+
 	return 0
-	
 end
 
 function DF_namespace:configBuildin(name)
@@ -153,19 +152,17 @@ function DF_namespace:configBuildin(name)
 			return i
 		end
 	end
-	
+
 	return 0
-	
 end
 
 function DF_namespace:config_Save(name)
-	
 	if not name then name=DF_config.configname end
-	
+
 	name=name:gsub("BuildIn", "User")
 	DF_config.configname=name
-	
-	conf = DF_namespace:configSaved(name)
+
+	local conf = DF_namespace:configSaved(name)
 
 	if conf==0 then
 		conf=getn(DF_saved_configs)+1
@@ -178,52 +175,51 @@ function DF_namespace:config_Save(name)
 	DF_saved_configs[conf].configname=name
 
 	DF_namespace:options_SavedconfigLists()
-	
+
 	DEFAULT_CHAT_FRAME:AddMessage(DF_namespace.locale["saved"]..name)
-	
 end
 
 function DF_namespace:config_Load(name,showconfig)
 
 	if not name then name=DF_namespace.configToLoad end
-	DF_namespace.configToLoad=name;
-	
-	StaticPopup_Show("WIPESPELLS");
+	DF_namespace.configToLoad=name
 
+	StaticPopup_Show("WIPESPELLS")
 end
 
 function DF_namespace:config_Loadok(name,showconfig,wipespell)
 
 	if not name then name=DF_namespace.configToLoad end
-	
+
+	local conf = nil
+
 	if string.find(name, "BuildIn") then
 		conf = DF_namespace:configBuildin(name)
 		if conf~=0 then
-			
 			if (wipespell==true) then
 				while getn(DF_config.spells)>getn(DF_pred_configs[conf].spells) do
 					table.remove(DF_config.spells,getn(DF_config.spells))
 				end
 			end
-			
+
 			DF_namespace:options_hide()
 			DF_namespace:clearTable(DF_config,wipespell)
 			DF_namespace:copyTable(DF_pred_configs[conf],DF_config,wipespell)
 			DF_namespace:completeTable(DF_config,DF_pred_configs[1])
-			
+
 			DF_namespace:init_frames()
 			DF_namespace:toggle_toggle()
 			DF_MinimapToggle()
 			DEFAULT_CHAT_FRAME:AddMessage(DF_namespace.locale["loaded"]..DF_config.configname)
-			
+
 			if (showconfig==true) then
-				DF_namespace:options_hide("DFOPTIONSelement");
+				DF_namespace:options_hide("DFOPTIONSelement")
 				DF_namespace:options_show("DFOPTIONSelement")
 			end
-			
+
 			DF_namespace.environnement["confignamebox"]:Hide()
-			DF_namespace.environnement["confignamebox"]:Show()		
-			
+			DF_namespace.environnement["confignamebox"]:Show()
+
 			return
 		end
 	else
@@ -235,30 +231,29 @@ function DF_namespace:config_Loadok(name,showconfig,wipespell)
 					table.remove(DF_config.spells,getn(DF_config.spells))
 				end
 			end
-			
+
 			DF_namespace:options_hide()
-			
+
 			DF_namespace:clearTable(DF_config,wipespell)
 			DF_namespace:copyTable(DF_saved_configs[conf],DF_config,wipespell)
 			DF_namespace:completeTable(DF_config,DF_pred_configs[1])
-	
+
 			DF_namespace:init_frames()
 			DF_namespace:toggle_toggle()
 			DF_MinimapToggle()
 			DEFAULT_CHAT_FRAME:AddMessage(DF_namespace.locale["loaded"]..DF_config.configname)
-			
+
 			if (showconfig==true) then
-				DF_namespace:options_hide("DFOPTIONSelement");
+				DF_namespace:options_hide("DFOPTIONSelement")
 				DF_namespace:options_show("DFOPTIONSelement")
 			end
-			
+
 			DF_namespace.environnement["confignamebox"]:Hide()
-			DF_namespace.environnement["confignamebox"]:Show()		
-			
+			DF_namespace.environnement["confignamebox"]:Show()
+
 			return
 		end
 	end
-	
 end
 
 function DF_namespace:config_Reset()
@@ -268,11 +263,11 @@ function DF_namespace:config_Reset()
 	end
 
 	DF_namespace:options_hide()
-	
+
 	DF_namespace:clearTable(DF_config,true)
 	DF_namespace:copyTable(DF_pred_configs[1],DF_config,true)
 	DF_namespace:completeTable(DF_config,DF_pred_configs[1])
-	
+
 	DF_namespace:init_frames()
 	DF_namespace:toggle_toggle()
 	DF_namespace.environnement["confignamebox"]:Hide()
@@ -280,7 +275,6 @@ function DF_namespace:config_Reset()
 	DF_namespace.environnement["dfcombat"]:Hide()
 	DF_namespace.environnement["dfcombat"]:Show()
 	DEFAULT_CHAT_FRAME:AddMessage(DF_namespace.locale["reset"])
-	
 end
 
 --
@@ -433,52 +427,6 @@ DF_pred_configs = {
 			["orientation"] = "HORIZONTAL",
 			["texty"] = 2,
 			["showSpark"] = true,
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
-		["threatbar"] = {
-			["sformat"] = "#c%",
-			["form"] = {
-				true, -- [1]
-				true, -- [2]
-				true, -- [3]
-				true, -- [4]
-				true, -- [5]
-				true, -- [6]
-				true, -- [7]
-			},			
-			["fontSize"] = 8,
-			["positiony"] = -49.5,
-			["enable"] = true,
-			["border"] = true,
-			["borderSize"] = 1,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["positionx"] = "10",
-			["width"] = 192,
-			["textx"] = -7,
-			["texty"] = 1,
-			["showText"] = false,
-			["height"] = "6",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "RIGHT",
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
 			["textColor"] = {
 				["a"] = 1,
 				["r"] = 1,
@@ -764,31 +712,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["gpsTarget"]={"target","focus"},
-			["positions"]={
-				{["x"]=0,["y"]=0},
-				{["x"]=0,["y"]=0}
-			},
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 202.6987448411231,
-			["enable"] = true,
-			["alpha"] = 1,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["positionx"] = 726.4074455649542,
-			["offsetx"] = 0,
-			["height"] = "36",
-			["level"] = 10,
-			["mode"] = "BLEND",
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["sformat"] = "#C k/#M k (#p%)",
 			["form"] = {
@@ -1542,42 +1465,6 @@ DF_pred_configs = {
 				["b"] = 1,
 			},
 		},
-		["threatbar"] = {
-			["fontSize"] = 8,
-			["positiony"] = -73.75,
-			["enable"] = true,
-			["border"] = true,
-			["borderSize"] = 0,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["positionx"] = "99",
-			["width"] = "119",
-			["textx"] = 1.5,
-			["texty"] = 1,
-			["showText"] = true,
-			["height"] = "10",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "LEFT",
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["gridSizeX"] = 0.25,
 		["sound"] = {
 			["enable"] = true,
@@ -1831,26 +1718,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 191.0000009685755,
-			["enable"] = true,
-			["alpha"] = 1,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["positionx"] = 302.0000031292438,
-			["offsetx"] = 0,
-			["height"] = "36",
-			["level"] = 10,
-			["mode"] = "BLEND",
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
@@ -1997,7 +1864,7 @@ DF_pred_configs = {
 				["abiEnd"] = 18455.416,
 			}, -- [2]
 			{
-				["spellIDs"] = "33983;33987;46854",
+				["spellIDs"] = "33983;33987",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -2529,42 +2396,6 @@ DF_pred_configs = {
 				["b"] = 1,
 			},
 		},
-		["threatbar"] = {
-			["fontSize"] = 8,
-			["positiony"] = "-73",
-			["enable"] = true,
-			["border"] = true,
-			["borderSize"] = 0,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["positionx"] = "99",
-			["width"] = "119",
-			["textx"] = 3,
-			["texty"] = 1,
-			["showText"] = true,
-			["height"] = "10",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "LEFT",
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["gridSizeX"] = 0.25,
 		["sound"] = {
 			["enable"] = true,
@@ -2818,26 +2649,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 187.9999704957013,
-			["enable"] = true,
-			["alpha"] = 1,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["positionx"] = 303.9999725818638,
-			["offsetx"] = 0,
-			["height"] = "36",
-			["level"] = 10,
-			["mode"] = "BLEND",
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
@@ -2984,7 +2795,7 @@ DF_pred_configs = {
 				["abiEnd"] = 0,
 			}, -- [2]
 			{
-				["spellIDs"] = "33983;33987;46854",
+				["spellIDs"] = "33983;33987",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -3516,42 +3327,6 @@ DF_pred_configs = {
 				["b"] = 1,
 			},
 		},
-		["threatbar"] = {
-			["fontSize"] = 8,
-			["positiony"] = -49.5,
-			["enable"] = true,
-			["border"] = true,
-			["borderSize"] = 1,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["positionx"] = "10",
-			["width"] = 192,
-			["textx"] = -7,
-			["texty"] = 1,
-			["showText"] = false,
-			["height"] = "6",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "RIGHT",
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["gridSizeX"] = 0.25,
 		["sound"] = {
 			["enable"] = true,
@@ -3805,26 +3580,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 208.9998786300439,
-			["enable"] = true,
-			["alpha"] = 1,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["positionx"] = 355.9999794363978,
-			["offsetx"] = 0,
-			["height"] = "36",
-			["level"] = 10,
-			["mode"] = "BLEND",
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
@@ -3971,7 +3726,7 @@ DF_pred_configs = {
 				["abiEnd"] = 0,
 			}, -- [2]
 			{
-				["spellIDs"] = "33983;33987;46854",
+				["spellIDs"] = "33983;33987",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -4555,42 +4310,6 @@ DF_pred_configs = {
 				["b"] = 1,
 			},
 		},
-		["threatbar"] = {
-			["fontSize"] = 8,
-			["positiony"] = 66,
-			["enable"] = false,
-			["border"] = true,
-			["borderSize"] = 1,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["positionx"] = -117.25,
-			["width"] = 192,
-			["textx"] = -7,
-			["texty"] = 1,
-			["showText"] = false,
-			["height"] = "6",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "RIGHT",
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["gridSizeX"] = 0.25,
 		["sound"] = {
 			["enable"] = true,
@@ -4844,26 +4563,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 224.0000309944148,
-			["enable"] = true,
-			["alpha"] = 0.7,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["positionx"] = 352.9999871104957,
-			["offsetx"] = 0,
-			["height"] = "36",
-			["level"] = 13,
-			["mode"] = "BLEND",
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
@@ -5010,7 +4709,7 @@ DF_pred_configs = {
 				["abiEnd"] = 0,
 			}, -- [2]
 			{
-				["spellIDs"] = "33983;33987;46854",
+				["spellIDs"] = "33983;33987",
 				["abiStack"] = 0,
 				["positiony"] = 0,
 				["color"] = {
@@ -5594,42 +5293,6 @@ DF_pred_configs = {
 				["b"] = 1,
 			},
 		},
-		["threatbar"] = {
-			["fontSize"] = 8,
-			["positiony"] = -49.5,
-			["color"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["border"] = true,
-			["borderSize"] = 1,
-			["borderColor"] = {
-				["a"] = 1,
-				["r"] = 0,
-				["v"] = 0,
-				["b"] = 0,
-			},
-			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["textx"] = -7,
-			["width"] = 192,
-			["texty"] = 1,
-			["positionx"] = "10",
-			["showText"] = false,
-			["height"] = "6",
-			["orientation"] = "HORIZONTAL",
-			["textAlign"] = "RIGHT",
-			["enable"] = true,
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["gridSizeX"] = 0.25,
 		["sound"] = {
 			["enable"] = true,
@@ -5904,26 +5567,6 @@ DF_pred_configs = {
 			},
 		},
 		["gridSizeY"] = 0.25,
-		["gps"] = {
-			["fontSize"] = 16,
-			["offsety"] = -22,
-			["positiony"] = 258.9992293864603,
-			["enable"] = true,
-			["alpha"] = 1,
-			["width"] = "48",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
-			["offsetx"] = 0,
-			["positionx"] = 479.9999928474427,
-			["height"] = "36",
-			["mode"] = "BLEND",
-			["level"] = 10,
-			["textColor"] = {
-				["a"] = 1,
-				["r"] = 1,
-				["v"] = 1,
-				["b"] = 1,
-			},
-		},
 		["manabar"] = {
 			["fontSize"] = 12,
 			["positiony"] = 140,
@@ -6341,7 +5984,3 @@ DF_pred_configs = {
 
 DF_sharemedia = {
 }
-
-DF_talents = {
-}
-

@@ -10,20 +10,15 @@ local frame
 local frameTexts={}
 local frameTexture=nil
 
-local hitAura = 6562
-local targetLevel =0
-
 -- initialisation frames
 function DF:init_infos_frame()
-		
 	if not frame then
-		
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_INFOS_FRAME",DF.anchor[5].frame)
 		frame:SetScript("OnMouseDown",function(self,button)
-  		if button=="RightButton" then
-  			DF:options_show("infos",frame)
-  		end
+			if button == "RightButton" then
+				DF:options_show("infos",frame)
+			end
 		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
@@ -31,21 +26,19 @@ function DF:init_infos_frame()
 				GameTooltip:ClearLines()
 				GameTooltip:AddLine("DROODFOCUS INFOS",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
-				GameTooltip:Show()		
-			end		
-		end)		
+				GameTooltip:Show()
+			end
+		end)
 		frame:SetScript("OnLeave",function(self,button)
 			if DF.configmode then GameTooltip:Hide() end
-		end)	
-			
+		end)
 
 		frameTexts = frame:CreateFontString("DF_INFOSTEXT","ARTWORK")
 
 		frameTexture = frame:CreateTexture(nil,"BACKGROUND")
-	
-		frame:EnableMouse(false)	
 
-	end	
+		frame:EnableMouse(false)
+	end
 
 	local level = DF_config.infos.level*10
 
@@ -81,14 +74,13 @@ function DF:init_infos_frame()
 	else
 		frame:Show()
 	end
-	
 end
 
 local function getPowerAttack()
-	local base, posBuff, negBuff = UnitAttackPower("player")
-	local puissance = base + posBuff + negBuff
+	local puissance = DF:spell_getPowerAttack()
 	return DF:numbers(puissance)
 end
+
 local function getRangedAttack()
 	local base, posBuff, negBuff = UnitRangedAttackPower("player")
 	local puissance = base + posBuff + negBuff
@@ -99,21 +91,19 @@ local function getMeleeCrit()
 	local crit = GetCritChance()
 	return DF:doubleNumbers(crit).."%%"
 end
+
 local function getRangedCrit()
 	local crit = GetRangedCritChance()
 	return DF:doubleNumbers(crit).."%%"
 end
 
 local function getMeleeHit()
-	local hitAura = 0
-	if UnitAura("player",hitAura) then hitAura=1 end
-	local hit =GetCombatRatingBonus(CR_HIT_MELEE)+hitAura
+	local hit = GetCombatRatingBonus(CR_HIT_MELEE)
 	return DF:doubleNumbers(hit).."%%"
 end
+
 local function getRangedHit()
-	local hitAura = 0
-	if UnitAura("player",hitAura) then hitAura=1 end
-	local hit =GetCombatRatingBonus(CR_HIT_RANGED)+hitAura
+	local hit =GetCombatRatingBonus(CR_HIT_RANGED)
 	return DF:doubleNumbers(hit).."%%"
 end
 
@@ -125,6 +115,7 @@ end
 local function getMeleeHaste()
 	return DF:doubleNumbers(GetCombatRatingBonus(18)).."%%"
 end
+
 local function getRangedHaste()
 	return DF:doubleNumbers(GetCombatRatingBonus(19)).."%%"
 end
@@ -132,38 +123,38 @@ end
 local function getArmorPen()
 	return DF:doubleNumbers(GetArmorPenetration()).."%%"
 end
+
 local function getArmor()
-	local _, effectiveArmor, _, _, _ = UnitArmor("player");
+	local _, effectiveArmor, _, _, _ = UnitArmor("player")
 	return DF:numbers(effectiveArmor)
 end
 
 local function getDodge()
 	return DF:doubleNumbers(GetDodgeChance()).."%%"
 end
+
 local function getParry()
 	return DF:doubleNumbers(GetParryChance()).."%%"
 end
 
-
 function DF:infos_getInfos()
-	
 	local formatChaine = DF_config.infos.infolines
 
 	formatChaine=formatChaine:gsub("#meleeAP", getPowerAttack())
 	formatChaine=formatChaine:gsub("#rangedAP", getRangedAttack())
-	
+
 	formatChaine=formatChaine:gsub("#meleeCrit", getMeleeCrit())
 	formatChaine=formatChaine:gsub("#rangedCrit", getRangedCrit())
-	
+
 	formatChaine=formatChaine:gsub("#meleeHit", getMeleeHit())
 	formatChaine=formatChaine:gsub("#rangedHit", getRangedHit())
-	
+
 	formatChaine=formatChaine:gsub("#dodge", getDodge())
 	formatChaine=formatChaine:gsub("#parry", getParry())
-	
+
 	formatChaine=formatChaine:gsub("#meleeHaste", getMeleeHaste())
 	formatChaine=formatChaine:gsub("#rangedHaste", getRangedHaste())
-	
+
 	formatChaine=formatChaine:gsub("#expertise", getExpertise())
 	formatChaine=formatChaine:gsub("#armPen", getArmorPen())
 	formatChaine=formatChaine:gsub("#armor", getArmor())
@@ -171,27 +162,22 @@ function DF:infos_getInfos()
 	formatChaine=formatChaine:gsub("*", "|n")
 
 	return formatChaine
-	
 end
 
 -- gestion de l'animation
 function DF:infos_update()
-	
 	if not DF_config.infos.enable then return end
-	
+
 	frameTexts:ClearAllPoints()
 	frameTexts:SetText(DF:infos_getInfos())
 	frame:SetWidth(frameTexts:GetStringWidth()+4)
 	frame:SetHeight(frameTexts:GetStringHeight()+4)
 	frameTexts:SetPoint("TOPLEFT", frame,"TOPLEFT", 0, 0)
-	
 end
 
 -- enable/disable déplacement du cadre avec la souris
 function DF:infos_toogle_lock(flag)
-	
 	frame:EnableMouse(flag)
-	
 end
 
 

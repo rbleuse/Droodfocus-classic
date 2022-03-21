@@ -1002,7 +1002,6 @@ function DF:options_createPanel(name,largeur,nline,movable,title)
 	if movable then
 		DroodFocusOptions[name]:SetMovable(true)
 		DroodFocusOptions[name]:EnableMouse(true)
-		DroodFocusOptions[name]:SetBackdrop({ bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background-Dark.blp", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
 		DroodFocusOptions[name]:SetFrameStrata("DIALOG")
 		DroodFocusOptions[name]:SetBackdropColor(0,0,0,1)
 		DroodFocusOptions[name]:SetWidth(202*largeur)

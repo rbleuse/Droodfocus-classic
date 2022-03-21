@@ -426,7 +426,7 @@ if (GetLocale() == "frFR") then
 		["toffsety"]="Offset Y du texte",
 		["number"]="Temps",
 		["stack"]="Stack",
-		["DFOPTIONSelement"]="Principale",
+		["DFOPTIONSelement"]="Principal",
 		["leftMB"]="Bouton gauche pour déplacer",
 		["rightMB"]="Bouton droit pour ouvrir la configuration",
 		["rightMBanchor"]="Bouton droit pour ouvrir la configuration de cette ancre",

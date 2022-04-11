@@ -226,10 +226,10 @@ function DF:castbar_update()
 		cbspell="CastBar"
 	else
 
-		cbspell, _, _, _, cbstartTime, cbendTime, _, _, cbinterrupt = UnitCastingInfo("target")
+		cbspell, _, _, cbstartTime, cbendTime, _, _, cbNONinterrupt = UnitCastingInfo("target")
 
 		if not cbstartTime then
-			cbspell, _, _, _, cbstartTime, cbendTime, _, _, cbinterrupt = UnitChannelInfo("target")
+			cbspell, _, _, cbstartTime, cbendTime, _, cbNONinterrupt = UnitChannelInfo("target")
 		end
 
 		if cbstartTime then
@@ -249,7 +249,7 @@ function DF:castbar_update()
 		if cbspell then
 			text:SetText(cbspell)
 		end
-		if cbinterrupt then
+		if cbNONinterrupt then
 			foreground:SetStatusBarColor(DF_config.castbar.colori.r, DF_config.castbar.colori.v, DF_config.castbar.colori.b, DF_config.castbar.colori.a)
 		else
 			foreground:SetStatusBarColor(DF_config.castbar.color.r, DF_config.castbar.color.v, DF_config.castbar.color.b, DF_config.castbar.color.a)

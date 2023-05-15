@@ -1695,13 +1695,11 @@ function DF:options_DebuffList_create(parent)
 	local contener=_G["DFspellsbox"]
 
 	for i = 1,nbLines do
-		debuffListButton[i] = CreateFrame("Button", nil, contener)
+		debuffListButton[i] = CreateFrame("Button", "DFButtonSpellsBox"..tostring(i), contener)
 		debuffListButton[i]:SetPoint("TOPLEFT", contener, "TOPLEFT", 4, -5-((i-1)*17))
 		debuffListButton[i]:SetWidth(362)
 		debuffListButton[i]:SetHeight(16)
 		debuffListButton[i]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-		debuffListButton[i]:SetNormalTexture(nil)
-		debuffListButton[i]:SetPushedTexture(nil)
 		local letext = debuffListButton[i]:CreateFontString("debuffListButton"..tostring(i).."Text", "ARTWORK")
 		letext:SetFontObject(GameFontNormal)
 		local police = letext:GetFont()
@@ -1784,11 +1782,8 @@ function DF:options_DebuffList_populate()
 			if (selectPt==reel) then
 				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 				debuffListButton[i+1]:SetNormalTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-				debuffListButton[i+1]:SetPushedTexture(nil)
 			else
 				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-				debuffListButton[i+1]:SetNormalTexture(nil)
-				debuffListButton[i+1]:SetPushedTexture(nil)
 			end
 
 			debuffListButton[i+1]:SetScript("OnEnter",function(self)
@@ -1910,8 +1905,6 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 		menu.items[i]:SetWidth(230)
 		menu.items[i]:SetHeight(16)
 		menu.items[i]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-		menu.items[i]:SetNormalTexture(nil)
-		menu.items[i]:SetPushedTexture(nil)
 		menu.items[i].parent=menu
 		menu.items[i].letext = menu.items[i]:CreateFontString("menuitems"..tostring(i).."Text", "ARTWORK")
 		menu.items[i].letext:SetFontObject(GameFontNormal)
@@ -1952,8 +1945,6 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 			if toshow<=nbLines then
 				if pointeur.optionsList[toshow].form=="statusbar" then
 					pointeur.items[i]:SetNormalTexture(pointeur.optionsList[toshow].valeur)
-				else
-					pointeur.items[i]:SetNormalTexture(nil)
 				end
 				if pointeur.optionsList[toshow].form=="font" then
 					pointeur.items[i].letext:SetFont(pointeur.optionsList[toshow].valeur,10)

@@ -211,7 +211,12 @@ function DF:powerbar_update(elapsed)
 		foreground:SetStatusBarColor(DF_config.powerbar.colorNrj.r, DF_config.powerbar.colorNrj.v, DF_config.powerbar.colorNrj.b, DF_config.powerbar.colorNrj.a)
 	end
 
-	value = 100 * (current/maxi)
+	if maxi<=0 then
+		value = 0
+	else
+		value = 100 * (current/maxi)
+	end
+
 	if DF_config.powerbar.interval>1 and value<maxi then
 		value=math.floor(value/DF_config.powerbar.interval)*DF_config.powerbar.interval
 		current=math.floor(current/DF_config.powerbar.interval)*DF_config.powerbar.interval

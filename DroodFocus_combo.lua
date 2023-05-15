@@ -123,6 +123,7 @@ function DF:init_combo_frame()
 			combos[i].frame:EnableMouse(false)
 		end
 		frame:EnableMouse(false)
+		frametext:EnableMouse(false)
 		frameTexture = frame:CreateTexture("DF_COMBO_FRAME_texture","BACKGROUND")
 
 		frametextzoom = CreateFrame("FRAME","DF_COMBO_FRAMETEXTZOOM",frametext)
@@ -134,45 +135,38 @@ function DF:init_combo_frame()
 
 	-- paramétres cadre principal
 	frame:SetMovable(true)
+	frame:EnableMouse(false)
 	frame:SetWidth(DF_config.combo.width+8)
 	frame:SetHeight(DF_config.combo.height+8)
 	frame:ClearAllPoints()
 	frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.positionx, DF_config.combo.positiony)
-	frame:SetFrameLevel(level)
 
 	frametextzoom:SetMovable(false)
+	frametextzoom:EnableMouse(false)
 	frametextzoom:SetWidth(32)
 	frametextzoom:SetHeight(32)
 	frametextzoom:ClearAllPoints()
 	frametextzoom:SetPoint("CENTER", frametext, "CENTER", 0, 0)
 
 	frametext:SetMovable(true)
+	frametext:EnableMouse(false)
 	frametext:SetWidth(32)
 	frametext:SetHeight(32)
 	frametext:ClearAllPoints()
 	frametext:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.textOffsetX, DF_config.combo.textOffsetY)
-	frametext:SetFrameLevel(level+7)
 
 	-- paramétres texture
 	frameTexture:SetTexCoord(0, 1, 0, 1)
 	frameTexture:ClearAllPoints()
 	frameTexture:SetAllPoints(frame)
 
-	if DF.configmode then
-		frameTexture:SetColorTexture(1,1,1,0.25)
-	else
-		frameTexture:SetColorTexture(1,1,1,0)
-	end
+	frameTexture:SetColorTexture(1,1,1,0)
 
 	frametextTexture:SetTexCoord(0, 1, 0, 1)
 	frametextTexture:ClearAllPoints()
 	frametextTexture:SetAllPoints(frametext)
 
-	if DF.configmode then
-		frametextTexture:SetColorTexture(1,1,1,0.25)
-	else
-		frametextTexture:SetColorTexture(1,1,1,0)
-	end
+	frametextTexture:SetColorTexture(1,1,1,0)
 
 	-- paramétres background
 	for i = 1,6 do
@@ -180,14 +174,12 @@ function DF:init_combo_frame()
 		combos[i].frame:SetHeight(DF_config.combo.height)
 		combos[i].frame:ClearAllPoints()
 		combos[i].frame:SetPoint("CENTER", frame, "CENTER", (i-1)*DF_config.combo.offsetx, -((i-1)*DF_config.combo.offsety))
-		combos[i].frame:SetFrameLevel(level+i)	
 
 		combos[i].overlay:SetWidth(DF_config.combo.width)
 		combos[i].overlay:SetHeight(DF_config.combo.height)
 		combos[i].overlay:SetPoint("CENTER", combos[i].frame, "CENTER", 0, 0)
-		--combos[i].overlay:SetFrameLevel(level+i)				
 
-		combos[i].texture:SetTexCoord(0, 1, 0, .25)
+		combos[i].texture:SetTexCoord(0, 1, 0, 1)
 		combos[i].texture:SetWidth(32)
 		combos[i].texture:SetHeight(32)
 		combos[i].texture:SetAllPoints(combos[i].overlay)
@@ -294,8 +286,7 @@ function DF:combo_update(elapsed)
 
 	if ((DF.playerClass == "DRUID" and currentForm == 3) or DF.playerClass == "ROGUE") then
 
-		c = UnitPower("player", Enum.PowerType.ComboPoints)
-
+		c = GetComboPoints("player", "target")
 		if not c or c == nil then
 			c = 0
 		end

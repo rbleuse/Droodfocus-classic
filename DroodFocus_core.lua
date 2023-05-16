@@ -117,7 +117,7 @@ function DF:OnEvent(eventArg, ...)
 			local cSourceId= eventInfo[4]
 			local cCritical= eventInfo[18]
 			if (cSourceId==DF.playerId and cCritical) then
-				DF:blood_activate()
+				DF:blood_activate(0.5)
 			end
 		elseif cType ~= nil and strfind(cType,"SPELL_DAMAGE") then
 			local cSourceId= eventInfo[4]
@@ -128,7 +128,7 @@ function DF:OnEvent(eventArg, ...)
 			if cSourceId==DF.playerId and cDestId==UnitGUID("playertarget") and (cAmount and cAmount>0) then
 				DF:sound_set_state(true)
 				if (cCritical) then
-					DF:blood_activate()
+					DF:blood_activate(1)
 				end
 			end
 		elseif (cType=="SPELL_CAST_FAILED") then
@@ -167,24 +167,24 @@ function DF:OnUpdate(elapsed)
 	DF:toggle_toggle()
 
 	DF:spells_update(elapsed)
-	DF:icons_update()
-	DF:timerbars_update()
-	DF:ooc_update()
+	DF:icons_update(elapsed)
+	DF:timerbars_update(elapsed)
+	DF:ooc_update(elapsed)
 	DF:combo_update(elapsed)
 
-	DF:arrows_update()
-	DF:alert_update()
-	DF:cooldown_update()
-	DF:infos_update()
-	DF:portrait_update()
-	DF:castbar_update()
+	DF:arrows_update(elapsed)
+	DF:alert_update(elapsed)
+	DF:cooldown_update(elapsed)
+	DF:infos_update(elapsed)
+	DF:portrait_update(elapsed)
+	DF:castbar_update(elapsed)
 
 	DF:powerbar_update(elapsed)
-	DF:healthbar_update()
-	DF:manabar_update()
-	DF:targetbar_update()
+	DF:healthbar_update(elapsed)
+	DF:manabar_update(elapsed)
+	DF:targetbar_update(elapsed)
 
-	DF:blood_update()
+	DF:blood_update(elapsed)
 end
 
 function DF:toogle_lock()
@@ -217,10 +217,10 @@ function DF:toogle_lock()
 	DF:infos_toogle_lock(itsok)
 	DF:portrait_toogle_lock(itsok)
 
-	DF:blood_activate()
-	DF:blood_activate()
-	DF:blood_activate()
-	DF:blood_activate()
+	DF:blood_activate(0.5)
+	DF:blood_activate(1)
+	DF:blood_activate(0.5)
+	DF:blood_activate(1)
 end
 
 -- gestion ligne de commande

@@ -177,32 +177,45 @@ end)
 
 -- construit liste pour options
 function DF:options_ShareMediaLists()
-	optionsTextures[1] = {
-		texte = "None",
-		valeur = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
-		form = "background"
-	}
 
-	local function buildOptions(name, list)
-		local temp = DF.LSM:List(name)
-		local fetch = nil
-		local index = #list
-
-		for _, tvalue in pairs(temp) do
-			index = index + 1
-			fetch = DF.LSM:Fetch(name, tvalue)
-			list[index] = {
-				texte = tvalue,
-				valeur = fetch,
-				form = name
-			}
-		end
+	local temp = DF.LSM:List("background")
+	local fetch=nil
+	local index=1
+	
+	optionsTextures[index]={texte="None",valeur="Interface\\AddOns\\DroodFocus\\datas\\empty.tga",form="background"}; index=index+1
+	for tkey,tvalue in pairs(temp) do
+		fetch=DF.LSM:Fetch("background", tvalue)
+		optionsTextures[index]={texte=tvalue,valeur=fetch,form="background"}; index=index+1
 	end
 
-	buildOptions("background", optionsTextures)
-	buildOptions("font", optionsFonts)
-	buildOptions("statusbar", optionsStatusbars)
-	buildOptions("sound", optionsSounds)
+	temp = DF.LSM:List("font")
+	fetch=nil
+	index=1
+
+	for tkey,tvalue in pairs(temp) do
+		fetch=DF.LSM:Fetch("font", tvalue)
+		optionsFonts[index]={texte=tvalue,valeur=fetch,form="font"}; index=index+1
+	end
+
+	temp = DF.LSM:List("statusbar")
+	fetch=nil
+	index=1
+	
+	for tkey,tvalue in pairs(temp) do
+		fetch=DF.LSM:Fetch("statusbar", tvalue)
+		optionsStatusbars[index]={texte=tvalue,valeur=fetch,form="statusbar"}; index=index+1
+	end
+
+	temp = DF.LSM:List("sound")
+	fetch=nil
+	index=1
+	
+	optionsSounds[index]={texte="None",valeur="",form="sound"}; index=index+1
+	for tkey,tvalue in pairs(temp) do
+		fetch=DF.LSM:Fetch("sound", tvalue)
+		optionsSounds[index]={texte=tvalue,valeur=fetch,form="sound"}; index=index+1
+	end
+	
 end
 
 function DF:options_addID()
@@ -801,8 +814,8 @@ function DF:options_createpanels()
 	DF:options_createSlider(pt,"comboh",DF_config.combo,"height",8,128,1,DF.locale["height"],17,2,DF.combo_reinit)
 	DF:options_createSlider(pt,"combooffsetx",DF_config.combo,"offsetx",-64,64,1,DF.locale["offsetx"],0,5,DF.combo_reinit,"Point offset")
 	DF:options_createSlider(pt,"combooffsety",DF_config.combo,"offsety",-64,64,1,DF.locale["offsety"],0,6,DF.combo_reinit,"Point offset")
-	DF:options_createListbox(pt,"combotexture1",DF_config.combo,"texturePath",DF.locale["texturePath"],0,3,DF.combo_reinit,optionsTextures)
-	DF:options_createListbox(pt,"combotexturemode",DF_config.combo,"mode",DF.locale["mode"],17,3,DF.combo_reinit,optionsBlend,false,"Blend mode")
+	DF:options_createListbox(pt,"combotextureon",DF_config.combo,"texturePath",DF.locale["texturePath"],0,3,DF.combo_reinit,optionsTextures)
+	DF:options_createListbox(pt,"combotextureoff",DF_config.combo,"texturePathOff",DF.locale["texturePathOff"],17,3,DF.combo_reinit,optionsTextures)
 	DF:options_createListbox(pt,"comboplacemode",DF_config.combo,"ptype",DF.locale["ptype"],0,4,DF.combo_reinit,optionsCombotype,false,"ptype")
 	DF:options_createSlider(pt,"combosliderlevel",DF_config.combo,"level",1,20,1,DF.locale["level"],0,7,DF.combo_reinit,"Level")
 	DF:options_createSlider(pt,"combosliderrayon",DF_config.combo,"rayon",8,256,1,DF.locale["rayon"],17,5,DF.combo_reinit)

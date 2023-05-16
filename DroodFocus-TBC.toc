@@ -1,4 +1,4 @@
-﻿## Interface: 20504
+﻿## Interface: 30402
 ## Title: DroodFocus
 ## Version: 4.0.21
 ## Author: Meranannon - Discordia - Vol'jin (EU)

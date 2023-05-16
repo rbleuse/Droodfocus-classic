@@ -13,12 +13,12 @@ local frequency = 1 / 60
 local tempo = (frequency / 15) * 2
 
 local combos={
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
-	{frame=nil,overlay=nil,texture=nil,scale=1,offseta=0,offsetb=0,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
+	{frame=nil,overlay=nil,texture=nil,scale=1,sTexture=nil,state=0},
 }
 
 local frametext=nil
@@ -42,7 +42,6 @@ local comboPts = 0
 
 -- initialisation frames
 function DF:init_combo_frame()
-
 	if not frame then
 		-- cadre principal
 		frame = CreateFrame("FRAME","DF_COMBO_FRAME",DF.anchor[1].frame)
@@ -140,6 +139,7 @@ function DF:init_combo_frame()
 	frame:SetHeight(DF_config.combo.height+8)
 	frame:ClearAllPoints()
 	frame:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.positionx, DF_config.combo.positiony)
+	frame:SetFrameLevel(level)
 
 	frametextzoom:SetMovable(false)
 	frametextzoom:EnableMouse(false)
@@ -147,6 +147,7 @@ function DF:init_combo_frame()
 	frametextzoom:SetHeight(32)
 	frametextzoom:ClearAllPoints()
 	frametextzoom:SetPoint("CENTER", frametext, "CENTER", 0, 0)
+	frametextzoom:SetFrameLevel(level+7)
 
 	frametext:SetMovable(true)
 	frametext:EnableMouse(false)
@@ -154,6 +155,7 @@ function DF:init_combo_frame()
 	frametext:SetHeight(32)
 	frametext:ClearAllPoints()
 	frametext:SetPoint("TOPLEFT", DF.anchor[1].frame, "TOPLEFT", DF_config.combo.textOffsetX, DF_config.combo.textOffsetY)
+	frametext:SetFrameLevel(level+7)
 
 	-- paramétres texture
 	frameTexture:SetTexCoord(0, 1, 0, 1)
@@ -174,18 +176,20 @@ function DF:init_combo_frame()
 		combos[i].frame:SetHeight(DF_config.combo.height)
 		combos[i].frame:ClearAllPoints()
 		combos[i].frame:SetPoint("CENTER", frame, "CENTER", (i-1)*DF_config.combo.offsetx, -((i-1)*DF_config.combo.offsety))
+		combos[i].frame:SetFrameLevel(level+i)
 
 		combos[i].overlay:SetWidth(DF_config.combo.width)
 		combos[i].overlay:SetHeight(DF_config.combo.height)
 		combos[i].overlay:SetPoint("CENTER", combos[i].frame, "CENTER", 0, 0)
+		combos[i].overlay:SetFrameLevel(level+i)
 
 		combos[i].texture:SetTexCoord(0, 1, 0, 1)
 		combos[i].texture:SetWidth(32)
 		combos[i].texture:SetHeight(32)
 		combos[i].texture:SetAllPoints(combos[i].overlay)
 		combos[i].texture:SetTexture(DF_config.combo.texturePath)
-		combos[i].texture:SetBlendMode(DF_config.combo.mode)
-		
+		combos[i].texture:SetBlendMode("BLEND")
+
 		combos[i].overlay.texture = combos[i].texture
 	end
 
@@ -241,6 +245,16 @@ end
 
 -- gestion de l'animation
 function DF:combo_update(elapsed)
+
+	if not DF_config.combo.enable then
+		for i = 1,6 do combos[i].overlay:Hide() end
+		return
+	end
+
+	tempo=tempo+elapsed
+	if tempo<frequency then return end
+	tempo=0
+
 	if (DF.configmode) then
 		frameTexture:SetColorTexture(1,1,1,0.25)
 		frametextTexture:SetColorTexture(1,1,1,0.25)
@@ -249,18 +263,9 @@ function DF:combo_update(elapsed)
 		frametextTexture:SetColorTexture(1,1,1,0)
 	end
 
-	if not DF_config.combo.enable then
-		for i = 1,6 do combos[i].overlay:Hide() end
-		return
-	end
-
 	local currentForm = DF:currentForm()
 	local c = 0
 	local multiple=1
-
-	tempo=tempo+elapsed
-	if tempo<frequency then return end
-	tempo=0
 
 	DF:combo_toggle()
 
@@ -304,13 +309,7 @@ function DF:combo_update(elapsed)
 		for i = 1,5 do
 			if i<=c or DF.configmode then
 				-- point ON
-				if i==5 then
-					combos[i].offseta=offsets[4]*0.125
-					combos[i].offsetb=(offsets[4]*0.125)+0.125
-				else
-					combos[i].offseta=offsets[3]*0.125
-					combos[i].offsetb=(offsets[3]*0.125)+0.125
-				end
+				combos[i].sTexture = DF_config.combo.texturePath
 
 				if combos[i].state==0 then
 					combos[i].scale = DF_config.combo.impulsion + (multiple*0.1)
@@ -320,8 +319,7 @@ function DF:combo_update(elapsed)
 				combos[i].state=1
 			else
 				-- point OFF
-				combos[i].offseta=offsets[2]*0.125
-				combos[i].offsetb=(offsets[2]*0.125)+0.125
+				combos[i].sTexture = DF_config.combo.texturePathOff
 				combos[i].state=0
 			end
 		end
@@ -340,13 +338,7 @@ function DF:combo_update(elapsed)
 		for i = 1,5 do
 			if i<=c or DF.configmode then
 				-- point ON
-				if i==5 then
-					combos[i].offseta=offsets[6]*0.125
-					combos[i].offsetb=(offsets[6]*0.125)+0.125
-				else
-					combos[i].offseta=offsets[5]*0.125
-					combos[i].offsetb=(offsets[5]*0.125)+0.125
-				end
+				combos[i].sTexture = DF_config.combo.texturePath
 
 				if combos[i].state==0 then
 					combos[i].scale = DF_config.combo.impulsion + (multiple*0.1)
@@ -356,16 +348,14 @@ function DF:combo_update(elapsed)
 				combos[i].state=1
 			else
 				-- point OFF
-				combos[i].offseta=offsets[2]*0.125
-				combos[i].offsetb=(offsets[2]*0.125)+0.125
+				combos[i].sTexture = DF_config.combo.texturePathOff
 				combos[i].state=0
 			end
 		end
 	else
 		combotext:SetText("")
 		for i = 1,6 do
-			combos[i].offseta=offsets[1]*0.125
-			combos[i].offsetb=(offsets[1]*0.125)+0.125
+			combos[i].sTexture = DF_config.combo.texturePathOff
 			combos[i].state=0
 		end
 	end
@@ -377,7 +367,7 @@ function DF:combo_update(elapsed)
 			combos[i].scale=1
 		end
 
-		combos[i].texture:SetTexCoord(0, 1, combos[i].offseta, combos[i].offsetb)
+		combos[i].texture:SetTexture(combos[i].sTexture)
 		combos[i].overlay:SetScale(combos[i].scale)
 	end
 end
@@ -394,4 +384,5 @@ end
 
 function DF:combo_reinit()
 	DF:init_combo_frame()
+	DF:combo_toogle_lock(DF.configmode)
 end

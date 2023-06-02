@@ -47,11 +47,11 @@ function DF:hasbit(x, p)
 end
 
 function DF:setbit(x, p)
-  return hasbit(x, p) and x or x + p
+  return DF:hasbit(x, p) and x or x + p
 end
 
 function DF:clearbit(x, p)
-  return hasbit(x, p) and x - p or x
+  return DF:hasbit(x, p) and x - p or x
 end
 
 function DF:MySetFont(obj,path,size,mode)

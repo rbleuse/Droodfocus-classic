@@ -193,7 +193,7 @@ function DF:spell_check(num)
 			filter="HARMFUL"
 		end
 
-		targetID=UnitGUID("playertarget")
+		targetID=UnitGUID("target")
 		if not targetID then return false end
 
 		-- c'est un debuff
@@ -207,14 +207,14 @@ function DF:spell_check(num)
 			debuffName = DF_config.spells[num].names[ide]
 
 			if (debuffName) then
-				index = DF:spell_exist(DF_config.spells[num].ids[ide],debuffName,"playertarget",filter,DF_config.spells[num].strongcheck)
+				index = DF:spell_exist(DF_config.spells[num].ids[ide],debuffName,"target",filter,DF_config.spells[num].strongcheck)
 
 				-- si présent
 				if (index) then
 					thatOk = true
 
 					-- sauve les infos
-					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter)
+					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("target", index, filter)
 					lid=DF_config.spells[num].ids[ide]
 				end
 			end
@@ -301,11 +301,13 @@ function DF:spell_check(num)
 			filter="HELPFUL"
 		end
 
-		targetID=UnitGUID("playertarget")
+		targetID=UnitGUID("target")
 		if not targetID then return false end
 
 		-- c'est un debuff
 		thatOk = false
+
+		local currentPA = DF:spell_getPowerAttack()
 
 		-- cherche les debuffs
 		for ide = 1,nbIds do
@@ -314,14 +316,14 @@ function DF:spell_check(num)
 			debuffName = DF_config.spells[num].names[ide]
 
 			if (debuffName) then
-				index = DF:spell_exist(DF_config.spells[num].ids[ide],debuffName,"playertarget",filter,DF_config.spells[num].strongcheck)
+				index = DF:spell_exist(DF_config.spells[num].ids[ide],debuffName,"target",filter,DF_config.spells[num].strongcheck)
 
 				-- si présent
 				if (index) then
 					thatOk = true
 
 					-- sauve les infos
-					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("playertarget", index, filter) 
+					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("target", index, filter) 
 					lid=DF_config.spells[num].ids[ide]
 				end
 			end

@@ -125,7 +125,7 @@ function DF:OnEvent(eventArg, ...)
 			local cDestId= eventInfo[8]
 			local cAmount= eventInfo[15]
 
-			if cSourceId==DF.playerId and cDestId==UnitGUID("playertarget") and (cAmount and cAmount>0) then
+			if cSourceId==DF.playerId and cDestId==UnitGUID("target") and (cAmount and cAmount>0) then
 				DF:sound_set_state(true)
 				if (cCritical) then
 					DF:blood_activate(1)
@@ -143,6 +143,7 @@ function DF:OnEvent(eventArg, ...)
 				end
 			end
 		elseif(cType == "SPELL_AURA_APPLIED" or cType == "SPELL_AURA_REFRESH") then
+			local cSpellId= eventInfo[12]
 			local cType= eventInfo[15]
 			local cDestId= eventInfo[8]
 
@@ -262,11 +263,11 @@ function DF:ShowID(ftype)
 
 	local index=1
 	while true do
-		local name, spellId = nil
+		local name, spellId = nil, nil
 		if ftype == "buff" then
 			name, _, _, _, _, _, _, _, _, spellId = UnitAura("player", index, "HELPFUL")
 		elseif ftype == "debuff" then
-			name, _, _, _, _, _, _, _, _, spellId = UnitAura("playertarget", index, "HARMFUL")
+			name, _, _, _, _, _, _, _, _, spellId = UnitAura("target", index, "HARMFUL")
 		end
 
 		if not name then break end

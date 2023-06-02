@@ -48,7 +48,7 @@ function DF:init_powerbar_frame()
 		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
-				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
+				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT",16,-16)
 				GameTooltip:ClearLines()
 				GameTooltip:AddLine("DROODFOCUS POWERBAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
@@ -178,20 +178,20 @@ function DF:powerbar_update(elapsed)
 	local powerType = UnitPowerType("player")
 
 	if (powerType==0) then
-		maxi = UnitPowerMax("player",SPELL_POWER_MANA)
-		current = UnitPower("player",SPELL_POWER_MANA)
+		maxi = UnitPowerMax("player", Enum.PowerType.Mana)
+		current = UnitPower("player", Enum.PowerType.Mana)
 
 		background:SetStatusBarColor(DF_config.powerbar.colorMana.r/3, DF_config.powerbar.colorMana.v/3, DF_config.powerbar.colorMana.b/3, DF_config.powerbar.colorMana.a)
 		foreground:SetStatusBarColor(DF_config.powerbar.colorMana.r, DF_config.powerbar.colorMana.v, DF_config.powerbar.colorMana.b, DF_config.powerbar.colorMana.a)
 	elseif (powerType==1) then
-		maxi = UnitPowerMax("player",SPELL_POWER_RAGE)
-		current = UnitPower("player",SPELL_POWER_RAGE)
+		maxi = UnitPowerMax("player", Enum.PowerType.Rage)
+		current = UnitPower("player", Enum.PowerType.Rage)
 
 		background:SetStatusBarColor(DF_config.powerbar.colorRage.r/3, DF_config.powerbar.colorRage.v/3, DF_config.powerbar.colorRage.b/3, DF_config.powerbar.colorRage.a)
 		foreground:SetStatusBarColor(DF_config.powerbar.colorRage.r, DF_config.powerbar.colorRage.v, DF_config.powerbar.colorRage.b, DF_config.powerbar.colorRage.a)
 	elseif (powerType==3) then
-		maxi = UnitPowerMax("player",SPELL_POWER_ENERGY)
-		current = UnitPower("player",SPELL_POWER_ENERGY)
+		maxi = UnitPowerMax("player", Enum.PowerType.Energy)
+		current = UnitPower("player", Enum.PowerType.Energy)
 		
 		background:SetStatusBarColor(DF_config.powerbar.colorNrj.r/3, DF_config.powerbar.colorNrj.v/3, DF_config.powerbar.colorNrj.b/3, DF_config.powerbar.colorNrj.a)
 		foreground:SetStatusBarColor(DF_config.powerbar.colorNrj.r, DF_config.powerbar.colorNrj.v, DF_config.powerbar.colorNrj.b, DF_config.powerbar.colorNrj.a)

@@ -43,7 +43,7 @@ function DF:init_manabar_frame()
 		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
-				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
+				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT",16,-16)
 				GameTooltip:ClearLines()
 				GameTooltip:AddLine("DROODFOCUS MANABAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)
@@ -140,9 +140,9 @@ function DF:manabar_update()
 		frame:Show()
 	end
 
-	local current = UnitPower("player",SPELL_POWER_MANA)
+	local current = UnitPower("player", Enum.PowerType.Mana)
 	local value = 0
-	local maxi = UnitPowerMax("player",SPELL_POWER_MANA)
+	local maxi = UnitPowerMax("player", Enum.PowerType.Mana)
 
 	if maxi==0 then cursor=0 end
 

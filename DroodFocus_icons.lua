@@ -68,7 +68,7 @@ function DF:init_icons_frame()
 			end)
 			frames[i].frame:SetScript("OnEnter",function(self,button)
 				if DF.configmode then
-					GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
+					GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT",16,-16)
 					GameTooltip:ClearLines()
 					GameTooltip:AddLine("DROODFOCUS ICONS",1,1,0,nil)
 					GameTooltip:AddLine(DF.locale["rightMB"],1,1,1,nil)
@@ -223,7 +223,7 @@ function DF:icons_update()
 	local currentForm = DF:currentForm()
 	local iconPower	=nil
 	local currentPower	=nil
-	local targetID=UnitGUID("playertarget")
+	local targetID=UnitGUID("target")
 	local restant
 
 	-- anime

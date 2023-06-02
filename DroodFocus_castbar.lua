@@ -34,7 +34,7 @@ local maxi=100
 local reste=0
 local oldreste=0
 
-local cbspell, cbstartTime, cbendTime, cbinterrupt
+local cbspell, cbstartTime, cbendTime, cbNONinterrupt
 
 -- initialisation frames
 function DF:init_castbar_frame()
@@ -65,7 +65,7 @@ function DF:init_castbar_frame()
 		end)
 		frame:SetScript("OnEnter",function(self,button)
 			if DF.configmode then
-				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ",16,-16)
+				GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT",16,-16)
 				GameTooltip:ClearLines()
 				GameTooltip:AddLine("DROODFOCUS CASTBAR",1,1,0,nil)
 				GameTooltip:AddLine(DF.locale["leftMB"],1,1,1,nil)

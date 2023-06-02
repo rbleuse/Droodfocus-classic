@@ -52,7 +52,7 @@ function DF:init_anchor_frame()
 			end)
 			DF.anchor[i].overlay:SetScript("OnEnter", function(self,button)
 				if DF.configmode then
-					GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT ", 16, -16)
+					GameTooltip:SetOwner(UIParent, "ANCHOR_TOPLEFT", 16, -16)
 					GameTooltip:ClearLines()
 					GameTooltip:AddLine("DROODFOCUS "..DF_config["anchor"..tostring(self.numero)].info.." ANCHOR", 1, 1, 0, nil)
 					GameTooltip:AddLine(DF.locale["leftMB"], 1, 1, 1, nil)

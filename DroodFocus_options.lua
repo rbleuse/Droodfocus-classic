@@ -18,6 +18,8 @@ local startLevel=1
 
 local lignes = {}
 
+local dropdownlist=nil
+
 local _G = getfenv(0)
 
 local options_sharemedia = {["fpath"]="",["ftype"]="",["fname"]=""}
@@ -361,7 +363,7 @@ function DF:options_createpanels()
 	shareMediaBox:SetWidth(380)
  	shareMediaBox:SetHeight(128)
 	shareMediaBox:SetPoint("TOPLEFT", pt, "TOPLEFT", 10, -140)
-	shareMediaBox:SetBackdrop({bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+	shareMediaBox:SetBackdrop({bgFile = "Interface/Tooltips/UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
 		tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 4, right = 4, top = 4, bottom = 4 }})
 	shareMediaBox:SetBackdropColor(0,0,0,1)
@@ -1454,7 +1456,7 @@ function DF:options_createEditbox(parent,name,base,index,infos,posx,posy,fonctio
 	end
 	obj:SetCursorPosition(0)
 	obj:SetFontObject("GameFontNormal")
-	obj:IsMultiLine(false)
+	obj:SetMultiLine(false)
 	obj:SetScript("OnShow", function(self)
 	 	if self.base then
 			local texte =""
@@ -1576,7 +1578,7 @@ end
 
 function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,fonction,help)
 	local obj = CreateFrame("FRAME", name, parent)
-	local overlay = CreateFrame("FRAME", name.."border", parent, BackdropTemplateMixin and "BackdropTemplate")
+	local overlay = CreateFrame("FRAME",name.."border",parent, "BackdropTemplate")
 
 	obj.base=base
 	obj:EnableMouse(true)
@@ -1650,7 +1652,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 		ColorPickerFrame:Show()
 	end)
 
-	overlay:SetBackdrop({ bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 8, edgeSize =8, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
+	overlay:SetBackdrop({ bgFile = nil, edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 8, edgeSize =8, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
 	overlay:SetHeight(18)
 	overlay:SetWidth(20)
 	overlay:SetPoint("CENTER", obj, "CENTER", 0, 0)
@@ -1660,7 +1662,7 @@ function DF:options_createColorBox(parent,name,base,index,infos,posx,posy,foncti
 end
 
 function DF:options_createBox(parent,name,posx,posy,bwidth,bheight)
-	local obj = CreateFrame('Frame', name, parent, BackdropTemplateMixin and "BackdropTemplate")
+	local obj = CreateFrame('Frame', name, parent, "BackdropTemplate")
 	obj:SetWidth(bwidth)
  	obj:SetHeight(bheight)
 	obj:SetPoint("TOPLEFT", parent, "TOPLEFT", posx, posy)
@@ -1705,17 +1707,22 @@ end
 
 function DF:options_DebuffList_create(parent)
 
+	DEFAULT_CHAT_FRAME:AddMessage("create")
+
 	local contener=_G["DFspellsbox"]
+	local letext
+	local police
 
 	for i = 1,nbLines do
+
 		debuffListButton[i] = CreateFrame("Button", "DFButtonSpellsBox"..tostring(i), contener)
 		debuffListButton[i]:SetPoint("TOPLEFT", contener, "TOPLEFT", 4, -5-((i-1)*17))
-		debuffListButton[i]:SetWidth(362)
+		debuffListButton[i]:SetWidth(352)
 		debuffListButton[i]:SetHeight(16)
 		debuffListButton[i]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-		local letext = debuffListButton[i]:CreateFontString("debuffListButton"..tostring(i).."Text", "ARTWORK")
+		letext = debuffListButton[i]:CreateFontString("debuffListButton"..tostring(i).."Text", "ARTWORK")
 		letext:SetFontObject(GameFontNormal)
-		local police = letext:GetFont()
+		police = letext:GetFont()
 		letext:SetFont(police,10)
 		letext:SetText("button "..tostring(i))
 		letext:Show()
@@ -1729,7 +1736,7 @@ function DF:options_DebuffList_create(parent)
 		end)
 	end
 
-	local obj = CreateFrame('Slider', "DFdebufflistContenerSlider", parent, 'OptionsSliderTemplate')
+	local obj = CreateFrame('Slider', "DFdebufflistContenerSlider", contener, 'OptionsSliderTemplate')
 	obj:SetThumbTexture("Interface\\Buttons\\UI-ScrollBar-Knob")
 	obj:SetWidth(20)
  	obj:SetHeight((8*17)+8)
@@ -1743,10 +1750,10 @@ function DF:options_DebuffList_create(parent)
 	obj:SetValueStep(1)
 	obj:SetValue(1)
 	obj:SetScript("OnValueChanged", function(self)
-		currentPosition = self:GetValue()
+		currentPosition = math.floor(self:GetValue())
 		DF:options_DebuffList_populate()
 	end)
-	obj:SetFrameLevel(5)
+	--obj:SetFrameLevel(5)
 	contener:SetScript("OnShow", function(self)
 		DF:options_DebuffList_populate()
 	end)
@@ -1850,7 +1857,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	obj:SetText("")
 	obj:SetCursorPosition(0)
 	obj:SetFontObject("GameFontNormal")
-	obj:IsMultiLine(false)
+	obj:SetMultiLine(false)
 	obj:SetScript("OnShow", function(self)
 		self:SetText("")
 		-- retrouve le texte correspondant a la valeur et l'affiche
@@ -1881,7 +1888,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	obj.fontString:SetFont(police,10)
 
 	-- création du menu
-	local menu = CreateFrame("FRAME", name.."menudropdown", parent, BackdropTemplateMixin and "BackdropTemplate")
+	local menu = CreateFrame("FRAME",name.."menudropdown",UIParent, "BackdropTemplate")
 	menu.obj=obj
 	menu.slide=nil
 	menu.optionsList=optionsList
@@ -1892,7 +1899,7 @@ function DF:options_createListbox(parent,name,base,index,infos,posx,posy,fonctio
 	menu.items={}
 	menu:SetMovable(false)
 	menu:ClearAllPoints()
-	menu:SetBackdrop({ bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = 1, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
+	menu:SetBackdrop({ bgFile = "Interface\\Tooltips\\UI-Tooltip-Background", edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16, insets = { left = 4, right = 4, top = 4, bottom = 4 } })
 	menu:SetHeight(((nbLines+1)*17)-8)
 	menu:SetWidth(260)
 	menu:SetPoint("TOPLEFT", obj, "BOTTOMLEFT", -6, 4)

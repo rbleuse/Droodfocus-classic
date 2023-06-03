@@ -1780,15 +1780,15 @@ function DF:options_DebuffList_populate()
 		_G["DFspellsbox"]:EnableMouseWheel(true)
 	end
 
-	for i = 0,nbLines-1 do
-		reel = currentPosition+i
+	for i = 1, nbLines do
+		reel = currentPosition + i - 1
 
-		textPt = _G["debuffListButton"..tostring(i+1).."Text"]
+		textPt = _G["debuffListButton"..tostring(i).."Text"]
 		textPt:SetText("")
-		debuffListButton[i+1].sonnum=nil
+		debuffListButton[i].sonnum=nil
 
 		if (reel<=maxi) then
-			debuffListButton[i+1].sonnum=reel
+			debuffListButton[i].sonnum=reel
 			if (DF_config.spells[reel].ids[1]==0 or not DF_config.spells[reel].names[1]) then
 				textPt:SetText(tostring(reel).." - ".."NEW")
 			else
@@ -1800,17 +1800,16 @@ function DF:options_DebuffList_populate()
 			end
 
 			if (selectPt==reel) then
-				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
-				debuffListButton[i+1]:SetNormalTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
+				debuffListButton[i]:SetNormalTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
 			else
-				debuffListButton[i+1]:SetHighlightTexture("Interface\\FriendsFrame\\UI-FriendsFrame-HighlightBar")
+				debuffListButton[i]:ClearNormalTexture()
 			end
 
-			debuffListButton[i+1]:SetScript("OnEnter",function(self)
+			debuffListButton[i]:SetScript("OnEnter",function(self)
 				if self.sonnum then
-					GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT",-20,20)
+					GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT",-2,20)
 					GameTooltip:ClearLines()
-					GameTooltip:AddLine(DF.locale["spells"],1,1,0,nil)
+					GameTooltip:AddLine(DF.locale["spells"],1,1,1,nil)
 					for li = 1,getn(DF_config.spells[self.sonnum].names) do
 						GameTooltip:AddLine("   "..DF_config.spells[self.sonnum].names[li].." ["..tostring(DF_config.spells[self.sonnum].ids[li]).."]",1,1,1,nil)
 					end
@@ -1820,14 +1819,14 @@ function DF:options_DebuffList_populate()
 					GameTooltip:Show()
 				end
 			end)
-			debuffListButton[i+1]:SetScript("OnLeave",function(self)
+			debuffListButton[i]:SetScript("OnLeave",function(self)
 				if self.sonnum then GameTooltip:Hide() end
 			end)			
-			debuffListButton[i+1]:Show()
+			debuffListButton[i]:Show()
 		else
-			debuffListButton[i+1]:SetScript("OnEnter", nil)
-			debuffListButton[i+1]:SetScript("OnLeave", nil)
-			debuffListButton[i+1]:Hide()
+			debuffListButton[i]:SetScript("OnEnter", nil)
+			debuffListButton[i]:SetScript("OnLeave", nil)
+			debuffListButton[i]:Hide()
 		end
 	end
 end

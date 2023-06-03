@@ -125,7 +125,7 @@ function DF_namespace:completeTable(tcurrent,tdefaut)
 				if chemin~="config.spells" then
 					if current[index]==nil or not current[index] then
 						current[index]={}
-					end				
+					end
 					_check(current[index],defaut[index],chemin.."."..tostring(index))
 				end
 			end

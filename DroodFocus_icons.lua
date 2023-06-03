@@ -104,7 +104,7 @@ function DF:init_icons_frame()
 		if DF_config.icons.automatic then
 			if DF_config.spells[i].positionx==0 and DF_config.spells[i].positiony==0 then
 				realWidth=DF_config.icons.width
-				realHeight=DF_config.icons.height	
+				realHeight=DF_config.icons.height
 			else
 				realWidth=DF_config.spells[i].width
 				realHeight=DF_config.spells[i].height
@@ -125,7 +125,7 @@ function DF:init_icons_frame()
 
 		-- paramétres cadre principal
 		frames[i].overlay:SetMovable(false)
-		frames[i].overlay:EnableMouse(false)		
+		frames[i].overlay:EnableMouse(false)
 		frames[i].overlay:SetWidth(realWidth)
 		frames[i].overlay:SetHeight(realHeight)
 		frames[i].overlay:SetPoint("CENTER", frames[i].frame, "CENTER", 0, 0)
@@ -136,7 +136,7 @@ function DF:init_icons_frame()
 		if DF_config.spells[i].names[1]==nil then
 			abiImg="Interface\\icons\\INV_Misc_QuestionMark"
 		else
-			_, _, abiImg, _, _, _, _, _, _ = GetSpellInfo(DF_config.spells[i].ids[1])
+			abiImg = GetSpellTexture(DF_config.spells[i].ids[1])
 		end
 		frames[i].texture:SetTexCoord(0, 1, 0, 1)
 		frames[i].texture:SetWidth(64)
@@ -144,7 +144,7 @@ function DF:init_icons_frame()
 		frames[i].texture:SetBlendMode(DF_config.icons.mode)
 		frames[i].texture:ClearAllPoints()
 		frames[i].texture:SetAllPoints(frames[i].overlay)
-		frames[i].texture:SetTexture(abiImg)	
+		frames[i].texture:SetTexture(abiImg)
 
 		frames[i].overlay.texture = frames[i].texture
 

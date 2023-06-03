@@ -214,7 +214,7 @@ function DF:spell_check(num)
 					thatOk = true
 
 					-- sauve les infos
-					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("target", index, filter)
+					name, _, count, _, duration, expirationTime, caster = UnitAura("target", index, filter)
 					lid=DF_config.spells[num].ids[ide]
 				end
 			end
@@ -323,7 +323,7 @@ function DF:spell_check(num)
 					thatOk = true
 
 					-- sauve les infos
-					name, _, count, _, duration, expirationTime, caster, _, _, _ = UnitAura("target", index, filter) 
+					name, _, count, _, duration, expirationTime, caster = UnitAura("target", index, filter)
 					lid=DF_config.spells[num].ids[ide]
 				end
 			end

@@ -113,11 +113,11 @@ local function getExpertise()
 end
 
 local function getMeleeHaste()
-	return DF:doubleNumbers(GetCombatRatingBonus(18)).."%%"
+	return DF:doubleNumbers(GetCombatRatingBonus(CR_HASTE_MELEE)).."%%"
 end
 
 local function getRangedHaste()
-	return DF:doubleNumbers(GetCombatRatingBonus(19)).."%%"
+	return DF:doubleNumbers(GetCombatRatingBonus(CR_HASTE_RANGED)).."%%"
 end
 
 local function getArmorPen()
@@ -125,7 +125,7 @@ local function getArmorPen()
 end
 
 local function getArmor()
-	local _, effectiveArmor, _, _, _ = UnitArmor("player")
+	local _, effectiveArmor = UnitArmor("player")
 	return DF:numbers(effectiveArmor)
 end
 

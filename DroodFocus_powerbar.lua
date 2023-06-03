@@ -192,7 +192,7 @@ function DF:powerbar_update(elapsed)
 	elseif (powerType==3) then
 		maxi = UnitPowerMax("player", Enum.PowerType.Energy)
 		current = UnitPower("player", Enum.PowerType.Energy)
-		
+
 		background:SetStatusBarColor(DF_config.powerbar.colorNrj.r/3, DF_config.powerbar.colorNrj.v/3, DF_config.powerbar.colorNrj.b/3, DF_config.powerbar.colorNrj.a)
 		foreground:SetStatusBarColor(DF_config.powerbar.colorNrj.r, DF_config.powerbar.colorNrj.v, DF_config.powerbar.colorNrj.b, DF_config.powerbar.colorNrj.a)
 	else

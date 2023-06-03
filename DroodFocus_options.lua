@@ -257,7 +257,7 @@ function DF:options_createpanels()
 	apercutexture_texture:ClearAllPoints()
 	apercutexture_texture:SetAllPoints(apercutexture)
 
-	apercutexture_texture:SetTexture(nil)
+	-- apercutexture_texture:SetTexture(nil)
 
 	apercutexture.texture = apercutexture_texture
 

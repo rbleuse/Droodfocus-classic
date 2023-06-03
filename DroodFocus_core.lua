@@ -151,7 +151,7 @@ function DF:OnEvent(eventArg, ...)
 
 				if (cType=="DEBUFF" and DF_config.alert.showDebuff) then
 					-- le joueur viens de subir un debuff, affiche l'icone dans le système d'alert
-					local _, _, imgDebuff, _, _, _, _, _, _ = GetSpellInfo(cSpellId)
+					local imgDebuff = GetSpellTexture(cSpellId)
 					if imgDebuff then
 						DF:alert_activate(imgDebuff,true)
 					end
@@ -265,9 +265,9 @@ function DF:ShowID(ftype)
 	while true do
 		local name, spellId = nil, nil
 		if ftype == "buff" then
-			name, _, _, _, _, _, _, _, _, spellId = UnitAura("player", index, "HELPFUL")
+			name, _, _, _, _, _, _, _, _, spellId = UnitBuff("player", index)
 		elseif ftype == "debuff" then
-			name, _, _, _, _, _, _, _, _, spellId = UnitAura("target", index, "HARMFUL")
+			name, _, _, _, _, _, _, _, _, spellId = UnitDebuff("target", index)
 		end
 
 		if not name then break end

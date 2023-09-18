@@ -193,7 +193,7 @@ function DF:init_icons_frame()
 		frames[i].pointpatexture:SetBlendMode("ADD")
 		frames[i].pointpatexture:ClearAllPoints()
 		frames[i].pointpatexture:SetAllPoints(frames[i].pointpa)
-		frames[i].pointpatexture:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc2.tga")
+		frames[i].pointpatexture:SetTexture("Interface\\AddOns\\DroodFocus-classic\\datas\\ooc2.tga")
 
 		DF:icons_SetCooldown(i,0,0)
 		frames[i].cooldownframe:Hide()

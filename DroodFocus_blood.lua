@@ -52,7 +52,7 @@ function DF:init_blood_frame()
 		frames[i].overlayTexture:ClearAllPoints()
 		frames[i].overlayTexture:SetAllPoints(frames[i].overlay)
 
-		frames[i].overlayTexture:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\blood"..tostring(i))
+		frames[i].overlayTexture:SetTexture("Interface\\AddOns\\DroodFocus-classic\\datas\\blood"..tostring(i))
 
 		frames[i].overlay.texture = frames[i].overlayTexture
 

@@ -112,7 +112,7 @@ function DF:init_anchor_frame()
 		DF.anchor[i].frameTexture:SetAllPoints(DF.anchor[i].framet)
 		DF.anchor[i].frameTexture:SetTexture(DF_config["anchor"..tostring(i)].texture)
 
-		DF:MySetFont(DF.anchor[i].text,"Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",12,"OUTLINE")
+		DF:MySetFont(DF.anchor[i].text,"Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",12,"OUTLINE")
 		DF.anchor[i].text:SetShadowColor(0, 0, 0, 0.75)
 		DF.anchor[i].text:SetShadowOffset(0.5, -0.5)
 		DF.anchor[i].text:SetTextColor(1, 1, 1, 1)

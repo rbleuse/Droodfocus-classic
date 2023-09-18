@@ -287,13 +287,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 215.8160744865155,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "48",
 			["mode"] = "ADD",
@@ -320,9 +320,9 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
-			["fontPathtimer"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
+			["fontPathtimer"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["positionx"] = 10,
 			["width"] = 192,
 			["textx"] = 3,
@@ -385,14 +385,14 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
 				["v"] = 0.5,
 				["b"] = 0.5,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "BOTTOMRIGHT",
 			["positionx"] = 10,
 			["height"] = 32,
@@ -478,7 +478,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 405,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -490,7 +490,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 405.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["decimal"] = false,
@@ -524,7 +524,7 @@ DF_pred_configs = {
 					["size"] = 13,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["mode"] = "BLEND",
 			["width"] = 37,
 			["colonne"] = 8,
@@ -558,13 +558,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 850.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
 		["configname"] = "(BuildIn) DroodFocus (Default)",
 		["combo"] = {
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["fontSize"] = 18,
 			["textColor"] = {
 				["a"] = 1,
@@ -596,8 +596,8 @@ DF_pred_configs = {
 			["rayon"] = 37,
 			["offsetx"] = 20,
 			["height"] = 21,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 			["level"] = 4,
 		},
 		["anchor6"] = {
@@ -610,7 +610,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["targetbar"] = {
 			["sformat"] = "#C k/#M k (#p%)",
@@ -635,8 +635,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "CENTER",
 			["width"] = 192,
 			["textx"] = 0,
@@ -662,7 +662,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = true,
 			["enable"] = true,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = true,
 			["borderSize"] = 1,
@@ -675,9 +675,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = false,
 			["width"] = "210",
@@ -740,8 +740,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["width"] = 192,
 			["enable"] = false,
@@ -1267,14 +1267,14 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
 				["v"] = 0.5,
 				["b"] = 0,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorGood"] = {
 				["a"] = 1,
 				["r"] = 0,
@@ -1303,10 +1303,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 1,
 			["width"] = "650",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["height"] = "150",
 			["scaleMax"] = 0.1,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["speed"] = 0.1,
 			["positionx"] = 70,
 			["level"] = 10,
@@ -1334,13 +1334,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 655.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["infos"] = {
 			["fontSize"] = 10,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 20,
 			["backColor"] = {
 				["a"] = 0,
@@ -1357,12 +1357,12 @@ DF_pred_configs = {
 		},
 		["alert"] = {
 			["showDebuff"] = true,
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = 96.99557596109207,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "96",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "96",
 			["positionx"] = 72.82351202531481,
 			["mode"] = "BLEND",
@@ -1379,7 +1379,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["level"] = 1,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 	}, -- [1]
 	{
@@ -1387,13 +1387,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 215.8160744865155,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "64",
 			["mode"] = "BLEND",
@@ -1416,14 +1416,14 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
 				["v"] = 0.5,
 				["b"] = 0.5,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["positionx"] = "99",
 			["height"] = "18",
@@ -1508,7 +1508,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 197.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -1520,7 +1520,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 142.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["fontSize"] = 11,
@@ -1552,7 +1552,7 @@ DF_pred_configs = {
 					["size"] = 13,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["mode"] = "BLEND",
 			["width"] = 30,
 			["colonne"] = 5,
@@ -1586,7 +1586,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 172.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
@@ -1612,8 +1612,8 @@ DF_pred_configs = {
 			["rayon"] = 37,
 			["offsetx"] = 19,
 			["height"] = 20,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 			["level"] = 5,
 		},
 		["anchor6"] = {
@@ -1626,7 +1626,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["targetbar"] = {
 			["fontSize"] = 8,
@@ -1641,8 +1641,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "CENTER",
 			["width"] = "119",
 			["textx"] = 0,
@@ -1668,7 +1668,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = false,
 			["enable"] = false,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = false,
 			["borderSize"] = 1,
@@ -1681,9 +1681,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0.3,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = false,
 			["width"] = "180",
@@ -1736,8 +1736,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["width"] = 192,
 			["enable"] = false,
@@ -2200,14 +2200,14 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
 				["v"] = 0.5,
 				["b"] = 0,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorGood"] = {
 				["a"] = 1,
 				["r"] = 0,
@@ -2236,10 +2236,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 1,
 			["width"] = "512",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["height"] = "128",
 			["scaleMax"] = 0.1000000014901161,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["speed"] = 0.1299999952316284,
 			["positionx"] = 120,
 			["level"] = 6,
@@ -2267,13 +2267,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 433.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["infos"] = {
 			["fontSize"] = 12,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 3,
 			["backColor"] = {
 				["a"] = 0,
@@ -2289,12 +2289,12 @@ DF_pred_configs = {
 			},
 		},
 		["alert"] = {
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = -30.99271899703874,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "64",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "64",
 			["positionx"] = 35.21524791797145,
 			["mode"] = "BLEND",
@@ -2310,7 +2310,7 @@ DF_pred_configs = {
 			["height"] = "128",
 			["level"] = 4,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\UI_texture1.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\UI_texture1.tga",
 		},
 	}, -- [2]
 	{
@@ -2318,13 +2318,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 215.8160744865155,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "64",
 			["mode"] = "BLEND",
@@ -2347,14 +2347,14 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
 				["v"] = 0.5,
 				["b"] = 0.5,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["positionx"] = "99",
 			["height"] = "18",
@@ -2439,7 +2439,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 117.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -2451,7 +2451,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 100.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["fontSize"] = 11,
@@ -2483,7 +2483,7 @@ DF_pred_configs = {
 					["size"] = 11,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["mode"] = "BLEND",
 			["width"] = 30,
 			["colonne"] = 5,
@@ -2517,7 +2517,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 129.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
@@ -2543,8 +2543,8 @@ DF_pred_configs = {
 			["rayon"] = 169,
 			["offsetx"] = 19,
 			["height"] = 22,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 			["level"] = 5,
 		},
 		["anchor6"] = {
@@ -2557,7 +2557,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["targetbar"] = {
 			["fontSize"] = 8,
@@ -2572,8 +2572,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "CENTER",
 			["width"] = "119",
 			["textx"] = 0,
@@ -2599,7 +2599,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = false,
 			["enable"] = false,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = false,
 			["borderSize"] = 1,
@@ -2612,9 +2612,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0.3,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = false,
 			["width"] = "180",
@@ -2667,8 +2667,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["width"] = 192,
 			["enable"] = false,
@@ -3131,14 +3131,14 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar2.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar2.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
 				["v"] = 0.5,
 				["b"] = 0,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorGood"] = {
 				["a"] = 1,
 				["r"] = 0,
@@ -3167,10 +3167,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 0.699999988079071,
 			["width"] = "256",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["height"] = "256",
 			["scaleMax"] = 0.2000000029802322,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["speed"] = 0.04999999701976776,
 			["positionx"] = 13.12168394550059,
 			["level"] = 6,
@@ -3198,13 +3198,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 440.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["infos"] = {
 			["fontSize"] = 12,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 3,
 			["backColor"] = {
 				["a"] = 0,
@@ -3220,12 +3220,12 @@ DF_pred_configs = {
 			},
 		},
 		["alert"] = {
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = -52.73155375681273,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "28",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "28",
 			["positionx"] = 13.47612207799284,
 			["mode"] = "BLEND",
@@ -3241,7 +3241,7 @@ DF_pred_configs = {
 			["height"] = "128",
 			["level"] = 4,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\UI_texture2.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\UI_texture2.tga",
 		},
 	}, -- [3]
 	{
@@ -3249,13 +3249,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 215.8160744865155,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "48",
 			["mode"] = "ADD",
@@ -3278,14 +3278,14 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 1,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
 				["v"] = 0.5,
 				["b"] = 0.5,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "BOTTOMRIGHT",
 			["positionx"] = "10",
 			["height"] = 32,
@@ -3370,7 +3370,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 679.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -3382,7 +3382,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = "413",
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["fontSize"] = 11,
@@ -3414,7 +3414,7 @@ DF_pred_configs = {
 					["size"] = 11,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["mode"] = "BLEND",
 			["width"] = 32,
 			["colonne"] = 8,
@@ -3448,7 +3448,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 152.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
@@ -3474,8 +3474,8 @@ DF_pred_configs = {
 			["rayon"] = 37,
 			["offsetx"] = 20,
 			["height"] = 20,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 			["level"] = 3,
 		},
 		["anchor6"] = {
@@ -3488,7 +3488,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["targetbar"] = {
 			["fontSize"] = 11,
@@ -3503,8 +3503,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "CENTER",
 			["width"] = 192,
 			["textx"] = 0,
@@ -3530,7 +3530,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = true,
 			["enable"] = true,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = false,
 			["borderSize"] = 1,
@@ -3543,9 +3543,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0.3,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = true,
 			["width"] = 192,
@@ -3598,8 +3598,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["width"] = 192,
 			["enable"] = false,
@@ -4114,14 +4114,14 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
 				["v"] = 0.5,
 				["b"] = 0,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorGood"] = {
 				["a"] = 1,
 				["r"] = 0,
@@ -4150,10 +4150,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 1,
 			["width"] = "650",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["height"] = "150",
 			["scaleMax"] = 0.1,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["speed"] = 0.09999999403953552,
 			["positionx"] = 72,
 			["level"] = 10,
@@ -4181,13 +4181,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 149.75,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["infos"] = {
 			["fontSize"] = 10,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 20,
 			["backColor"] = {
 				["a"] = 0,
@@ -4203,12 +4203,12 @@ DF_pred_configs = {
 			},
 		},
 		["alert"] = {
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = 51.00009842216821,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "64",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "64",
 			["positionx"] = 73.99997600913082,
 			["mode"] = "BLEND",
@@ -4224,7 +4224,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["level"] = 1,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 	}, -- [4]
 	{
@@ -4232,13 +4232,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 215.8160744865155,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "64",
 			["mode"] = "ADD",
@@ -4261,14 +4261,14 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 1,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
 				["v"] = 0.5,
 				["b"] = 0.5,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "BOTTOMRIGHT",
 			["positionx"] = 10.25,
 			["height"] = 32,
@@ -4353,7 +4353,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 247.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -4365,7 +4365,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 238.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["fontSize"] = 13,
@@ -4397,7 +4397,7 @@ DF_pred_configs = {
 					["size"] = 13,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["mode"] = "BLEND",
 			["width"] = 37,
 			["colonne"] = 8,
@@ -4431,7 +4431,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 238.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
@@ -4457,8 +4457,8 @@ DF_pred_configs = {
 			["rayon"] = 37,
 			["offsetx"] = 20,
 			["height"] = 20,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 			["level"] = 3,
 		},
 		["anchor6"] = {
@@ -4471,7 +4471,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["targetbar"] = {
 			["fontSize"] = 11,
@@ -4486,8 +4486,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "CENTER",
 			["width"] = 192,
 			["textx"] = 0,
@@ -4513,7 +4513,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = true,
 			["enable"] = false,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = false,
 			["borderSize"] = 1,
@@ -4526,9 +4526,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0.3,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = false,
 			["width"] = 192,
@@ -4581,8 +4581,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textAlign"] = "RIGHT",
 			["width"] = 192,
 			["enable"] = false,
@@ -5097,14 +5097,14 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
 				["v"] = 0.5,
 				["b"] = 0,
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorGood"] = {
 				["a"] = 1,
 				["r"] = 0,
@@ -5133,10 +5133,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 1,
 			["width"] = "650",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["height"] = "150",
 			["scaleMax"] = 0.1,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["speed"] = 0.09999999403953552,
 			["positionx"] = 73,
 			["level"] = 10,
@@ -5164,13 +5164,13 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 412,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["infos"] = {
 			["fontSize"] = 10,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 20,
 			["backColor"] = {
 				["a"] = 0,
@@ -5186,12 +5186,12 @@ DF_pred_configs = {
 			},
 		},
 		["alert"] = {
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = 38.18697932947816,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "64",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "64",
 			["positionx"] = 73.99974628334167,
 			["mode"] = "BLEND",
@@ -5207,7 +5207,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["level"] = 1,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 	}, -- [5]
 	{
@@ -5215,13 +5215,13 @@ DF_pred_configs = {
 		["MiniMapAngle"] = 122.5361970818473,
 		["portrait"] = {
 			["textures"] = {
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga", -- [1]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\bearform.tga", -- [2]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\aquaform.tga", -- [3]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\catform.tga", -- [4]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\travelform.tga", -- [5]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\moonkinform.tga", -- [6]
-				"Interface\\AddOns\\DroodFocus-TBC\\datas\\flightform.tga", -- [7]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga", -- [1]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\bearform.tga", -- [2]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\aquaform.tga", -- [3]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\catform.tga", -- [4]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\travelform.tga", -- [5]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\moonkinform.tga", -- [6]
+				"Interface\\AddOns\\DroodFocus-classic\\datas\\flightform.tga", -- [7]
 			},
 			["height"] = "48",
 			["level"] = 5,
@@ -5244,7 +5244,7 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 1,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorDef"] = {
 				["a"] = 1,
 				["r"] = 0.5,
@@ -5255,7 +5255,7 @@ DF_pred_configs = {
 			["textx"] = -3.5,
 			["textAlign"] = "BOTTOMRIGHT",
 			["height"] = 32,
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["colorNrj"] = {
 				["a"] = 1,
 				["r"] = 1,
@@ -5336,7 +5336,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 125,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["anchor3"] = {
 			["visible"] = true,
@@ -5348,7 +5348,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 123.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["icons"] = {
 			["fontSize"] = 13,
@@ -5381,7 +5381,7 @@ DF_pred_configs = {
 					["size"] = 10,
 				}, -- [3]
 			},
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["mode"] = "BLEND",
 			["pointpa"] = false,
 			["width"] = 37,
@@ -5416,7 +5416,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 409.5,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["alignToGrid"] = true,
 		["inCombat"] = false,
@@ -5443,8 +5443,8 @@ DF_pred_configs = {
 			["offsetx"] = 20,
 			["height"] = 20,
 			["level"] = 3,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_yellow.tga",
-			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-TBC\\custom\\combo_gray.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_yellow.tga",
+			["texturePathOff"] = "Interface\\AddOns\\DroodFocus-classic\\custom\\combo_gray.tga",
 		},
 		["anchor6"] = {
 			["visible"] = true,
@@ -5456,7 +5456,7 @@ DF_pred_configs = {
 			["height"] = "32",
 			["level"] = 10,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["minimap"] = false,
 		["targetbar"] = {
@@ -5477,8 +5477,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["textx"] = 0,
 			["width"] = 192,
 			["texty"] = 0.5,
@@ -5499,7 +5499,7 @@ DF_pred_configs = {
 			["fontSize"] = 10,
 			["enable"] = false,
 			["infolines"] = "PowerAttack: #meleeAP*Crit: #meleeCrit*Haste: #meleeHaste*ArPen: #armPen",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_typewriter.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_typewriter.ttf",
 			["level"] = 20,
 			["backColor"] = {
 				["a"] = 0,
@@ -5517,7 +5517,7 @@ DF_pred_configs = {
 		["timerbar"] = {
 			["orderByTime"] = true,
 			["enable"] = true,
-			["font1Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["font1Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["showSpark"] = true,
 			["prop"] = false,
 			["borderSize"] = 1,
@@ -5530,9 +5530,9 @@ DF_pred_configs = {
 			["showTimeLine"] = true,
 			["inactiveAlpha"] = 0,
 			["level"] = 4,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["activeAlphaCD"] = 1,
-			["font2Path"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font_digital.ttf",
+			["font2Path"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font_digital.ttf",
 			["activeAlpha"] = 1,
 			["growup"] = true,
 			["timeline"] = 14,
@@ -5580,8 +5580,8 @@ DF_pred_configs = {
 				["b"] = 0,
 			},
 			["level"] = 2,
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["color"] = {
 				["r"] = 0,
 				["v"] = 0,
@@ -5872,10 +5872,10 @@ DF_pred_configs = {
 			["enable"] = true,
 			["scaleMin"] = 1,
 			["width"] = "256",
-			["textureOff"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["textureOff"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 			["speed"] = 0.1,
 			["scaleMax"] = 0.1,
-			["textureOn"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\ooc.tga",
+			["textureOn"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\ooc.tga",
 			["height"] = "256",
 			["positionx"] = 73.92936596379627,
 			["level"] = 10,
@@ -5899,7 +5899,7 @@ DF_pred_configs = {
 				["v"] = 0,
 				["b"] = 0,
 			},
-			["texturePath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\statusbar.tga",
+			["texturePath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\statusbar.tga",
 			["colorAverage"] = {
 				["a"] = 1,
 				["r"] = 1,
@@ -5908,7 +5908,7 @@ DF_pred_configs = {
 			},
 			["colorchg"] = true,
 			["textx"] = -7,
-			["fontPath"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",
+			["fontPath"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",
 			["level"] = 2,
 			["width"] = 192,
 			["positionx"] = 8,
@@ -5952,16 +5952,16 @@ DF_pred_configs = {
 			["height"] = 32,
 			["positionx"] = 409.25,
 			["level"] = 1,
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 		["cursorspeed"] = 100,
 		["alert"] = {
-			["texture1"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertBehind.tga",
+			["texture1"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertBehind.tga",
 			["positiony"] = 100.0000748038281,
 			["enable"] = true,
-			["texture3"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertSkull.tga",
+			["texture3"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertSkull.tga",
 			["width"] = "64",
-			["texture2"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\alertRange.tga",
+			["texture2"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\alertRange.tga",
 			["height"] = "64",
 			["level"] = 5,
 			["mode"] = "BLEND",
@@ -5977,7 +5977,7 @@ DF_pred_configs = {
 			["height"] = 32,
 			["level"] = 1,
 			["mode"] = "BLEND",
-			["texture"] = "Interface\\AddOns\\DroodFocus-TBC\\datas\\empty.tga",
+			["texture"] = "Interface\\AddOns\\DroodFocus-classic\\datas\\empty.tga",
 		},
 	}, -- [1]
 }

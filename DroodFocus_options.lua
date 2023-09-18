@@ -272,7 +272,7 @@ function DF:options_createpanels()
 	picture1:SetPoint("TOP", pt, "TOP",0, -10)
 	local picture1t = picture1:CreateTexture(nil,"BACKGROUND")
 	picture1t:SetAllPoints(picture1) -- attache la texture a la frame
-	picture1t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture")
+	picture1t:SetTexture("Interface\\AddOns\\DroodFocus-classic\\datas\\picture")
 	picture1t:SetBlendMode("BLEND")
 	picture1.texture = picture1t
 
@@ -289,7 +289,7 @@ function DF:options_createpanels()
 	picture2:SetPoint("TOPRIGHT", pt, "TOPRIGHT",-16, -80)
 	local picture2t = picture2:CreateTexture(nil,"BACKGROUND")
 	picture2t:SetAllPoints(picture2) -- attache la texture a la frame
-	picture2t:SetTexture("Interface\\AddOns\\DroodFocus-TBC\\datas\\picture")
+	picture2t:SetTexture("Interface\\AddOns\\DroodFocus-classic\\datas\\picture")
 	picture2t:SetBlendMode("BLEND")
 	picture2.texture = picture2t
 
@@ -397,7 +397,7 @@ function DF:options_createpanels()
 
 	shareMediaBox:SetScript("OnShow", function(self)
 		shareMediaTexture:SetTexture(nil)
-		shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",14)
+		shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",14)
 	end)
 
 	pt = DF:options_createPanel("infos",2,5,true,DF.locale["infos"])
@@ -2067,7 +2067,7 @@ function DF:options_testMedia()
 	local mediaValide=false
 
 	shareMediaTexture:SetTexture(nil)
-	shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf",14)
+	shareMediaFont:SetFont("Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf",14)
 
 	if ftype~="" and fpath~="" and fname~="" then
 		if ftype=="statusbar" or ftype=="background" then
@@ -2079,7 +2079,7 @@ function DF:options_testMedia()
 		elseif ftype=="font" then
 			shareMediaFont:SetFont(fpath,14)
 
-			if shareMediaFont:GetFont()~="Interface\\AddOns\\DroodFocus-TBC\\datas\\font.ttf" then
+			if shareMediaFont:GetFont()~="Interface\\AddOns\\DroodFocus-classic\\datas\\font.ttf" then
 				mediaValide=true
 			end
 		end

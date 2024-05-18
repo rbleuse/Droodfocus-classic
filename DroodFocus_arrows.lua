@@ -27,7 +27,7 @@ function DF:init_arrows_frame()
 
 		-- paramétres cadre principal
 		frames[i].frame:SetMovable(false)
-		frames[i].frame:EnableMouse(false)		
+		frames[i].frame:EnableMouse(false)
 		frames[i].frame:SetWidth(16)
 		frames[i].frame:SetHeight(16)
 		frames[i].frame:SetPoint("LEFT", DF:powerbar_get_pt(), "LEFT", 0, 0)

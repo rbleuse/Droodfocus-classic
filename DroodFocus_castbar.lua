@@ -167,7 +167,7 @@ function DF:init_castbar_frame()
 	sparkTexture:SetAllPoints(spark)
 	sparkTexture:SetTexture("Interface\\CastingBar\\UI-CastingBar-Spark")
 	sparkTexture:SetBlendMode("ADD")
-	spark.texture=sparkTexture				
+	spark.texture=sparkTexture
 
 	if DF_config.castbar.orientation=="VERTICAL" or not DF_config.castbar.showSpark then
 		spark:Hide()
